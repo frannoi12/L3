@@ -1,7 +1,11 @@
 import os
 import sys
-sys.path.append('/home/toyi/Documents/L3/L3/sem_5/django/ifnti_l3')
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ifnti_l3.settings')  # Remplacez 'ifnti_l3' par le nom de votre projet
+# sys.path.append('/home/toyi/Documents/L3/L3/sem_5/django/ifnti_l3/')
+# os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ifnti_l3.settings')  # Remplacez 'ifnti_l3' par le nom de votre projet
+
+sys.path.append('/home/toyi/Documents/L3/sem_5/django/ifnti_l3')
+os.environ['DJANGO_SETTINGS_MODULE'] = 'ifnti_l3.settings'
+
 
 import django
 django.setup()

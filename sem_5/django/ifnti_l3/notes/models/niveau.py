@@ -6,6 +6,9 @@ class Niveau(models.Model):
     nom = models.CharField(max_length=2, unique=True)
     matiere = models.ManyToManyField(Matiere,related_name="niveau")
 
+    class Meta:
+        verbose_name_plural = "Niveaux"
+
     def __str__(self):
         # Récupérer les noms des matières associées à ce niveau
         matieres = ", ".join([str(matiere) for matiere in self.matiere.all()])

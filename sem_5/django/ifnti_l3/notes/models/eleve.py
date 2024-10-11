@@ -9,7 +9,8 @@ class Eleve(Personne):
     niveau = models.ForeignKey(Niveau, on_delete=models.CASCADE, related_name='eleves')
     matieres = models.ManyToManyField('Matiere', through='Note', related_name='eleves')
 
-
+    class Meta:
+        verbose_name_plural = "Elèves"
 
     def __str__(self):
         # Appeler la méthode __str__() de la classe parente
