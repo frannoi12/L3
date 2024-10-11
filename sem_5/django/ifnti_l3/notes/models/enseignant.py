@@ -5,7 +5,15 @@ from .matiere import Matiere
 
 
 class Enseignant(Personne):
-    matiere = models.ForeignKey(Matiere, on_delete=models.CASCADE)
-
+    matieres = models.ManyToManyField('Matiere', related_name='enseignants')
+    
+    
     def __str__(self):
-        return f"{self.nom} {self.prenom} - {self.matiere.nom}"
+        # Appeler la méthode __str__() de la classe parente
+        parent_str = super().__str__()
+
+        # Récupérer les noms des matières associées à cet enseignant
+        matieres = ", ".join([str(matiere) for matiere in self.matieres.all()])  # Utilisation de ManyToManyField
+
+        # Retourner la chaîne combinée avec le résultat de la classe parente et les matières enseignées
+        return f"{parent_str} - Matières: {matieres or 'Aucune matière'}"

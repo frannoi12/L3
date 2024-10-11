@@ -41,3 +41,40 @@ enseignant2.save()
 
 enseignant3 = Enseignant(nom="Enseignant Trois", date_naissance=date(1985, 11, 3), identifiant="EN9013")
 enseignant3.save()
+
+
+
+, matieres=mat5 ,matieres=mat4, matieres=mat3, matieres=mat2,matieres=mat1
+
+
+
+
+
+
+
+
+
+
+
+
+
+Voici la reproduction du texte demandé :
+
+---
+
+**TP3 - Shell et site d'administration**
+
+1. Le premier s'appelle Claude Stroffaube, il est né le 1er août 1967.
+2. La deuxième s'appelle Abla Sillon, elle est née le 2 juillet 1960.
+3. Le troisième s'appelle Parlaf Eunaître, il est né le 28 février 1990.
+
+(g) **Créez 5 Matières que vous sauvegarderez une fois créées :**
+   i. "Bases de la programmation" est enseigné en L1 par M. Stroffaube.
+   ii. "Mathématiques" est enseigné en L1 et en L2 par Mme Sillon.
+   iii. "Langages Webs" est enseigné en L2 et en L3 par Mme Sillon.
+   iv. "Gestion de projets" est enseigné en L3 par M. Stroffaube.
+   v. "Anglais" est enseigné dans les 3 niveaux par M. Eunaître.
+
+4. **Restez sur le shell** et affichez l'objet *Élève* correspondant à Jean. Qu'avez-vous tapé ? Qu'est-ce qui s'affiche ? Ne serait-ce pas plus judicieux d'afficher plutôt son nom et sa valeur ? Essayez de penser à une manière de corriger ce problème et exposez-la. Nous y reviendrons dans un prochain TP.
+
+---
