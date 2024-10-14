@@ -1,0 +1,11 @@
+<h1>Liste des élèves</h1>
+<ul>
+    {% for eleve in eleves %}
+    <li>
+        {{ eleve.nom }} - Niveau: {{ eleve.niveau.nom }} - Matières: 
+        {% for matiere in eleve.matieres.all %}
+            {{ matiere.nom }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </li>
+    {% endfor %}
+</ul>

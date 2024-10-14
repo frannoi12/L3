@@ -1,10 +1,10 @@
 import os
 import sys
-# sys.path.append('/home/toyi/Documents/L3/L3/sem_5/django/ifnti_l3/')
-# os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ifnti_l3.settings')  # Remplacez 'ifnti_l3' par le nom de votre projet
+sys.path.append('/home/toyi/Documents/L3/L3/sem_5/django/ifnti_l3/')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ifnti_l3.settings')  # Remplacez 'ifnti_l3' par le nom de votre projet
 
-sys.path.append('/home/toyi/Documents/L3/sem_5/django/ifnti_l3')
-os.environ['DJANGO_SETTINGS_MODULE'] = 'ifnti_l3.settings'
+# sys.path.append('/home/toyi/Documents/L3/sem_5/django/ifnti_l3')
+# os.environ['DJANGO_SETTINGS_MODULE'] = 'ifnti_l3.settings'
 
 
 import django
@@ -14,15 +14,17 @@ from datetime import date
 from notes.models import Niveau,Eleve,Enseignant,Matiere,Note
 
 
-niv1 = Niveau()
-niv2 = Niveau()
-niv3 = Niveau()
-niv1.nom="L1"
-niv2.nom="L2"
-niv3.nom="L3"
+niv1 = Niveau(1,"L1")
+niv2 = Niveau(2,"L2")
+niv3 = Niveau(3,"L3")
+# niv4 = Niveau()
+# niv1.nom="L1"
+# niv2.nom="L2"
+# niv3.nom="L3"
 niv1.save()
 niv2.save()
 niv3.save()
+# niv4.save()
 
 eleve1 = Eleve(id="90158486", nom="Toune", prenom="Ouvo", date_naissance=date(1995, 10, 25),sexe="M", niveau=niv1)
 eleve1.save()

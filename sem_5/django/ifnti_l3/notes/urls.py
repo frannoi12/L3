@@ -1,6 +1,11 @@
 from django.urls import path
-from . import views
+from .views import index, eleve, matiere, niveau
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', index.index, name='index'),
+    path('eleve/', eleve.eleve, name='eleve'),
+    path('eleves/<int:id>/', eleve.eleves, name='eleves'),
+    path('matiere/', matiere.matiere, name='matiere'),
+    path('matieres/<int:id>', matiere.matieres, name='matiere'),
+    path('niveau/<int:id>', niveau.niveau, name='niveau'),    
 ]

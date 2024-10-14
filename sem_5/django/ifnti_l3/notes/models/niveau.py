@@ -3,7 +3,7 @@ from .matiere import Matiere
 
 
 class Niveau(models.Model):
-    nom = models.CharField(max_length=2, unique=True)
+    nom = models.CharField(max_length=2, unique=True,null=True)
     matiere = models.ManyToManyField(Matiere,related_name="niveau")
 
     class Meta:

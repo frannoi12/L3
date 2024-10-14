@@ -1,0 +1,8 @@
+<h1>Détail de l'élève : {{ eleve.nom }}</h1>
+<p>Niveau: {{ eleve.niveau.nom }}</p>
+<p>Matières :</p>
+<ul>
+    {% for matiere in eleve.matieres.all %}
+    <li>{{ matiere.nom }} - Note: {{ matiere.note_set.first.note }} (si une relation existe)</li>
+    {% endfor %}
+</ul>
