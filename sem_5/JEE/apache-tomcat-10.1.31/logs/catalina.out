@@ -1,0 +1,371 @@
+14-Oct-2024 08:16:48.130 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Nom version serveur :              Apache Tomcat/10.1.31
+14-Oct-2024 08:16:48.150 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Serveur compilé :                  Oct 3 2024 19:02:38 UTC
+14-Oct-2024 08:16:48.151 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Version du serveur :               10.1.31.0
+14-Oct-2024 08:16:48.152 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Nom de l'OS :                      Linux
+14-Oct-2024 08:16:48.153 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Version OS :                       5.4.0-196-generic
+14-Oct-2024 08:16:48.153 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture :                     amd64
+14-Oct-2024 08:16:48.154 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home :                        /usr/lib/jvm/jdk-21.0.4-oracle-x64
+14-Oct-2024 08:16:48.155 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Version JVM :                      21.0.4+8-LTS-274
+14-Oct-2024 08:16:48.155 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Fournisseur de la JVM :            Oracle Corporation
+14-Oct-2024 08:16:48.156 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE :                    /home/toyi/Téléchargements/apache-tomcat-10.1.31
+14-Oct-2024 08:16:48.156 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME :                    /home/toyi/Téléchargements/apache-tomcat-10.1.31
+14-Oct-2024 08:16:48.227 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : -Djava.util.logging.config.file=/home/toyi/Téléchargements/apache-tomcat-10.1.31/conf/logging.properties
+14-Oct-2024 08:16:48.227 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+14-Oct-2024 08:16:48.228 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : -Djdk.tls.ephemeralDHKeySize=2048
+14-Oct-2024 08:16:48.228 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+14-Oct-2024 08:16:48.229 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : -Dorg.apache.catalina.security.SecurityListener.UMASK=0027
+14-Oct-2024 08:16:48.229 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : --add-opens=java.base/java.lang=ALL-UNNAMED
+14-Oct-2024 08:16:48.230 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : --add-opens=java.base/java.io=ALL-UNNAMED
+14-Oct-2024 08:16:48.231 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : --add-opens=java.base/java.util=ALL-UNNAMED
+14-Oct-2024 08:16:48.231 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+14-Oct-2024 08:16:48.232 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+14-Oct-2024 08:16:48.232 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : -Dcatalina.base=/home/toyi/Téléchargements/apache-tomcat-10.1.31
+14-Oct-2024 08:16:48.233 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : -Dcatalina.home=/home/toyi/Téléchargements/apache-tomcat-10.1.31
+14-Oct-2024 08:16:48.233 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : -Djava.io.tmpdir=/home/toyi/Téléchargements/apache-tomcat-10.1.31/temp
+14-Oct-2024 08:16:48.240 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent La librairie Apache Tomcat Native basée sur APR qui permet des performances optimales dans les environnements de production n'a pas été trouvée sur le java.library.path : [/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib]
+14-Oct-2024 08:16:49.642 INFO [main] org.apache.coyote.AbstractProtocol.init Initialisation du gestionnaire de protocole ["http-nio-8080"]
+14-Oct-2024 08:16:49.747 INFO [main] org.apache.catalina.startup.Catalina.load L'initialisation du serveur a pris [2479] millisecondes
+14-Oct-2024 08:16:49.927 INFO [main] org.apache.catalina.core.StandardService.startInternal Démarrage du service [Catalina]
+14-Oct-2024 08:16:49.929 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Démarrage du moteur de Servlets : [Apache Tomcat/10.1.31]
+14-Oct-2024 08:16:49.966 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Déploiement du répertoire d'application web [/home/toyi/Téléchargements/apache-tomcat-10.1.31/webapps/examples]
+14-Oct-2024 08:16:52.635 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Le déploiement du répertoire [/home/toyi/Téléchargements/apache-tomcat-10.1.31/webapps/examples] de l'application web s'est terminé en [2 656] ms
+14-Oct-2024 08:16:52.639 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Déploiement du répertoire d'application web [/home/toyi/Téléchargements/apache-tomcat-10.1.31/webapps/host-manager]
+14-Oct-2024 08:16:52.748 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Le déploiement du répertoire [/home/toyi/Téléchargements/apache-tomcat-10.1.31/webapps/host-manager] de l'application web s'est terminé en [109] ms
+14-Oct-2024 08:16:52.749 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Déploiement du répertoire d'application web [/home/toyi/Téléchargements/apache-tomcat-10.1.31/webapps/ROOT]
+14-Oct-2024 08:16:52.843 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Le déploiement du répertoire [/home/toyi/Téléchargements/apache-tomcat-10.1.31/webapps/ROOT] de l'application web s'est terminé en [79] ms
+14-Oct-2024 08:16:52.845 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Déploiement du répertoire d'application web [/home/toyi/Téléchargements/apache-tomcat-10.1.31/webapps/docs]
+14-Oct-2024 08:16:52.928 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Le déploiement du répertoire [/home/toyi/Téléchargements/apache-tomcat-10.1.31/webapps/docs] de l'application web s'est terminé en [83] ms
+14-Oct-2024 08:16:52.929 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Déploiement du répertoire d'application web [/home/toyi/Téléchargements/apache-tomcat-10.1.31/webapps/manager]
+14-Oct-2024 08:16:53.024 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Le déploiement du répertoire [/home/toyi/Téléchargements/apache-tomcat-10.1.31/webapps/manager] de l'application web s'est terminé en [94] ms
+14-Oct-2024 08:16:53.045 INFO [main] org.apache.coyote.AbstractProtocol.start Démarrage du gestionnaire de protocole ["http-nio-8080"]
+14-Oct-2024 08:16:53.096 INFO [main] org.apache.catalina.startup.Catalina.start Le démarrage du serveur a pris [3343] millisecondes
+14-Oct-2024 08:47:44.302 INFO [Catalina-utility-1] org.apache.catalina.startup.HostConfig.deployDirectory Déploiement du répertoire d'application web [/home/toyi/Téléchargements/apache-tomcat-10.1.31/webapps/toto]
+14-Oct-2024 08:47:44.422 INFO [Catalina-utility-1] org.apache.catalina.startup.HostConfig.deployDirectory Le déploiement du répertoire [/home/toyi/Téléchargements/apache-tomcat-10.1.31/webapps/toto] de l'application web s'est terminé en [153] ms
+14-Oct-2024 08:52:34.637 INFO [Catalina-utility-2] org.apache.catalina.users.MemoryUserDatabase.backgroundProcess Rechargement de la base de données des utilisateurs [UserDatabase] à partir de la source mise à jour [file:/home/toyi/Téléchargements/apache-tomcat-10.1.31/conf/tomcat-users.xml]
+14-Oct-2024 08:52:34.640 SEVERE [Catalina-utility-2] org.apache.catalina.users.MemoryUserDatabase.open La base d'utilisateurs spécifiée [conf/tomcat-users.xml] n'a pas été trouvée
+14-Oct-2024 08:52:35.150 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.undeploy Retrait de l'application web ayant pour chemin de contexte []
+14-Oct-2024 08:52:35.169 WARNING [Catalina-utility-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc Le désenregistrement du pilote JDBC a échoué pour l'application web [ROOT]
+	java.lang.NullPointerException: Cannot invoke "java.io.InputStream.read(byte[], int, int)" because "is" is null
+		at org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc(WebappClassLoaderBase.java:1605)
+		at org.apache.catalina.loader.WebappClassLoaderBase.clearReferences(WebappClassLoaderBase.java:1549)
+		at org.apache.catalina.loader.WebappClassLoaderBase.stop(WebappClassLoaderBase.java:1487)
+		at org.apache.catalina.loader.WebappLoader.stopInternal(WebappLoader.java:374)
+		at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:231)
+		at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:4685)
+		at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:231)
+		at org.apache.catalina.core.ContainerBase.removeChild(ContainerBase.java:659)
+		at org.apache.catalina.startup.HostConfig.undeploy(HostConfig.java:1483)
+		at org.apache.catalina.startup.HostConfig.checkResources(HostConfig.java:1412)
+		at org.apache.catalina.startup.HostConfig.check(HostConfig.java:1665)
+		at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:299)
+		at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:109)
+		at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:973)
+		at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1172)
+		at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1176)
+		at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1154)
+		at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+		at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+		at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+14-Oct-2024 08:52:35.706 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.undeploy Retrait de l'application web ayant pour chemin de contexte [/examples]
+14-Oct-2024 08:52:35.717 WARNING [Catalina-utility-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc Le désenregistrement du pilote JDBC a échoué pour l'application web [examples]
+	java.lang.IllegalStateException: java.nio.file.NoSuchFileException: /home/toyi/Téléchargements/apache-tomcat-10.1.31/webapps/examples/WEB-INF/lib/taglibs-standard-impl-1.2.5-migrated-0.0.1.jar
+		at org.apache.catalina.webresources.AbstractSingleArchiveResourceSet.getArchiveEntry(AbstractSingleArchiveResourceSet.java:100)
+		at org.apache.catalina.webresources.AbstractArchiveResourceSet.getResource(AbstractArchiveResourceSet.java:250)
+		at org.apache.catalina.webresources.StandardRoot.getResourceInternal(StandardRoot.java:272)
+		at org.apache.catalina.webresources.Cache.getResource(Cache.java:64)
+		at org.apache.catalina.webresources.StandardRoot.getResource(StandardRoot.java:211)
+		at org.apache.catalina.webresources.StandardRoot.getClassLoaderResource(StandardRoot.java:220)
+		at org.apache.catalina.loader.WebappClassLoaderBase.getResourceAsStream(WebappClassLoaderBase.java:1056)
+		at org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc(WebappClassLoaderBase.java:1604)
+		at org.apache.catalina.loader.WebappClassLoaderBase.clearReferences(WebappClassLoaderBase.java:1549)
+		at org.apache.catalina.loader.WebappClassLoaderBase.stop(WebappClassLoaderBase.java:1487)
+		at org.apache.catalina.loader.WebappLoader.stopInternal(WebappLoader.java:374)
+		at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:231)
+		at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:4685)
+		at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:231)
+		at org.apache.catalina.core.ContainerBase.removeChild(ContainerBase.java:659)
+		at org.apache.catalina.startup.HostConfig.undeploy(HostConfig.java:1483)
+		at org.apache.catalina.startup.HostConfig.checkResources(HostConfig.java:1412)
+		at org.apache.catalina.startup.HostConfig.check(HostConfig.java:1665)
+		at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:299)
+		at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:109)
+		at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:973)
+		at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1172)
+		at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1176)
+		at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1154)
+		at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+		at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+		at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+	Caused by: java.nio.file.NoSuchFileException: /home/toyi/Téléchargements/apache-tomcat-10.1.31/webapps/examples/WEB-INF/lib/taglibs-standard-impl-1.2.5-migrated-0.0.1.jar
+		at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:92)
+		at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106)
+		at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111)
+		at java.base/sun.nio.fs.UnixFileAttributeViews$Basic.readAttributes(UnixFileAttributeViews.java:55)
+		at java.base/sun.nio.fs.UnixFileSystemProvider.readAttributes(UnixFileSystemProvider.java:171)
+		at java.base/sun.nio.fs.LinuxFileSystemProvider.readAttributes(LinuxFileSystemProvider.java:99)
+		at java.base/java.nio.file.Files.readAttributes(Files.java:1853)
+		at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1445)
+		at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:724)
+		at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:251)
+		at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:180)
+		at java.base/java.util.jar.JarFile.<init>(JarFile.java:345)
+		at org.apache.catalina.webresources.AbstractArchiveResourceSet.openJarFile(AbstractArchiveResourceSet.java:300)
+		at org.apache.catalina.webresources.AbstractSingleArchiveResourceSet.getArchiveEntry(AbstractSingleArchiveResourceSet.java:96)
+		... 30 more
+14-Oct-2024 08:52:36.234 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.undeploy Retrait de l'application web ayant pour chemin de contexte [/host-manager]
+14-Oct-2024 08:52:36.242 WARNING [Catalina-utility-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc Le désenregistrement du pilote JDBC a échoué pour l'application web [host-manager]
+	java.lang.NullPointerException: Cannot invoke "java.io.InputStream.read(byte[], int, int)" because "is" is null
+		at org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc(WebappClassLoaderBase.java:1605)
+		at org.apache.catalina.loader.WebappClassLoaderBase.clearReferences(WebappClassLoaderBase.java:1549)
+		at org.apache.catalina.loader.WebappClassLoaderBase.stop(WebappClassLoaderBase.java:1487)
+		at org.apache.catalina.loader.WebappLoader.stopInternal(WebappLoader.java:374)
+		at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:231)
+		at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:4685)
+		at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:231)
+		at org.apache.catalina.core.ContainerBase.removeChild(ContainerBase.java:659)
+		at org.apache.catalina.startup.HostConfig.undeploy(HostConfig.java:1483)
+		at org.apache.catalina.startup.HostConfig.checkResources(HostConfig.java:1412)
+		at org.apache.catalina.startup.HostConfig.check(HostConfig.java:1665)
+		at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:299)
+		at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:109)
+		at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:973)
+		at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1172)
+		at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1176)
+		at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1154)
+		at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+		at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+		at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+14-Oct-2024 08:52:36.762 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.undeploy Retrait de l'application web ayant pour chemin de contexte [/toto]
+14-Oct-2024 08:52:36.773 WARNING [Catalina-utility-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc Le désenregistrement du pilote JDBC a échoué pour l'application web [toto]
+	java.lang.NullPointerException: Cannot invoke "java.io.InputStream.read(byte[], int, int)" because "is" is null
+		at org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc(WebappClassLoaderBase.java:1605)
+		at org.apache.catalina.loader.WebappClassLoaderBase.clearReferences(WebappClassLoaderBase.java:1549)
+		at org.apache.catalina.loader.WebappClassLoaderBase.stop(WebappClassLoaderBase.java:1487)
+		at org.apache.catalina.loader.WebappLoader.stopInternal(WebappLoader.java:374)
+		at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:231)
+		at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:4685)
+		at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:231)
+		at org.apache.catalina.core.ContainerBase.removeChild(ContainerBase.java:659)
+		at org.apache.catalina.startup.HostConfig.undeploy(HostConfig.java:1483)
+		at org.apache.catalina.startup.HostConfig.checkResources(HostConfig.java:1412)
+		at org.apache.catalina.startup.HostConfig.check(HostConfig.java:1665)
+		at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:299)
+		at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:109)
+		at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:973)
+		at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1172)
+		at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1176)
+		at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1154)
+		at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+		at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+		at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+14-Oct-2024 08:52:37.286 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.undeploy Retrait de l'application web ayant pour chemin de contexte [/manager]
+14-Oct-2024 08:52:37.294 WARNING [Catalina-utility-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc Le désenregistrement du pilote JDBC a échoué pour l'application web [manager]
+	java.lang.NullPointerException: Cannot invoke "java.io.InputStream.read(byte[], int, int)" because "is" is null
+		at org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc(WebappClassLoaderBase.java:1605)
+		at org.apache.catalina.loader.WebappClassLoaderBase.clearReferences(WebappClassLoaderBase.java:1549)
+		at org.apache.catalina.loader.WebappClassLoaderBase.stop(WebappClassLoaderBase.java:1487)
+		at org.apache.catalina.loader.WebappLoader.stopInternal(WebappLoader.java:374)
+		at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:231)
+		at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:4685)
+		at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:231)
+		at org.apache.catalina.core.ContainerBase.removeChild(ContainerBase.java:659)
+		at org.apache.catalina.startup.HostConfig.undeploy(HostConfig.java:1483)
+		at org.apache.catalina.startup.HostConfig.checkResources(HostConfig.java:1412)
+		at org.apache.catalina.startup.HostConfig.check(HostConfig.java:1665)
+		at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:299)
+		at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:109)
+		at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:973)
+		at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1172)
+		at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1176)
+		at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1154)
+		at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+		at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+		at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+14-Oct-2024 08:52:37.804 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.undeploy Retrait de l'application web ayant pour chemin de contexte [/docs]
+14-Oct-2024 08:52:37.816 WARNING [Catalina-utility-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc Le désenregistrement du pilote JDBC a échoué pour l'application web [docs]
+	java.lang.NullPointerException: Cannot invoke "java.io.InputStream.read(byte[], int, int)" because "is" is null
+		at org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc(WebappClassLoaderBase.java:1605)
+		at org.apache.catalina.loader.WebappClassLoaderBase.clearReferences(WebappClassLoaderBase.java:1549)
+		at org.apache.catalina.loader.WebappClassLoaderBase.stop(WebappClassLoaderBase.java:1487)
+		at org.apache.catalina.loader.WebappLoader.stopInternal(WebappLoader.java:374)
+		at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:231)
+		at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:4685)
+		at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:231)
+		at org.apache.catalina.core.ContainerBase.removeChild(ContainerBase.java:659)
+		at org.apache.catalina.startup.HostConfig.undeploy(HostConfig.java:1483)
+		at org.apache.catalina.startup.HostConfig.checkResources(HostConfig.java:1412)
+		at org.apache.catalina.startup.HostConfig.check(HostConfig.java:1665)
+		at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:299)
+		at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:109)
+		at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:973)
+		at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1172)
+		at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1176)
+		at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1154)
+		at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+		at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+		at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+14-Oct-2024 08:54:42.044 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Nom version serveur :              Apache Tomcat/10.1.31
+14-Oct-2024 08:54:42.063 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Serveur compilé :                  Oct 3 2024 19:02:38 UTC
+14-Oct-2024 08:54:42.065 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Version du serveur :               10.1.31.0
+14-Oct-2024 08:54:42.065 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Nom de l'OS :                      Linux
+14-Oct-2024 08:54:42.066 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Version OS :                       5.4.0-196-generic
+14-Oct-2024 08:54:42.067 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture :                     amd64
+14-Oct-2024 08:54:42.067 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home :                        /usr/lib/jvm/jdk-21.0.4-oracle-x64
+14-Oct-2024 08:54:42.068 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Version JVM :                      21.0.4+8-LTS-274
+14-Oct-2024 08:54:42.069 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Fournisseur de la JVM :            Oracle Corporation
+14-Oct-2024 08:54:42.070 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE :                    /home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31
+14-Oct-2024 08:54:42.071 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME :                    /home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31
+14-Oct-2024 08:54:42.122 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : -Djava.util.logging.config.file=/home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31/conf/logging.properties
+14-Oct-2024 08:54:42.123 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+14-Oct-2024 08:54:42.124 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : -Djdk.tls.ephemeralDHKeySize=2048
+14-Oct-2024 08:54:42.126 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+14-Oct-2024 08:54:42.127 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : -Dorg.apache.catalina.security.SecurityListener.UMASK=0027
+14-Oct-2024 08:54:42.127 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : --add-opens=java.base/java.lang=ALL-UNNAMED
+14-Oct-2024 08:54:42.128 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : --add-opens=java.base/java.io=ALL-UNNAMED
+14-Oct-2024 08:54:42.129 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : --add-opens=java.base/java.util=ALL-UNNAMED
+14-Oct-2024 08:54:42.129 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+14-Oct-2024 08:54:42.130 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+14-Oct-2024 08:54:42.130 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : -Dcatalina.base=/home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31
+14-Oct-2024 08:54:42.131 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : -Dcatalina.home=/home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31
+14-Oct-2024 08:54:42.131 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : -Djava.io.tmpdir=/home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31/temp
+14-Oct-2024 08:54:42.139 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent La librairie Apache Tomcat Native basée sur APR qui permet des performances optimales dans les environnements de production n'a pas été trouvée sur le java.library.path : [/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib]
+14-Oct-2024 08:54:43.594 INFO [main] org.apache.coyote.AbstractProtocol.init Initialisation du gestionnaire de protocole ["http-nio-8080"]
+14-Oct-2024 08:54:43.693 SEVERE [main] org.apache.catalina.util.LifecycleBase.handleSubClassException Echec d'initialisation du composant [Connector["http-nio-8080"]]
+	org.apache.catalina.LifecycleException: L'initialisation du gestionnaire de protocole a échoué
+		at org.apache.catalina.connector.Connector.initInternal(Connector.java:1030)
+		at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:122)
+		at org.apache.catalina.core.StandardService.initInternal(StandardService.java:525)
+		at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:122)
+		at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:957)
+		at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:122)
+		at org.apache.catalina.startup.Catalina.load(Catalina.java:708)
+		at org.apache.catalina.startup.Catalina.load(Catalina.java:731)
+		at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+		at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+		at org.apache.catalina.startup.Bootstrap.load(Bootstrap.java:302)
+		at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:472)
+	Caused by: java.net.BindException: Adresse déjà utilisée
+		at java.base/sun.nio.ch.Net.bind0(Native Method)
+		at java.base/sun.nio.ch.Net.bind(Net.java:565)
+		at java.base/sun.nio.ch.ServerSocketChannelImpl.netBind(ServerSocketChannelImpl.java:344)
+		at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:301)
+		at org.apache.tomcat.util.net.NioEndpoint.initServerSocket(NioEndpoint.java:239)
+		at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:194)
+		at org.apache.tomcat.util.net.AbstractEndpoint.bindWithCleanup(AbstractEndpoint.java:1304)
+		at org.apache.tomcat.util.net.AbstractEndpoint.init(AbstractEndpoint.java:1317)
+		at org.apache.coyote.AbstractProtocol.init(AbstractProtocol.java:633)
+		at org.apache.coyote.http11.AbstractHttp11Protocol.init(AbstractHttp11Protocol.java:79)
+		at org.apache.catalina.connector.Connector.initInternal(Connector.java:1028)
+		... 11 more
+14-Oct-2024 08:54:43.700 INFO [main] org.apache.catalina.startup.Catalina.load L'initialisation du serveur a pris [2553] millisecondes
+14-Oct-2024 08:54:43.988 INFO [main] org.apache.catalina.core.StandardService.startInternal Démarrage du service [Catalina]
+14-Oct-2024 08:54:43.991 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Démarrage du moteur de Servlets : [Apache Tomcat/10.1.31]
+14-Oct-2024 08:54:44.069 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Déploiement du répertoire d'application web [/home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31/webapps/examples]
+14-Oct-2024 08:54:46.753 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Le déploiement du répertoire [/home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31/webapps/examples] de l'application web s'est terminé en [2 660] ms
+14-Oct-2024 08:54:46.755 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Déploiement du répertoire d'application web [/home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31/webapps/host-manager]
+14-Oct-2024 08:54:46.919 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Le déploiement du répertoire [/home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31/webapps/host-manager] de l'application web s'est terminé en [163] ms
+14-Oct-2024 08:54:46.922 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Déploiement du répertoire d'application web [/home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31/webapps/ROOT]
+14-Oct-2024 08:54:47.004 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Le déploiement du répertoire [/home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31/webapps/ROOT] de l'application web s'est terminé en [83] ms
+14-Oct-2024 08:54:47.006 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Déploiement du répertoire d'application web [/home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31/webapps/toto]
+14-Oct-2024 08:54:47.192 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Le déploiement du répertoire [/home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31/webapps/toto] de l'application web s'est terminé en [187] ms
+14-Oct-2024 08:54:47.194 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Déploiement du répertoire d'application web [/home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31/webapps/docs]
+14-Oct-2024 08:54:47.263 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Le déploiement du répertoire [/home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31/webapps/docs] de l'application web s'est terminé en [69] ms
+14-Oct-2024 08:54:47.264 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Déploiement du répertoire d'application web [/home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31/webapps/manager]
+14-Oct-2024 08:54:47.344 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Le déploiement du répertoire [/home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31/webapps/manager] de l'application web s'est terminé en [80] ms
+14-Oct-2024 08:54:47.364 INFO [main] org.apache.catalina.startup.Catalina.start Le démarrage du serveur a pris [3656] millisecondes
+14-Oct-2024 08:54:47.412 SEVERE [main] org.apache.catalina.core.StandardServer.await Impossible de créer le sokcet d'arrêt du serveur à l'adresse [localhost] et au port [8005] (port de base [8005] et offset [0])
+	java.net.BindException: Adresse déjà utilisée
+		at java.base/sun.nio.ch.Net.bind0(Native Method)
+		at java.base/sun.nio.ch.Net.bind(Net.java:565)
+		at java.base/sun.nio.ch.Net.bind(Net.java:554)
+		at java.base/sun.nio.ch.NioSocketImpl.bind(NioSocketImpl.java:636)
+		at java.base/java.net.ServerSocket.bind(ServerSocket.java:391)
+		at java.base/java.net.ServerSocket.<init>(ServerSocket.java:278)
+		at org.apache.catalina.core.StandardServer.await(StandardServer.java:533)
+		at org.apache.catalina.startup.Catalina.await(Catalina.java:847)
+		at org.apache.catalina.startup.Catalina.start(Catalina.java:795)
+		at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+		at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+		at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:345)
+		at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:473)
+14-Oct-2024 08:54:47.414 INFO [main] org.apache.coyote.AbstractProtocol.pause Le gestionnaire de protocole ["http-nio-8080"] est mis en pause
+14-Oct-2024 08:54:47.415 INFO [main] org.apache.catalina.core.StandardService.stopInternal Arrêt du service [Catalina]
+14-Oct-2024 08:54:47.513 INFO [main] org.apache.coyote.AbstractProtocol.stop Arrêt du gestionnaire de protocole ["http-nio-8080"]
+14-Oct-2024 08:54:47.516 INFO [main] org.apache.coyote.AbstractProtocol.destroy Destruction du gestionnaire de protocole ["http-nio-8080"]
+14-Oct-2024 08:56:03.364 INFO [main] org.apache.catalina.core.StandardServer.await Une commande d'arrêt valide a été reçue sur le port d'arrêt, arrêt de l'instance du serveur
+14-Oct-2024 08:56:03.366 INFO [main] org.apache.coyote.AbstractProtocol.pause Le gestionnaire de protocole ["http-nio-8080"] est mis en pause
+14-Oct-2024 08:56:03.379 INFO [main] org.apache.catalina.core.StandardService.stopInternal Arrêt du service [Catalina]
+14-Oct-2024 08:56:03.382 INFO [main] org.apache.coyote.AbstractProtocol.stop Arrêt du gestionnaire de protocole ["http-nio-8080"]
+14-Oct-2024 08:56:03.393 INFO [main] org.apache.coyote.AbstractProtocol.destroy Destruction du gestionnaire de protocole ["http-nio-8080"]
+14-Oct-2024 08:57:19.986 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Nom version serveur :              Apache Tomcat/10.1.31
+14-Oct-2024 08:57:20.010 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Serveur compilé :                  Oct 3 2024 19:02:38 UTC
+14-Oct-2024 08:57:20.012 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Version du serveur :               10.1.31.0
+14-Oct-2024 08:57:20.012 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Nom de l'OS :                      Linux
+14-Oct-2024 08:57:20.013 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Version OS :                       5.4.0-196-generic
+14-Oct-2024 08:57:20.013 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture :                     amd64
+14-Oct-2024 08:57:20.014 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home :                        /usr/lib/jvm/jdk-21.0.4-oracle-x64
+14-Oct-2024 08:57:20.015 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Version JVM :                      21.0.4+8-LTS-274
+14-Oct-2024 08:57:20.015 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Fournisseur de la JVM :            Oracle Corporation
+14-Oct-2024 08:57:20.017 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE :                    /home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31
+14-Oct-2024 08:57:20.018 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME :                    /home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31
+14-Oct-2024 08:57:20.068 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : -Djava.util.logging.config.file=/home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31/conf/logging.properties
+14-Oct-2024 08:57:20.073 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+14-Oct-2024 08:57:20.075 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : -Djdk.tls.ephemeralDHKeySize=2048
+14-Oct-2024 08:57:20.077 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+14-Oct-2024 08:57:20.078 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : -Dorg.apache.catalina.security.SecurityListener.UMASK=0027
+14-Oct-2024 08:57:20.080 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : --add-opens=java.base/java.lang=ALL-UNNAMED
+14-Oct-2024 08:57:20.082 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : --add-opens=java.base/java.io=ALL-UNNAMED
+14-Oct-2024 08:57:20.085 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : --add-opens=java.base/java.util=ALL-UNNAMED
+14-Oct-2024 08:57:20.086 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+14-Oct-2024 08:57:20.088 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+14-Oct-2024 08:57:20.089 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : -Dcatalina.base=/home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31
+14-Oct-2024 08:57:20.093 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : -Dcatalina.home=/home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31
+14-Oct-2024 08:57:20.094 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Argument de la ligne de commande : -Djava.io.tmpdir=/home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31/temp
+14-Oct-2024 08:57:20.102 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent La librairie Apache Tomcat Native basée sur APR qui permet des performances optimales dans les environnements de production n'a pas été trouvée sur le java.library.path : [/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib]
+14-Oct-2024 08:57:21.578 INFO [main] org.apache.coyote.AbstractProtocol.init Initialisation du gestionnaire de protocole ["http-nio-8080"]
+14-Oct-2024 08:57:21.670 INFO [main] org.apache.catalina.startup.Catalina.load L'initialisation du serveur a pris [2477] millisecondes
+14-Oct-2024 08:57:21.816 INFO [main] org.apache.catalina.core.StandardService.startInternal Démarrage du service [Catalina]
+14-Oct-2024 08:57:21.817 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Démarrage du moteur de Servlets : [Apache Tomcat/10.1.31]
+14-Oct-2024 08:57:21.847 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Déploiement du répertoire d'application web [/home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31/webapps/examples]
+14-Oct-2024 08:57:24.475 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Le déploiement du répertoire [/home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31/webapps/examples] de l'application web s'est terminé en [2 614] ms
+14-Oct-2024 08:57:24.476 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Déploiement du répertoire d'application web [/home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31/webapps/host-manager]
+14-Oct-2024 08:57:24.595 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Le déploiement du répertoire [/home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31/webapps/host-manager] de l'application web s'est terminé en [118] ms
+14-Oct-2024 08:57:24.596 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Déploiement du répertoire d'application web [/home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31/webapps/ROOT]
+14-Oct-2024 08:57:24.672 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Le déploiement du répertoire [/home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31/webapps/ROOT] de l'application web s'est terminé en [75] ms
+14-Oct-2024 08:57:24.673 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Déploiement du répertoire d'application web [/home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31/webapps/toto]
+14-Oct-2024 08:57:24.781 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Le déploiement du répertoire [/home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31/webapps/toto] de l'application web s'est terminé en [107] ms
+14-Oct-2024 08:57:24.782 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Déploiement du répertoire d'application web [/home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31/webapps/docs]
+14-Oct-2024 08:57:24.856 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Le déploiement du répertoire [/home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31/webapps/docs] de l'application web s'est terminé en [74] ms
+14-Oct-2024 08:57:24.857 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Déploiement du répertoire d'application web [/home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31/webapps/manager]
+14-Oct-2024 08:57:24.964 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Le déploiement du répertoire [/home/toyi/Documents/L3/sem_5/JEE/apache-tomcat-10.1.31/webapps/manager] de l'application web s'est terminé en [107] ms
+14-Oct-2024 08:57:24.990 INFO [main] org.apache.coyote.AbstractProtocol.start Démarrage du gestionnaire de protocole ["http-nio-8080"]
+14-Oct-2024 08:57:25.071 INFO [main] org.apache.catalina.startup.Catalina.start Le démarrage du serveur a pris [3396] millisecondes
+14-Oct-2024 09:07:28.961 INFO [main] org.apache.catalina.core.StandardServer.await Une commande d'arrêt valide a été reçue sur le port d'arrêt, arrêt de l'instance du serveur
+14-Oct-2024 09:07:28.964 INFO [main] org.apache.coyote.AbstractProtocol.pause Le gestionnaire de protocole ["http-nio-8080"] est mis en pause
+14-Oct-2024 09:07:28.977 INFO [main] org.apache.catalina.core.StandardService.stopInternal Arrêt du service [Catalina]
+14-Oct-2024 09:07:29.092 INFO [main] org.apache.coyote.AbstractProtocol.stop Arrêt du gestionnaire de protocole ["http-nio-8080"]
+14-Oct-2024 09:07:29.110 INFO [main] org.apache.coyote.AbstractProtocol.destroy Destruction du gestionnaire de protocole ["http-nio-8080"]
