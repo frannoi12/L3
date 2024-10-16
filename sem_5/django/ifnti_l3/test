@@ -77,4 +77,6 @@ Voici la reproduction du texte demandé :
 
 4. **Restez sur le shell** et affichez l'objet *Élève* correspondant à Jean. Qu'avez-vous tapé ? Qu'est-ce qui s'affiche ? Ne serait-ce pas plus judicieux d'afficher plutôt son nom et sa valeur ? Essayez de penser à une manière de corriger ce problème et exposez-la. Nous y reviendrons dans un prochain TP.
 
+
+Installer jazzmin dans notre projet pour modifier le admin de notre projet sans toute fois allée dans les fichier de configuration de admin.
 ---
