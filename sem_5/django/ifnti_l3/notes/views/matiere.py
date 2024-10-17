@@ -63,6 +63,7 @@ def matieres(request):
         enseignant = matiere.enseignant  # Récupère les enseignants de la matière
         enseignants_noms = enseignant if enseignant else 'Aucun enseignant'  # Liste des noms des enseignants
         matieres_with_enseignants.append({
+            "matiere_id" : matiere.id,
             'matiere': matiere.nom,
             'enseignants': enseignants_noms
         })

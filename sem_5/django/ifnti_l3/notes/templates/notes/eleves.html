@@ -1,14 +1,19 @@
-<h1>Liste des élèves avec leurs notes et moyennes</h1>
+<h1>Liste des élèves avec leurs notes et moyennes</h1><br>
 <ul>
     {% for eleve in eleves %}
     <!-- <li>{{ eleve }}</li> -->
+     <!--         <li><a href="">{{ eleve.nom }} {{ eleve.prenom }}</a></li> -->
     <li>
-        <strong>{{ eleve.nom }}</strong> - Niveau: {{ eleve.niveau }}
+        <strong>{{ eleve.nom }}</strong> - <a href="{% url 'notes:niveau' eleve.niveau_id %}">Niveau: {{ eleve.niveau }}</a>
+        <!-- <strong>{{ eleve.nom }}</strong> - <a href="/notes/niveau/{{ eleve.niveau_id }}">Niveau: {{ eleve.niveau }}</a> -->
         <ul>
             {% for matiere_note in eleve.matieres_notes %}
-            <li>{{ matiere_note.matiere }} - Moyenne: {{ matiere_note.note }}</li>
+            <li>{{ matiere_note.matiere }}</li>
+            <!-- - Moyenne: {{ matiere_note.note }} -->
             {% endfor %}
         </ul>
+        <li><a href="{% url 'notes:eleve' eleve.id %}">{{ eleve.nom }}</a></li><br><br><br>
+        <!-- <li><a href="/notes/eleve/{{ eleve.id }}/">{{ eleve.nom }}</a></li><br><br><br> -->
     </li>
     {% endfor %}
 </ul>

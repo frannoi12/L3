@@ -2,6 +2,9 @@
 <ul>
     {% for matiere in matieres %}
     <!-- <li>{{ matiere }}</li> -->
-    <li>{{ matiere.matiere }} - Enseignant: {{ matiere.enseignants }}</li>
+    <a href="{% url 'notes:matiere' matiere.matiere_id %}"><li>{{ matiere.matiere }}</li></a>
+
+    <!-- <a href="/notes/matiere/{{ matiere.matiere_id }}"><li>{{ matiere.matiere }}</li></a> -->
+    <!--  - Enseignant: {{ matiere.enseignants }} -->
     {% endfor %}
 </ul>

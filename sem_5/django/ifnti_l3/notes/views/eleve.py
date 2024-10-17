@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
+# from django.http import HttpResponse
 from notes.models import Eleve,Note
 
 
@@ -11,7 +11,7 @@ from notes.models import Eleve,Note
 
 # Vue pour la liste des élèves avec leurs matières et moyennes
 
-def eleve(request):
+def eleves(request):
     # Récupère tous les élèves depuis la base de données
     eleves_list = Eleve.objects.all()
 
@@ -27,14 +27,16 @@ def eleve(request):
                 'note': note.valeur if note else 'Nulle'  # Vérifie si une note existe
             })
         eleves_with_notes.append({
+            "id": eleve.id,
             'nom': eleve.nom,
+            "niveau_id": eleve.niveau.id,
             'niveau': eleve.niveau.nom,
             'matieres_notes': matieres_notes
         })
         
 
-    for eleves in eleves_with_notes:
-        print(eleves)
+    # for eleves in eleves_with_notes:
+    #     print(eleves)
     
     # return HttpResponse(eleves_with_notes)
     
@@ -55,9 +57,11 @@ def eleve(request):
 
 # Vue pour le détail d'un élève particulier
 
-def eleves(request, id):
-    detail_eleve = Eleve.objects.get(id=id)
+def eleve(request, id):
+    detail_eleve = get_object_or_404(Eleve, id=id)
     
+    # for elev in detail_eleve:
+    #     print(elev)
     matieres_notes = []
     for matiere in detail_eleve.matieres.all():
         # Récupérer la note pour chaque matière
