@@ -1,6 +1,7 @@
 <h1>Liste des matières</h1>
 <ul>
     {% for matiere in matieres %}
-    <li>{{ matiere.nom }} - Enseignant: {{ matiere.enseignant.nom }}</li>
+    <!-- <li>{{ matiere }}</li> -->
+    <li>{{ matiere.matiere }} - Enseignant: {{ matiere.enseignants }}</li>
     {% endfor %}
 </ul>

@@ -12,6 +12,7 @@ django.setup()
 
 from datetime import date
 from notes.models import Niveau,Eleve,Enseignant,Matiere,Note
+from notes.models.enseignements import Enseignement
 
 
 niv1 = Niveau(1,"L1")
@@ -40,23 +41,59 @@ eleve4 = Eleve(id="93516499", nom="TOYI", prenom="Frannois", date_naissance=date
 eleve4.save()
 
 
-mat1=Matiere()
-mat2=Matiere()
-mat3=Matiere()
-mat4=Matiere()
-mat5=Matiere()
+# Création des enseignants
+en1 = Enseignant(nom="Claude", prenom="Stroffaube", date_naissance=date(1967, 8, 1), sexe="M")
+en1.save()
+# en1.matieres.set([mat1, mat4])  # Associer les matières après avoir enregistré l'enseignant
+
+en2 = Enseignant(nom="Abla", prenom="Sillon", date_naissance=date(1960, 7, 2), sexe="F")
+en2.save()
+# en2.matieres.set([mat2, mat3])  # Associer les matières après avoir enregistré l'enseignant
+
+en3 = Enseignant(nom="Parlaf", prenom="Eunaitre", date_naissance=date(1990, 2, 28), sexe="M")
+en3.save()
 
 
-mat1.nom="Bases de la programmation"
+# Création des matières avec association des enseignants
+mat1 = Matiere(nom="Bases de la programmation", enseignant=en1)
 mat1.save()
-mat2.nom="Mathematiques"
+
+mat2 = Matiere(nom="Mathematiques", enseignant=en2)
 mat2.save()
-mat3.nom="Langages Webs"
+
+mat3 = Matiere(nom="Langages Webs", enseignant=en2)
 mat3.save()
-mat4.nom="Gestion projets"
+
+mat4 = Matiere(nom="Gestion projets", enseignant=en1)
 mat4.save()
-mat5.nom="Anglais"
+
+mat5 = Matiere(nom="Anglais", enseignant=en3)
 mat5.save()
+
+
+
+# mat1=Matiere(nom="Bases de la programmation",enseignant=en1)
+# mat2=Matiere(nom="Mathematiques",enseignant=en2)
+# mat3=Matiere()
+# mat4=Matiere()
+# mat5=Matiere()
+
+
+# # mat1.nom="Bases de la programmation"
+# # mat1.enseignant=en1
+# mat1.save()
+# # mat2.nom="Mathematiques"
+# # mat2.enseignant=en2
+# mat2.save()
+# mat3.nom="Langages Webs"
+# mat2.enseignant=en2
+# mat3.save()
+# mat4.nom="Gestion projets"
+# mat4.enseignant=en1
+# mat4.save()
+# mat5.nom="Anglais"
+# mat5.enseignant=en3
+# mat5.save()
 
 
 # Créer les notes pour chaque élève et matière
@@ -203,40 +240,69 @@ eleve4.matieres.set([mat1, mat3, mat5])  # Bases de la programmation, Langages W
 
 
 
-# Création des enseignants
-en1 = Enseignant(nom="Claude", prenom="Stroffaube", date_naissance=date(1967, 8, 1), sexe="M")
-en1.save()
-# en1.matieres.set([mat1, mat4])  # Associer les matières après avoir enregistré l'enseignant
+# # Création des enseignants
+# en1 = Enseignant(nom="Claude", prenom="Stroffaube", date_naissance=date(1967, 8, 1), sexe="M")
+# en1.save()
+# # en1.matieres.set([mat1, mat4])  # Associer les matières après avoir enregistré l'enseignant
 
-en2 = Enseignant(nom="Abla", prenom="Sillon", date_naissance=date(1960, 7, 2), sexe="F")
-en2.save()
-# en2.matieres.set([mat2, mat3])  # Associer les matières après avoir enregistré l'enseignant
+# en2 = Enseignant(nom="Abla", prenom="Sillon", date_naissance=date(1960, 7, 2), sexe="F")
+# en2.save()
+# # en2.matieres.set([mat2, mat3])  # Associer les matières après avoir enregistré l'enseignant
 
-en3 = Enseignant(nom="Parlaf", prenom="Eunaitre", date_naissance=date(1990, 2, 28), sexe="M")
-en3.save()
-# en3.matieres.set([mat5])  # Associer les matières après avoir enregistré l'enseignant
+# en3 = Enseignant(nom="Parlaf", prenom="Eunaitre", date_naissance=date(1990, 2, 28), sexe="M")
+# en3.save()
+# # en3.matieres.set([mat5])  # Associer les matières après avoir enregistré l'enseignant
 
 
-# Association des matières avec les enseignants et les niveaux
-# Bases de la programmation enseigné en L1 par M. Stroffaube
-en1.matieres.set([mat1])  # M. Stroffaube enseigne "Bases de la programmation" en L1
+# # Association des matières avec les enseignants et les niveaux
+# # Bases de la programmation enseigné en L1 par M. Stroffaube
+# en1.matieres.set([mat1])  # M. Stroffaube enseigne "Bases de la programmation" en L1
 
-# Mathématiques enseigné en L1 et en L2 par Mme Sillon
-en2.matieres.set([mat2])  # Mme Sillon enseigne "Mathématiques"
+# # Mathématiques enseigné en L1 et en L2 par Mme Sillon
+# en2.matieres.set([mat2])  # Mme Sillon enseigne "Mathématiques"
 niv1.matiere.add(mat2)    # Associé à L1
 niv2.matiere.add(mat2)    # Associé à L2
 
-# Langages Webs enseigné en L2 et en L3 par Mme Sillon
+# # Langages Webs enseigné en L2 et en L3 par Mme Sillon
 niv2.matiere.add(mat3)    # Associé à L2
 niv3.matiere.add(mat3)    # Associé à L3
 
-# Gestion de projets enseigné en L3 par M. Stroffaube
+# # Gestion de projets enseigné en L3 par M. Stroffaube
 niv3.matiere.add(mat4)    # Associé à L3
 
-# Anglais enseigné dans les 3 niveaux par M. Eunaître
+# # Anglais enseigné dans les 3 niveaux par M. Eunaître
 niv1.matiere.add(mat5)    # Associé à L1
 niv2.matiere.add(mat5)    # Associé à L2
 niv3.matiere.add(mat5)    # Associé à L3
+
+
+# Bases de la programmation enseignée en L1 par M. Stroffaube
+# enseignement1 = Enseignement(enseignant=en1, matiere=mat1, niveau=niv1)
+# enseignement1.save()
+
+# # Mathématiques enseignée en L1 et en L2 par Mme Sillon
+# enseignement2 = Enseignement(enseignant=en2, matiere=mat2, niveau=niv1)
+# enseignement2.save()
+# enseignement3 = Enseignement(enseignant=en2, matiere=mat2, niveau=niv2)
+# enseignement3.save()
+
+# # Langages Webs enseignée en L2 et en L3 par Mme Sillon
+# enseignement4 = Enseignement(enseignant=en2, matiere=mat3, niveau=niv2)
+# enseignement4.save()
+# enseignement5 = Enseignement(enseignant=en2, matiere=mat3, niveau=niv3)
+# enseignement5.save()
+
+# # Gestion de projets enseignée en L3 par M. Stroffaube
+# enseignement6 = Enseignement(enseignant=en1, matiere=mat4, niveau=niv3)
+# enseignement6.save()
+
+# # Anglais enseignée dans les trois niveaux par M. Eunaître
+# enseignement7 = Enseignement(enseignant=en3, matiere=mat5, niveau=niv1)
+# enseignement7.save()
+# enseignement8 = Enseignement(enseignant=en3, matiere=mat5, niveau=niv2)
+# enseignement8.save()
+# enseignement9 = Enseignement(enseignant=en3, matiere=mat5, niveau=niv3)
+# enseignement9.save()
 
 
 # en1 = Enseignant(nom="Claude", prenom="Stroffaube", date_naissance=date(1967, 8, 1), sexe="M" ,matieres=mat1)

@@ -36,11 +36,11 @@ def eleve(request):
     for eleves in eleves_with_notes:
         print(eleves)
     
-    return HttpResponse(eleves_with_notes)
+    # return HttpResponse(eleves_with_notes)
     
 
     # Retourne le template avec la liste des élèves, leurs matières et moyennes
-    # return render(request, 'notes/eleves.html', {'eleves': eleves_with_notes})
+    return render(request, 'notes/eleves.html', {'eleves': eleves_with_notes})
 
 
 
@@ -56,7 +56,7 @@ def eleve(request):
 # Vue pour le détail d'un élève particulier
 
 def eleves(request, id):
-    detail_eleve = get_object_or_404(Eleve, id=id)
+    detail_eleve = Eleve.objects.get(id=id)
     
     matieres_notes = []
     for matiere in detail_eleve.matieres.all():
@@ -67,12 +67,12 @@ def eleves(request, id):
             'note': note.valeur if note else 'NULL'  # Si la note n'existe pas, afficher 'N/A'
         })
     
-    # return render(request, 'notes/detail_eleve.html', {
-    #     'eleve': detail_eleve,
-    #     'matieres_notes': matieres_notes,
-    # })
+    return render(request, 'notes/detail_eleve.html', {
+        'eleve': detail_eleve,
+        'matieres_notes': matieres_notes,
+    })
     
-    return HttpResponse(detail_eleve,matieres_notes)
+    # return HttpResponse(detail_eleve,matieres_notes)
 
 
 

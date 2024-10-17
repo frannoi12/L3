@@ -4,10 +4,18 @@ from notes.models import Niveau
 
 
 
+# def niveaux(request):
+#     niveau_detail = Niveau.object.all()
+    
+#     return HttpResponse(niveau_detail)
+
 # Vue pour le détail d'un niveau particulier
 def niveau(request, id):
-    niveau_detail = get_object_or_404(Niveau, id=id)
+    niveau_detail = Niveau.objects.get(id=id)
     
-    return HttpResponse(niveau_detail)
+    matieres = niveau_detail.matiere.all()
+        
+        
+    # return HttpResponse(niveau_detail)
 
-    # return render(request, 'notes/niveau_detail.html', {'niveau': niveau_detail})
+    return render(request, 'notes/detail_niveau.html', {'niveau': niveau_detail, 'matieres':matieres})
