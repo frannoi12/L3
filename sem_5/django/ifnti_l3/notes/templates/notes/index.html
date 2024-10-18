@@ -1,1 +1,20 @@
-<h1>Bonjour tout le monde !</h1>
+<title>Notes</title>
+
+<style>
+    .body{
+        display: flex;
+        justify-content: center;
+    }
+</style>
+
+
+
+<h1>Bienvenue sur l'application Note !</h1>
+
+<a href="{% url 'notes:eleves' %}"><button>
+    Voir liste des éleves
+</button></a>
+
+<a href="{% url 'notes:matieres' %}">
+    <button>Voir liste de matiere</button>
+</a>

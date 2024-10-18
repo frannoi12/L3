@@ -29,6 +29,9 @@ def eleves(request):
         eleves_with_notes.append({
             "id": eleve.id,
             'nom': eleve.nom,
+            "prenom" : eleve.prenom,
+            "sexe" : eleve.sexe,
+            "date_naissance" : eleve.date_naissance,
             "niveau_id": eleve.niveau.id,
             'niveau': eleve.niveau.nom,
             'matieres_notes': matieres_notes
