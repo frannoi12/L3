@@ -56,9 +56,23 @@ app.get('/elevesAdd', async (req, res) => {
 
 app.post('/elevesAjouter', async (req, res) => {
     const eleve_data = req.body;
-
     console.log(eleve_data)
-       
+    
+    let file_db = await fs.open("db.json")
+    const strig_elvs = await file_db.readFile({
+        "encoding" : "utf-8"
+    })
+    file_db.close()
+
+    const list_eleves = JSON.parse(strig_elvs)
+    // console.log(list_eleves);
+    list_eleves.push(eleve_data)
+    console.log(list_eleves);
+
+    let fil_db = await fs.open("db.json","w")
+    await fil_db.writeFile(JSON.stringify(eleve_data))
+    fil_db.close()
+
     res.send("Créer");
 });
 
