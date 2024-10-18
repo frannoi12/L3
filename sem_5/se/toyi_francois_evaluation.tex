@@ -1,0 +1,93 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{Évaluation SE et scripts Bash S4}
+\author{TOYI Francois}
+\date{24 juin 2024}
+
+\begin{document}
+
+\maketitle
+
+\section*{Questions de cours}
+
+\paragraph{Question 1 : Expliquer en quelques phrases la variable PATH.}
+La variable \texttt{PATH} est une variable d'environnement qui contient la liste des répertoires dans lesquels le système d'exploitation va chercher les exécutables des commandes. 
+
+\paragraph{Question 2 : Que contient le dossier /etc ?}
+Le dossier \texttt{/etc} contient les fichiers de configuration du système et des applications installées. 
+
+\paragraph{Question 3 : Expliquer la différence principale entre un chiffrement (encryption) et un hachage.}
+Le chiffrement est un processus réversible qui transforme des données en une forme illisible pour protéger leur confidentialité, et peut être déchiffré pour retrouver les données originales. Le hachage est un processus non réversible qui transforme des données en une valeur fixe unique (appelée haché), utilisé principalement pour vérifier l'intégrité des données.
+
+\paragraph{Question 4 : Donner un exemple d’utilisation du chiffrement et un exemple d’utilisation du hachage. Expliquer à chaque fois l’intérêt de choisir l’un ou l’autre.}
+- Exemple de chiffrement : Le chiffrement des communications via SSL/TLS pour protéger les données échangées entre un navigateur web et un serveur, garantissant la confidentialité des données.
+- Exemple de hachage : Le stockage des mots de passe dans une base de données. Les mots de passe sont hachés pour que même en cas de fuite de données, les mots de passe originaux ne soient pas compromis. Le hachage permet de vérifier les mots de passe sans les stocker en clair.
+
+\paragraph{Question 5 : Quels sont les 3 types d’utilisateur sur un système Linux ?}
+Les trois types d'utilisateurs sur un système Linux sont :
+- L'utilisateur propriétaire (Owner)
+- Les membres du groupe (Group)
+- Les autres utilisateurs (Others)
+
+\paragraph{Question 6 : -rwxr-xrw-. 1 user1 print 0 Jun 20 16:21 fichier. L’utilisateur user2, qui fait partie du groupe print, peut-il exécuter ce fichier ?}
+Oui, l'utilisateur \texttt{user2}, faisant partie du groupe \texttt{print}, peut exécuter ce fichier. Les permissions du groupe (r-x) permettent l'exécution du fichier.
+
+\paragraph{Question 7 : -rwxr-xrw-. 1 user1 print 0 Jun 20 16:21 fichier. L’utilisateur user3, qui ne fait pas partie du groupe print, peut-il modifier ce fichier ?}
+Non, l'utilisateur \texttt{user3}, qui ne fait pas partie du groupe \texttt{print}, ne peut pas modifier ce fichier. Les permissions pour les autres utilisateurs (rw-) ne permettent pas la modification du fichier.
+
+\paragraph{Question 8 : Traduire le nombre 755 en une ligne de permissions ? (format rwxrwxrwx)}
+755 en permissions se traduit par \texttt{rwxr-xr-x}.
+
+\paragraph{Question 9 : À quoi sert la commande grep ?}
+La commande \texttt{grep} est utilisée pour rechercher des motifs dans des fichiers ou des flux de texte. Elle affiche les lignes qui correspondent au motif spécifié, permettant de filtrer et d'analyser le contenu.
+
+\paragraph{Question 10 : Donner le nom des commandes permettant :}
+\begin{itemize}
+    \item d’ajouter un utilisateur : \texttt{useradd}
+    \item de supprimer un utilisateur : \texttt{userdel}
+    \item de modifier l’appartenance d’un fichier : \texttt{chown}
+    \item de modifier les permissions sur un fichier : \texttt{chmod}
+    \item de modifier un mot de passe : \texttt{passwd}
+\end{itemize}
+
+\newpage
+
+\section*{Écrivons le script}
+
+Voici un exemple de script de sauvegarde :
+
+\begin{verbatim}
+#!/bin/bash
+
+# Définition des variables
+contenu_de_etc="/etc"
+Destination_des_copie="./fichiers_etc"
+Fichier_log="./log"
+Fichier_des_erreurs="./erreurs"
+
+# Suppression des fichiers existants
+[ -f "$Fichier_des_erreurs" ] && rm "$Fichier_des_erreurs"
+[ -d "$Destination_des_copie" ] && rm -r "$Destination_des_copie"
+
+# Création des nouveaux dossiers et fichiers
+mkdir -p "$Destination_des_copie"
+echo "Suppression de erreurs" >> "$Fichier_log"
+echo "Suppression de fichiers_etc" >> "$Fichier_log"
+echo "Création de fichiers_etc" >> "$Fichier_log"
+echo "Initialisation terminée" >> "$Fichier_log"
+
+# Copie des fichiers
+for file in "$contenu_de_etc"/*; do
+    if [ -d "$file" ]; then
+        echo "$(basename "$file") D -> pas de copie" >> "$Fichier_des_erreurs"
+    else
+        cp "$file" "$Destination_des_copie" 2>> "$Fichier_des_erreurs" && echo 
+        "$(basename "$file") F -> copie du fichier" >> "$Fichier_log"
+    fi
+done
+\end{verbatim}
+
+
+\end{document}
