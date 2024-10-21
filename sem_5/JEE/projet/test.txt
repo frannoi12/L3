@@ -1,0 +1,232 @@
+Voici un plan général pour le TP de création d'un système de connexion en Java EE :
+
+### Structure du Projet
+
+1. **Nom du projet** : IfntiTp
+2. **Serveur** : Tomcat
+3. **Structure des fichiers** :
+   - **JSP** :
+     - `index.jsp` : Formulaire de connexion (nom et mot de passe).
+     - `inscription.jsp` : Formulaire pour l'inscription (nom et mot de passe).
+     - `WEB-INF/bienvenue.jsp` : Page de bienvenue après une connexion réussie.
+   - **Packages Java** :
+     - `beans` : Contiendra la classe JavaBean pour stocker les noms et mots de passe des utilisateurs.
+     - `servlets` : Contiendra les servlets `Inscription.java`, `Connexion.java`, et `Deconnexion.java`.
+
+### Étape 1 : Création des Fichiers JSP
+
+1. **index.jsp** :
+   - Contient le formulaire de connexion :
+     ```jsp
+     <html>
+     <head>
+         <title>Connexion</title>
+         <link rel="stylesheet" href="style.css">
+         <script src="verif.js"></script>
+     </head>
+     <body>
+         <h2>Connexion</h2>
+         <form action="Connexion" method="post" onsubmit="return verifierConnexion()">
+             <label for="nom">Nom :</label>
+             <input type="text" id="nom" name="nom" required><br>
+             <label for="motdepasse">Mot de passe :</label>
+             <input type="password" id="motdepasse" name="motdepasse" required><br>
+             <input type="submit" value="Se connecter">
+         </form>
+         <a href="inscription.jsp">Créer un compte</a>
+     </body>
+     </html>
+     ```
+
+2. **inscription.jsp** :
+   - Contient le formulaire d'inscription :
+     ```jsp
+     <html>
+     <head>
+         <title>Inscription</title>
+         <link rel="stylesheet" href="style.css">
+         <script src="verif.js"></script>
+     </head>
+     <body>
+         <h2>Inscription</h2>
+         <form action="Inscription" method="post" onsubmit="return verifierInscription()">
+             <label for="nom">Nom :</label>
+             <input type="text" id="nom" name="nom" required><br>
+             <label for="motdepasse">Mot de passe :</label>
+             <input type="password" id="motdepasse" name="motdepasse" required><br>
+             <input type="submit" value="S'inscrire">
+         </form>
+         <a href="index.jsp">Retour à la connexion</a>
+     </body>
+     </html>
+     ```
+
+3. **bienvenue.jsp** (dans `WEB-INF`) :
+   - Affiche un message de bienvenue à l'utilisateur connecté :
+     ```jsp
+     <html>
+     <head>
+         <title>Bienvenue</title>
+         <link rel="stylesheet" href="../style.css">
+     </head>
+     <body>
+         <h2>Bienvenue, ${nom}!</h2>
+         <form action="Deconnexion" method="post">
+             <input type="submit" value="Déconnexion">
+         </form>
+     </body>
+     </html>
+     ```
+
+### Étape 2 : Création des Packages et des Classes Java
+
+1. **Package `beans`** :
+   - Créez un JavaBean `User.java` pour stocker les informations de connexion des utilisateurs :
+     ```java
+     package beans;
+
+     public class User {
+         private String nom;
+         private String motDePasse;
+
+         public User(String nom, String motDePasse) {
+             this.nom = nom;
+             this.motDePasse = motDePasse;
+         }
+
+         public String getNom() {
+             return nom;
+         }
+
+         public void setNom(String nom) {
+             this.nom = nom;
+         }
+
+         public String getMotDePasse() {
+             return motDePasse;
+         }
+
+         public void setMotDePasse(String motDePasse) {
+             this.motDePasse = motDePasse;
+         }
+     }
+     ```
+
+2. **Package `servlets`** :
+   - **Inscription.java** :
+     - Vérifie les informations saisies et redirige l'utilisateur vers la page de connexion après inscription :
+       ```java
+       package servlets;
+
+       import beans.User;
+       import jakarta.servlet.*;
+       import jakarta.servlet.http.*;
+       import java.io.IOException;
+
+       public class Inscription extends HttpServlet {
+           @Override
+           protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+               String nom = request.getParameter("nom");
+               String motDePasse = request.getParameter("motdepasse");
+
+               User user = new User(nom, motDePasse);
+               // Stockage dans la session pour simplifier (pas de base de données)
+               request.getSession().setAttribute("user", user);
+               
+               response.sendRedirect("index.jsp");
+           }
+       }
+       ```
+
+   - **Connexion.java** :
+     - Vérifie si l'utilisateur est inscrit et si le mot de passe est correct :
+       ```java
+       package servlets;
+
+       import beans.User;
+       import jakarta.servlet.*;
+       import jakarta.servlet.http.*;
+       import java.io.IOException;
+
+       public class Connexion extends HttpServlet {
+           @Override
+           protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+               String nom = request.getParameter("nom");
+               String motDePasse = request.getParameter("motdepasse");
+
+               User user = (User) request.getSession().getAttribute("user");
+
+               if (user != null && user.getNom().equals(nom) && user.getMotDePasse().equals(motDePasse)) {
+                   request.setAttribute("nom", nom);
+                   RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/bienvenue.jsp");
+                   dispatcher.forward(request, response);
+               } else {
+                   response.sendRedirect("index.jsp?error=invalid");
+               }
+           }
+       }
+       ```
+
+   - **Deconnexion.java** :
+     - Gère la déconnexion de l'utilisateur :
+       ```java
+       package servlets;
+
+       import jakarta.servlet.*;
+       import jakarta.servlet.http.*;
+       import java.io.IOException;
+
+       public class Deconnexion extends HttpServlet {
+           @Override
+           protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+               HttpSession session = request.getSession();
+               session.invalidate();
+               response.sendRedirect("index.jsp");
+           }
+       }
+       ```
+
+### Étape 3 : Ajout des Fichiers CSS et JavaScript
+
+1. **style.css** (dans `webapp` ou `src/main/webapp`) :
+   - Créez un fichier `style.css` pour styliser les formulaires et les pages :
+     ```css
+     body {
+         font-family: Arial, sans-serif;
+         background-color: #f4f4f4;
+         padding: 20px;
+     }
+     form {
+         background: white;
+         padding: 20px;
+         border-radius: 5px;
+         box-shadow: 0 0 10px rgba(0,0,0,0.1);
+         max-width: 400px;
+         margin: auto;
+     }
+     ```
+
+2. **verif.js** (dans `webapp`) :
+   - Créez un fichier `verif.js` pour vérifier les champs des formulaires avant soumission :
+     ```javascript
+     function verifierConnexion() {
+         var nom = document.getElementById('nom').value;
+         var motdepasse = document.getElementById('motdepasse').value;
+         if (nom === "" || motdepasse === "") {
+             alert("Tous les champs doivent être remplis.");
+             return false;
+         }
+         return true;
+     }
+
+     function verifierInscription() {
+         return verifierConnexion();
+     }
+     ```
+
+### Étape 4 : Déploiement sur Tomcat
+
+1. Configurez votre projet dans Eclipse avec un serveur Tomcat.
+2. Déployez l'application et accédez à `http://localhost:8080/IfntiTp/index.jsp` pour tester.
+
+Ce plan te donnera une base pour réaliser ton TP tout en explorant les concepts de Java EE, les servlets, les JSP, et les notions de session.
