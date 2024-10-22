@@ -54,6 +54,56 @@ app.get('/elevesAdd', async (req, res) => {
 });
 
 
+
+
+app.put('/elevesUpdate/:id', (req, res) => {
+    const { id } = req.params;
+    const updatedData = req.body;
+
+    fs.open('db.json')
+        .then(file => file.readFile({ encoding: 'utf-8' }))
+        .then(db_content => {
+            let list = JSON.parse(db_content);
+            const eleveIndex = list.findIndex(eleve => eleve.id == id);
+
+            if (eleveIndex !== -1) {
+                list[eleveIndex] = { ...list[eleveIndex], ...updatedData };
+                fs.writeFile('db.json', JSON.stringify(list, null, 2));
+                res.json({ message: "Élève mis à jour", updatedEleve: list[eleveIndex] });
+            } else {
+                res.json({ message: "Élève non trouvé" });
+            }
+        });
+});
+
+
+
+
+app.delete('/elevesDelete/:id', (req, res) => {
+    const { id } = req.params;
+
+    fs.open('db.json')
+        .then(file => file.readFile({ encoding: 'utf-8' }))
+        .then(db_content => {
+            let list = JSON.parse(db_content);
+            const newList = list.filter(eleve => eleve.id != id);
+
+            if (newList.length !== list.length) {
+                fs.writeFile('db.json', JSON.stringify(newList, null, 2));
+                res.json({ message: "Élève supprimé" });
+            } else {
+                res.json({ message: "Élève non trouvé" });
+            }
+        });
+});
+
+
+
+
+
+
+
+
 app.post('/elevesAjouter', async (req, res) => {
     const eleve_data = req.body;
     console.log(eleve_data)
