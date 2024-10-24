@@ -98,3 +98,9 @@ Voici un résumé détaillé de tout ce que nous avons fait, avec une attention 
    - Les erreurs rencontrées concernaient principalement les relations entre les objets et les contraintes de type de données (flottant vs. entier).
 
 En suivant ce processus, nous avons structuré un système complet pour gérer les notes des élèves dans différentes matières. Si vous avez des questions ou besoin de clarifications supplémentaires, n'hésitez pas à me le dire !
+
+
+
+
+
+    <a href="{% url 'notes:note' eleve.eleve_id matiere.matiere_id %}">Ajouter/Modifier la note</a>

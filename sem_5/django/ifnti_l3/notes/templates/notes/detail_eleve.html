@@ -2,7 +2,10 @@
 <p>Niveau: {{ eleve.niveau.nom }}</p>
 <p>Matières :</p>
 <ul>
-    {% for matiere in matieres_notes %}
-    <li>{{ matiere.matiere }} - Note: {{ matiere.note }} </li>
+    <!-- {{eleve_id}} -->
+    {% for matiere in matieres %}
+    <!-- {{matiere}} -->
+    <li>{{ matiere.nom }} </li>
+    <a href="{% url 'notes:note' eleve.id matiere.id %}">Ajouter/Modifier la note</a>
     {% endfor %}
 </ul>

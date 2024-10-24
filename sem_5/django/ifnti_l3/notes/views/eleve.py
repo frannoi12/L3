@@ -62,21 +62,24 @@ def eleves(request):
 
 def eleve(request, id):
     detail_eleve = get_object_or_404(Eleve, id=id)
+    matiere = detail_eleve.matieres.all()
     
     # for elev in detail_eleve:
     #     print(elev)
-    matieres_notes = []
-    for matiere in detail_eleve.matieres.all():
-        # Récupérer la note pour chaque matière
-        note = Note.objects.filter(eleve=detail_eleve, matiere=matiere).first()
-        matieres_notes.append({
-            'matiere': matiere.nom,
-            'note': note.valeur if note else 'NULL'  # Si la note n'existe pas, afficher 'N/A'
-        })
+    # matieres_notes = []
+    # for matiere in detail_eleve.matieres.all():
+    #     # Récupérer la note pour chaque matière
+    #     note = Note.objects.filter(eleve=detail_eleve, matiere=matiere).first()
+    #     matieres_notes.append({
+    #         'matiere': matiere.nom,
+    #         'note': note.valeur if note else 'NULL'  # Si la note n'existe pas, afficher 'N/A'
+    #     })
     
     return render(request, 'notes/detail_eleve.html', {
+        # 'eleve_id':id,
+        # 'matiere_id' : matiere.id,
         'eleve': detail_eleve,
-        'matieres_notes': matieres_notes,
+        'matieres': matiere,
     })
     
     # return HttpResponse(detail_eleve,matieres_notes)
