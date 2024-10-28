@@ -98,142 +98,142 @@ mat5.save()
 
 # Créer les notes pour chaque élève et matière
 # Pour eleve1
-note1_1 = Note()
-note1_1.eleve = eleve1
-note1_1.matiere = mat1
-note1_1.valeur = 15.0  # Exemple de note
-note1_1.save()
+# note1_1 = Note()
+# note1_1.eleve = eleve1
+# note1_1.matiere = mat1
+# note1_1.valeur = 15.0  # Exemple de note
+# note1_1.save()
 
-note1_2 = Note()
-note1_2.eleve = eleve1
-note1_2.matiere = mat2
-note1_2.valeur = 14.0  # Exemple de note
-note1_2.save()
+# note1_2 = Note()
+# note1_2.eleve = eleve1
+# note1_2.matiere = mat2
+# note1_2.valeur = 14.0  # Exemple de note
+# note1_2.save()
 
-note1_3 = Note()
-note1_3.eleve = eleve1
-note1_3.matiere = mat3
-note1_3.valeur = 13.0  # Exemple de note
-note1_3.save()
+# note1_3 = Note()
+# note1_3.eleve = eleve1
+# note1_3.matiere = mat3
+# note1_3.valeur = 13.0  # Exemple de note
+# note1_3.save()
 
-note1_4 = Note()
-note1_4.eleve = eleve1
-note1_4.matiere = mat4
-note1_4.valeur = 16.0  # Exemple de note
-note1_4.save()
+# note1_4 = Note()
+# note1_4.eleve = eleve1
+# note1_4.matiere = mat4
+# note1_4.valeur = 16.0  # Exemple de note
+# note1_4.save()
 
-note1_5 = Note()
-note1_5.eleve = eleve1
-note1_5.matiere = mat5
-note1_5.valeur = 17.0  # Exemple de note
-note1_5.save()
+# note1_5 = Note()
+# note1_5.eleve = eleve1
+# note1_5.matiere = mat5
+# note1_5.valeur = 17.0  # Exemple de note
+# note1_5.save()
 
-# Pour eleve2
-note2_1 = Note()
-note2_1.eleve = eleve2
-note2_1.matiere = mat1
-note2_1.valeur = 12.0
-note2_1.save()
+# # Pour eleve2
+# note2_1 = Note()
+# note2_1.eleve = eleve2
+# note2_1.matiere = mat1
+# note2_1.valeur = 12.0
+# note2_1.save()
 
-note2_2 = Note()
-note2_2.eleve = eleve2
-note2_2.matiere = mat2
-note2_2.valeur = 13.5
-note2_2.save()
+# note2_2 = Note()
+# note2_2.eleve = eleve2
+# note2_2.matiere = mat2
+# note2_2.valeur = 13.5
+# note2_2.save()
 
-note2_3 = Note()
-note2_3.eleve = eleve2
-note2_3.matiere = mat3
-note2_3.valeur = 11.0
-note2_3.save()
+# note2_3 = Note()
+# note2_3.eleve = eleve2
+# note2_3.matiere = mat3
+# note2_3.valeur = 11.0
+# note2_3.save()
 
-note2_4 = Note()
-note2_4.eleve = eleve2
-note2_4.matiere = mat4
-note2_4.valeur = 14.0
-note2_4.save()
+# note2_4 = Note()
+# note2_4.eleve = eleve2
+# note2_4.matiere = mat4
+# note2_4.valeur = 14.0
+# note2_4.save()
 
-note2_5 = Note()
-note2_5.eleve = eleve2
-note2_5.matiere = mat5
-note2_5.valeur = 16.5
-note2_5.save()
+# note2_5 = Note()
+# note2_5.eleve = eleve2
+# note2_5.matiere = mat5
+# note2_5.valeur = 16.5
+# note2_5.save()
 
-# Pour eleve3
-note3_1 = Note()
-note3_1.eleve = eleve3
-note3_1.matiere = mat1
-note3_1.valeur = 10.0
-note3_1.save()
+# # Pour eleve3
+# note3_1 = Note()
+# note3_1.eleve = eleve3
+# note3_1.matiere = mat1
+# note3_1.valeur = 10.0
+# note3_1.save()
 
-note3_2 = Note()
-note3_2.eleve = eleve3
-note3_2.matiere = mat2
-note3_2.valeur = 12.5
-note3_2.save()
+# note3_2 = Note()
+# note3_2.eleve = eleve3
+# note3_2.matiere = mat2
+# note3_2.valeur = 12.5
+# note3_2.save()
 
-note3_3 = Note()
-note3_3.eleve = eleve3
-note3_3.matiere = mat3
-note3_3.valeur = 14.0
-note3_3.save()
+# note3_3 = Note()
+# note3_3.eleve = eleve3
+# note3_3.matiere = mat3
+# note3_3.valeur = 14.0
+# note3_3.save()
 
-note3_4 = Note()
-note3_4.eleve = eleve3
-note3_4.matiere = mat4
-note3_4.valeur = 15.0
-note3_4.save()
+# note3_4 = Note()
+# note3_4.eleve = eleve3
+# note3_4.matiere = mat4
+# note3_4.valeur = 15.0
+# note3_4.save()
 
-note3_5 = Note()
-note3_5.eleve = eleve3
-note3_5.matiere = mat5
-note3_5.valeur = 17.0
-note3_5.save()
+# note3_5 = Note()
+# note3_5.eleve = eleve3
+# note3_5.matiere = mat5
+# note3_5.valeur = 17.0
+# note3_5.save()
 
-# Pour eleve4
-note4_1 = Note()
-note4_1.eleve = eleve4
-note4_1.matiere = mat1
-note4_1.valeur = 16.0
-note4_1.save()
+# # Pour eleve4
+# note4_1 = Note()
+# note4_1.eleve = eleve4
+# note4_1.matiere = mat1
+# note4_1.valeur = 16.0
+# note4_1.save()
 
-note4_2 = Note()
-note4_2.eleve = eleve4
-note4_2.matiere = mat2
-note4_2.valeur = 15.5
+# note4_2 = Note()
+# note4_2.eleve = eleve4
+# note4_2.matiere = mat2
+# note4_2.valeur = 15.5
 
-note4_3 = Note()
-note4_3.eleve = eleve4
-note4_3.matiere = mat3
-note4_3.valeur = 14.0
-note4_3.save()
+# note4_3 = Note()
+# note4_3.eleve = eleve4
+# note4_3.matiere = mat3
+# note4_3.valeur = 14.0
+# note4_3.save()
 
-note4_4 = Note()
-note4_4.eleve = eleve4
-note4_4.matiere = mat4
-note4_4.valeur = 13.0
-note4_4.save()
+# note4_4 = Note()
+# note4_4.eleve = eleve4
+# note4_4.matiere = mat4
+# note4_4.valeur = 13.0
+# note4_4.save()
 
-note4_5 = Note()
-note4_5.eleve = eleve4
-note4_5.matiere = mat5
-note4_5.valeur = 18.0
-note4_5.save()
+# note4_5 = Note()
+# note4_5.eleve = eleve4
+# note4_5.matiere = mat5
+# note4_5.valeur = 18.0
+# note4_5.save()
 
 
 
 # Attribution des matières aux élèves
 # eleve1 (niveau L1)
-eleve1.matieres.set([mat1, mat2, mat5])  # Bases de la programmation, Mathématiques, et Anglais pour L1
+# eleve1.matieres.set([mat1, mat2, mat5])  # Bases de la programmation, Mathématiques, et Anglais pour L1
 
-# eleve2 (niveau L2)
-eleve2.matieres.set([mat1, mat2, mat3, mat5])  # Bases de la programmation, Mathématiques, Langages Webs et Anglais pour L2
+# # eleve2 (niveau L2)
+# eleve2.matieres.set([mat1, mat2, mat3, mat5])  # Bases de la programmation, Mathématiques, Langages Webs et Anglais pour L2
 
-# eleve3 (niveau L3)
-eleve3.matieres.set([mat2, mat3, mat4, mat5])  # Mathématiques, Langages Webs, Gestion projets et Anglais pour L3
+# # eleve3 (niveau L3)
+# eleve3.matieres.set([mat2, mat3, mat4, mat5])  # Mathématiques, Langages Webs, Gestion projets et Anglais pour L3
 
-# eleve4 (niveau L3)
-eleve4.matieres.set([mat1, mat3, mat5])  # Bases de la programmation, Langages Webs, et Anglais pour L3
+# # eleve4 (niveau L3)
+# eleve4.matieres.set([mat1, mat3, mat5])  # Bases de la programmation, Langages Webs, et Anglais pour L3
 
  
 

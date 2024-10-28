@@ -6,6 +6,8 @@ from .personne import Personne
 
 class Enseignant(Personne):
     pass
+    class Meta(Personne.Meta):
+        pass
     # matieres = models.ManyToManyField('Matiere', related_name='enseignants')
     
     

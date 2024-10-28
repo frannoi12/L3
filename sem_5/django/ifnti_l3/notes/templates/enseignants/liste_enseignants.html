@@ -1,0 +1,43 @@
+<!-- templates/enseignants/liste_enseignants.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Enseignants</title>
+</head>
+<body>
+    <h1>Liste des Enseignants</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Date de Naissance</th>
+                <th>Sexe</th>
+                <th>Département</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for enseignant in enseignants %}
+            <tr>
+                <td>{{ enseignant.nom }}</td>
+                <td>{{ enseignant.prenom }}</td>
+                <td>{{ enseignant.date_naissance }}</td>
+                <td>{{ enseignant.get_sexe_display }}</td>
+                <td>{{ enseignant.departement }}</td>
+                <td>
+                    <a href="{% url 'notes:updateEnseignant' enseignant.id %}">Modifier</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">Aucun enseignant trouvé.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'notes:addEnseignant' %}">Ajouter un Enseignant</a>
+</body>
+</html>

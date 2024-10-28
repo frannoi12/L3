@@ -1,13 +1,15 @@
 from django.db import models
 from .personne import Personne
 from .niveau import Niveau
+from .matiere import Matiere
+
 
 
 
 class Eleve(Personne):
     id = models.CharField(max_length=20, primary_key=True)
-    niveau = models.ForeignKey(Niveau, on_delete=models.CASCADE, related_name='eleves')
-    matieres = models.ManyToManyField('Matiere', through='Note', related_name='eleves')
+    matieres = models.ManyToManyField(Matiere)
+    niveau = models.ForeignKey(Niveau, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name_plural = "Elèves"

@@ -3,8 +3,8 @@ from .matiere import Matiere
 
 
 class Niveau(models.Model):
-    nom = models.CharField(max_length=2, unique=True,null=True)
-    matiere = models.ManyToManyField(Matiere,related_name="niveau")
+    nom = models.CharField(max_length=10, unique=True,null=True)
+    matiere = models.ManyToManyField(Matiere)
 
     class Meta:
         verbose_name_plural = "Niveaux"

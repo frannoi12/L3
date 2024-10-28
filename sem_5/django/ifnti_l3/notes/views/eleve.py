@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 # from django.http import HttpResponse
 from notes.models import Eleve,Note
+from notes.forms.EleveForm import EleveForm
 
 
 
@@ -63,6 +64,7 @@ def eleves(request):
 def eleve(request, id):
     detail_eleve = get_object_or_404(Eleve, id=id)
     matiere = detail_eleve.matieres.all()
+    print(matiere)
     
     # for elev in detail_eleve:
     #     print(elev)
@@ -88,6 +90,31 @@ def eleve(request, id):
 
 
 
+
+def add_eleve(request):
+    if request.method == 'POST':
+        form = EleveForm(request.POST)
+        if form.is_valid():
+            form.save()  # Enregistre l'élève dans la base de données
+            return redirect('eleve_list')  # Redirige vers une vue d'affichage des élèves (ajustez selon votre besoin)
+    else:
+        form = EleveForm()
+    
+    return render(request, 'notes/add_eleve.html', {'form': form})
+
+
+
+def update_eleve(request, id):
+    eleve = get_object_or_404(Eleve, id=id)  # Récupère l'élève par son identifiant
+    if request.method == 'POST':
+        form = EleveForm(request.POST, instance=eleve)  # Prend l'instance existante
+        if form.is_valid():
+            form.save()  # Enregistre les modifications
+            return redirect('eleve_list')  # Redirige vers la liste des élèves
+    else:
+        form = EleveForm(instance=eleve)  # Préremplit le formulaire avec les données de l'élève
+    
+    return render(request, 'notes/update_eleve.html', {'form': form}) 
 
 
 

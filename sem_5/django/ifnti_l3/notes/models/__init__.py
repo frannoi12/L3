@@ -1,4 +1,4 @@
-from .personne import Personne
+# from .personne import Personne
 from .eleve import Eleve
 from .enseignant import Enseignant
 from .matiere import Matiere
