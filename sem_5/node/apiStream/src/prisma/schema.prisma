@@ -5,6 +5,13 @@ generator client {
   provider = "prisma-client-js"
 }
 
+
+
+generator docs {
+  provider = "node ../../node_modules/prisma-docs-generator"
+}
+
+
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")

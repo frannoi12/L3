@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 # from django.http import HttpResponse
 from notes.models import Eleve,Note
 from notes.forms.EleveForm import EleveForm
@@ -96,7 +96,7 @@ def add_eleve(request):
         form = EleveForm(request.POST)
         if form.is_valid():
             form.save()  # Enregistre l'élève dans la base de données
-            return redirect('eleve_list')  # Redirige vers une vue d'affichage des élèves (ajustez selon votre besoin)
+            return redirect('eleves')  # Redirige vers une vue d'affichage des élèves (ajustez selon votre besoin)
     else:
         form = EleveForm()
     

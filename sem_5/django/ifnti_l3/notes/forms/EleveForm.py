@@ -8,18 +8,18 @@ class EleveForm(forms.ModelForm):
         fields = ['nom', 'prenom', 'date_naissance', 'sexe', 'niveau', 'matieres']  
         
     
-    def clean(self):
-        data_a_effacer = super().clean()
-        niveau = data_a_effacer.get('niveau')
-        matieres = data_a_effacer.get('matieres')
+    # def clean(self):
+    #     data_a_effacer = super().clean()
+    #     niveau = data_a_effacer.get('niveau')
+    #     matieres = data_a_effacer.get('matieres')
 
-        # Vérification de la compatibilité des matières avec le niveau
-        if niveau and matieres:
-            for matiere in matieres:
-                if niveau not in matiere.niveaux.all():
-                    self.add_error('matieres', f"La matière {matiere.nom} n'est pas disponible pour le niveau {niveau.nom}.")
+    #     # Vérification de la compatibilité des matières avec le niveau
+    #     if niveau and matieres:
+    #         for matiere in matieres:
+    #             if niveau not in matiere.niveaux.all():
+    #                 self.add_error('matieres', f"La matière {matiere.nom} n'est pas disponible pour le niveau {niveau.nom}.")
             
-            return data_a_effacer
+    #         return data_a_effacer
     
         # widgets = {
         #     'nom': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nom'}),
