@@ -96,11 +96,46 @@ def add_eleve(request):
         form = EleveForm(request.POST)
         if form.is_valid():
             form.save()  # Enregistre l'élève dans la base de données
+<<<<<<< HEAD
+            
+            # Récupère tous les élèves depuis la base de données
+            eleves_list = Eleve.objects.all()
+
+            # Pour chaque élève, on récupère leurs notes et moyennes
+            eleves_with_notes = []
+            for eleve in eleves_list:
+                matieres_notes = []
+                # Récupérer les notes pour chaque matière de l'élève
+                for matiere in eleve.matieres.all():
+                    note = Note.objects.filter(eleve=eleve, matiere=matiere).first()  # Récupère la note
+                    matieres_notes.append({
+                        'matiere': matiere.nom,
+                        'note': note.valeur if note else 'Nulle'  # Vérifie si une note existe
+                    })
+                eleves_with_notes.append({
+                    "id": eleve.id,
+                    'nom': eleve.nom,
+                    "prenom": eleve.prenom,
+                    "sexe": eleve.sexe,
+                    "date_naissance": eleve.date_naissance,
+                    "niveau_id": eleve.niveau.id,
+                    'niveau': eleve.niveau.nom,
+                    'matieres_notes': matieres_notes
+                })
+
+            # Retourne le template avec la liste des élèves, leurs matières et moyennes
+            return render(request, 'notes/eleves.html', {'eleves': eleves_with_notes})
+        else:
+            form = EleveForm()
+=======
             return redirect('eleves')  # Redirige vers une vue d'affichage des élèves (ajustez selon votre besoin)
     else:
         form = EleveForm()
+>>>>>>> 3d64f48e687300c6fcb18d4f97a51fd6702f04bb
     
     return render(request, 'notes/add_eleve.html', {'form': form})
+
+
 
 
 
