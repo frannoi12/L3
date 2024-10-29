@@ -96,7 +96,6 @@ def add_eleve(request):
         form = EleveForm(request.POST)
         if form.is_valid():
             form.save()  # Enregistre l'élève dans la base de données
-<<<<<<< HEAD
             
             # Récupère tous les élèves depuis la base de données
             eleves_list = Eleve.objects.all()
@@ -127,11 +126,6 @@ def add_eleve(request):
             return render(request, 'notes/eleves.html', {'eleves': eleves_with_notes})
         else:
             form = EleveForm()
-=======
-            return redirect('eleves')  # Redirige vers une vue d'affichage des élèves (ajustez selon votre besoin)
-    else:
-        form = EleveForm()
->>>>>>> 3d64f48e687300c6fcb18d4f97a51fd6702f04bb
     
     return render(request, 'notes/add_eleve.html', {'form': form})
 
