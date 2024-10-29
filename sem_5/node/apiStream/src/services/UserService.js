@@ -5,15 +5,27 @@ const prisma = new PrismaClient()
 
 export default class UserService {
     create(user_data){
-        return {};
+        
     }
 
-    async get(){
-        return await prisma.user.findMany();
+    async getAll(){
+        try {
+            return await prisma.user.findMany();
+        } catch (error) {
+            throw new Error(error)
+        }
     }
 
-    get_user(id){
-        return [{}];
+    get_user(_id){
+        try {
+            return prisma.user.findUnique({
+                where: { 
+                    id: _id 
+                },
+            });
+        } catch (error) {
+            throw new Error(error)
+        }
     }
 
     update(id, user_data){

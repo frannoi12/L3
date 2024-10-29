@@ -7,9 +7,9 @@ generator client {
 
 
 
-generator docs {
-  provider = "node ../../node_modules/prisma-docs-generator"
-}
+// generator docs {
+//   provider = "node sem_5/node/apiStream/node_modules/prisma-docs-generator"
+// }
 
 
 datasource db {

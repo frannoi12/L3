@@ -16,6 +16,7 @@ const userRouter = new UserRouter();
 const videoRouter = new VideosRouter();
 
 
+app.use(express.json())
 app.use('/users',userRouter.getRouter());
 app.use('/videos',videoRouter.getRouter());
 

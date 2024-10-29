@@ -13,10 +13,10 @@ export default class UserRouter {
 
     initializeRoutes() {
         this.router.get('/', this.userController.getUsers.bind(this.userController));
-        // this.router.get('/users/:id', this.UserController.getUser);
-        // this.router.post('/users', this.UserController.createUser);
-        // this.router.put('/users/:id', this.UserController.updateUser);
-        // this.router.delete('/users/:id', this.UserController.deleteUser);
+        this.router.get('/:id', this.userController.getUser.bind(this.userController));
+        this.router.post('/create', this.userController.createUser.bind(this.userController));
+        this.router.put('/update/id', this.userController.updateUser.bind(this.userController));
+        this.router.delete('/delate/id', this.userController.deleteUser.bind(this.userController));
     }
 
     getRouter() {
