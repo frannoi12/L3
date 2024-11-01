@@ -8,8 +8,20 @@ from .matiere import Matiere
 
 class Eleve(Personne):
     id = models.CharField(max_length=20, primary_key=True)
-    matieres = models.ManyToManyField(Matiere)
+    matieres = models.ManyToManyField(Matiere,blank=True,verbose_name="Matières suivies par l'élève selon son niveau")
     niveau = models.ForeignKey(Niveau, on_delete=models.CASCADE)
+    
+    
+    def save(self, *args, **kwargs):
+        # Sauvegarder l'élève pour lui donner un identifiant s'il est nouveau
+        super().save(*args, **kwargs)
+        
+        # Associer les matières si le champ est vide
+        if self.niveau and not self.matieres.exists():
+            self.matieres.set(self.niveau.matieres.all())
+
+        # Sauvegarde finale pour enregistrer l'association de matières
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name_plural = "Elèves"

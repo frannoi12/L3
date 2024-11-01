@@ -89,46 +89,59 @@ def eleve(request, id):
 
 
 
-
-
 def add_eleve(request):
+    form = EleveForm()  # Initialiser le formulaire
+
     if request.method == 'POST':
         form = EleveForm(request.POST)
         if form.is_valid():
             form.save()  # Enregistre l'élève dans la base de données
             
-            # Récupère tous les élèves depuis la base de données
-            eleves_list = Eleve.objects.all()
+            # Redirige vers la vue de liste des élèves
+            return redirect('notes:eleves')  # Remplacez 'notes:eleves' par le nom correct de votre URL
 
-            # Pour chaque élève, on récupère leurs notes et moyennes
-            eleves_with_notes = []
-            for eleve in eleves_list:
-                matieres_notes = []
-                # Récupérer les notes pour chaque matière de l'élève
-                for matiere in eleve.matieres.all():
-                    note = Note.objects.filter(eleve=eleve, matiere=matiere).first()  # Récupère la note
-                    matieres_notes.append({
-                        'matiere': matiere.nom,
-                        'note': note.valeur if note else 'Nulle'  # Vérifie si une note existe
-                    })
-                eleves_with_notes.append({
-                    "id": eleve.id,
-                    'nom': eleve.nom,
-                    "prenom": eleve.prenom,
-                    "sexe": eleve.sexe,
-                    "date_naissance": eleve.date_naissance,
-                    "niveau_id": eleve.niveau.id,
-                    'niveau': eleve.niveau.nom,
-                    'matieres_notes': matieres_notes
-                })
-
-            # Retourne le template avec la liste des élèves, leurs matières et moyennes
-            return render(request, 'notes/eleves.html', {'eleves': eleves_with_notes})
-        else:
-            form = EleveForm()
-    
     return render(request, 'notes/add_eleve.html', {'form': form})
 
+
+
+# def add_eleve(request):
+#     form = EleveForm()  # Initialiser le formulaire en dehors du bloc if
+
+#     if request.method == 'POST':
+#         form = EleveForm(request.POST)
+#         if form.is_valid():
+#             form.save()  # Enregistre l'élève dans la base de données
+            
+#             # Récupère tous les élèves depuis la base de données
+#             eleves_list = Eleve.objects.all()
+
+#             # Pour chaque élève, on récupère leurs notes et moyennes
+#             eleves_with_notes = []
+#             for eleve in eleves_list:
+#                 matieres_notes = []
+#                 # Récupérer les notes pour chaque matière de l'élève
+#                 for matiere in eleve.matieres.all():
+#                     note = Note.objects.filter(eleve=eleve, matiere=matiere).first()  # Récupère la note
+#                     matieres_notes.append({
+#                         'matiere': matiere.nom,
+#                         'note': note.valeur if note else 'Nulle'  # Vérifie si une note existe
+#                     })
+#                 eleves_with_notes.append({
+#                     "id": eleve.id,
+#                     'nom': eleve.nom,
+#                     "prenom": eleve.prenom,
+#                     "sexe": eleve.sexe,
+#                     "date_naissance": eleve.date_naissance,
+#                     "niveau_id": eleve.niveau.id,
+#                     'niveau': eleve.niveau.nom,
+#                     'matieres_notes': matieres_notes
+#                 })
+
+#             # Retourne le template avec la liste des élèves, leurs matières et moyennes
+#             return render(request, 'notes/eleves.html', {'eleves': eleves_with_notes})
+    
+#     # Rendre le formulaire (déjà initialisé pour le cas GET)
+#     return render(request, 'notes/add_eleve.html', {'form': form})
 
 
 
