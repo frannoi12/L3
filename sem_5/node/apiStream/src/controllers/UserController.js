@@ -45,9 +45,34 @@ export default class UserController{
         }
     }
 
-    async updateUser(req, res){
+    async updateUser(req, res) {
+        const { id } = req.params;
+        const { data } = req.body;
+        try {
+            const updatedUser = await this.userService.updateUser(parseInt(id), data);
+            if (updatedUser) {
+                res.status(status.HTTP_200_OK).json(updatedUser);
+            } else {
+                res.status(status.HTTP_404_NOT_FOUND).json({ message: "User not found" });
+            }
+        } catch (error) {
+            console.error(error);
+            res.status(status.HTTP_500_INTERNAL_SERVER_ERROR).json();
+        }
     }
 
-    async deleteUser(req, res){
+    async deleteUser(req, res) {
+        const { id } = req.params;
+        try {
+            const deleted = await this.userService.deleteUser(parseInt(id));
+            if (deleted) {
+                res.status(status.HTTP_204_NO_CONTENT).send();
+            } else {
+                res.status(status.HTTP_404_NOT_FOUND).json({ message: "User not found" });
+            }
+        } catch (error) {
+            console.error(error);
+            res.status(status.HTTP_500_INTERNAL_SERVER_ERROR).json();
+        }
     }
 }
