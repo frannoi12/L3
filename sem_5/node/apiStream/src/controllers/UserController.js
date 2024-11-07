@@ -1,5 +1,6 @@
 import UserService from "../services/UserService.js";
 import * as status from "../constantes/httpStatus.js";
+import { emailValidatorProxy } from './utils/emailValidatorProxy';  // Importer le proxy
 
 
 export default class UserController{
@@ -32,18 +33,42 @@ export default class UserController{
         }
     }
 
-    async createUser(req, res){
+    
+    
+
+    // Fonction pour créer l'utilisateur avec validation de l'email
+    async createUser(req, res) {
         const { data } = req.body;
+
         try {
+            // On passe l'email et le nom à travers le proxy
+            emailValidatorProxy.email = data.email;  // Validation de l'email via le proxy
+
+            // Si l'email est valide, on continue à créer l'utilisateur
             const user = await this.userService.createUser(
                 data.email,
                 data.name
             );
             res.json(user).status(status.HTTP_200_OK);
         } catch (error) {
-            
+            // Si une erreur de validation d'email survient
+            res.status(400).json({ message: error.message });
         }
     }
+
+
+    // async createUser(req, res){
+    //     const { data } = req.body;
+    //     try {
+    //         const user = await this.userService.createUser(
+    //             data.email,
+    //             data.name
+    //         );
+    //         res.json(user).status(status.HTTP_200_OK);
+    //     } catch (error) {
+            
+    //     }
+    // }
 
     async updateUser(req, res) {
         const { id } = req.params;
