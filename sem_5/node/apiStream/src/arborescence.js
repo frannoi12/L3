@@ -7,14 +7,14 @@ async function displayDirectoryTree(dirPath, indent = '') {
 
     // Boucle sur chaque élément du répertoire
     for (const item of items) {
-        const itemPath = path.join(dirPath, item.name); // Obtenir le chemin complet de l'élément
+        const itemPath = path.join(dirPath, item.name); // Obtenir le chemin complet du fichier où dossier
 
         if (item.isDirectory()) {
             // Si c'est un dossier, on l'affiche et on entre dedans
             console.log(`${indent}${item.name}/`);
             await displayDirectoryTree(itemPath, `${indent}  `); // Appel récursif pour afficher le contenu du dossier
         } else {
-            // Si c'est un fichier, on l'affiche
+            // Si c'est un fichier simple, on l'affiche
             console.log(`${indent}${item.name}`);
         }
     }

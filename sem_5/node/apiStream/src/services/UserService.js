@@ -7,7 +7,7 @@ export default class UserService {
     // Créer un nouvel utilisateur
     async create(user_data) {
         try {
-            return await prisma.user.create({
+            return prisma.user.create({
                 data: user_data,
             });
         } catch (error) {
@@ -63,6 +63,20 @@ export default class UserService {
             throw new Error(`Error deleting user: ${error.message}`);
         }
     }
+
+    async findByEmail(_email) {    
+        try {
+            return prisma.user.findUnique({
+                where: { email: _email }
+            });
+    
+        } catch (error) {
+            // console.error("Error in findByEmail:", error.message);
+            throw new Error(error); // Re-throw the error to handle it in calling function
+        }
+    }
+    
+
 }
 
 
