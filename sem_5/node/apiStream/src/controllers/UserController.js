@@ -76,9 +76,11 @@ export default class UserController{
 
     async updateUser(req, res) {
         const { id } = req.params;
-        const { data } = req.body;
+        const data = req.body;
+        console.log(data);
+        
         try {
-            const updatedUser = await this.userService.updateUser(parseInt(id), data);
+            const updatedUser = await this.userService.update(parseInt(id), data);
             if (updatedUser) {
                 res.status(status.HTTP_200_OK).json(updatedUser);
             } else {
@@ -93,7 +95,7 @@ export default class UserController{
     async deleteUser(req, res) {
         const { id } = req.params;
         try {
-            const deleted = await this.userService.deleteUser(parseInt(id));
+            const deleted = await this.userService.delete(parseInt(id));
             if (deleted) {
                 res.status(status.HTTP_204_NO_CONTENT).send();
             } else {

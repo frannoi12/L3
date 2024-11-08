@@ -55,12 +55,13 @@ export default class UserService {
     // Supprimer un utilisateur par ID
     async delete(id) {
         try {
-            await prisma.user.delete({
+            const deletUser = await prisma.user.delete({
                 where: { id: id },
             });
-            return { message: "User deleted successfully" };
+            return deletUser;
         } catch (error) {
-            throw new Error(`Error deleting user: ${error.message}`);
+            console.log("user déjà supprimé !");
+            // throw new Error(`Error deleting user: user n'est pas dans la base de données `);
         }
     }
 
