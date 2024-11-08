@@ -77,7 +77,8 @@ export default class UserController{
     async updateUser(req, res) {
         const { id } = req.params;
         const data = req.body;
-        console.log(data);
+        // const ID = parseInt(id);
+        // console.log(ID);
         
         try {
             const updatedUser = await this.userService.update(parseInt(id), data);
@@ -96,6 +97,8 @@ export default class UserController{
         const { id } = req.params;
         try {
             const deleted = await this.userService.delete(parseInt(id));
+            console.log(deleted.success);
+            
             if (deleted) {
                 res.status(status.HTTP_204_NO_CONTENT).send();
             } else {

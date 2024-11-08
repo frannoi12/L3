@@ -58,10 +58,19 @@ export default class UserService {
             const deletUser = await prisma.user.delete({
                 where: { id: id },
             });
-            return deletUser;
+            // console.log(deletUser);
+            // return deletUser;
+            return { success: true, message: 'Utilisateur supprimé avec succès.' };
         } catch (error) {
-            console.log("user déjà supprimé !");
-            // throw new Error(`Error deleting user: user n'est pas dans la base de données `);
+            if (error.code === 'P2025') {
+                // Si l'utilisateur n'existe pas, renvoyer false avec un message
+                console.log("Utilisateur non trouvé, rien à supprimer.");
+                return { success: false, message: `L'utilisateur avec l'ID ${id} n'existe pas dans la base de données.` };
+            }
+    
+            // Autres erreurs génériques
+            console.log("Une erreur inconnue est survenue lors de la suppression.");
+            return { success: false, message: `Erreur lors de la suppression de l'utilisateur avec l'ID ${id}: ${error.message}` };
         }
     }
 
