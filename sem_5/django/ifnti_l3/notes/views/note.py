@@ -2,8 +2,13 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseBadRequest
 from notes.models import Eleve, Matiere, Note
 from notes.forms.NoteForm import NoteForm
+from django.contrib.auth.decorators import login_required, permission_required
 
 
+
+
+@login_required
+@permission_required('notes.add_note', raise_exception=True)
 def add_note(request, eleve_id, matiere_id):
     eleve = get_object_or_404(Eleve, id=eleve_id)
     matiere = get_object_or_404(Matiere, id=matiere_id)
@@ -28,6 +33,36 @@ def add_note(request, eleve_id, matiere_id):
         form = NoteForm()
     
     return render(request, 'notes/add_note.html', {'form': form, 'eleve': eleve, 'matiere': matiere})
+
+
+@login_required
+@permission_required('notes.add_notes', raise_exception=True)
+def add_notes(request, matiere_id):
+    matiere = get_object_or_404(Matiere, id=matiere_id)
+    eleves = Eleve.objects.filter(matieres=matiere)  # Récupère tous les élèves inscrits à cette matière
+
+    if request.method == 'POST':
+        notes_valides = True
+        for eleve in eleves:
+            note_value = request.POST.get(f'note_{eleve.id}')
+            # Validation de la note
+            form = NoteForm({'valeur': note_value})
+            if form.is_valid():
+                Note.objects.create(
+                    valeur=note_value,
+                    eleve=eleve,
+                    matiere=matiere
+                )
+            else:
+                notes_valides = False
+
+        if notes_valides:
+            return HttpResponse("Toutes les notes ont été enregistrées avec succès.")
+        else:
+            return HttpResponse("Certaines notes étaient invalides et n'ont pas été enregistrées.")
+    
+    # Si méthode GET, on initialise les formulaires pour chaque élève
+    return render(request, 'notes/add_notes.html', {'eleves': eleves, 'matiere': matiere})
 
 
 # def add_note(request):
@@ -72,29 +107,3 @@ def add_note(request, eleve_id, matiere_id):
 
 
 
-def add_notes(request, matiere_id):
-    matiere = get_object_or_404(Matiere, id=matiere_id)
-    eleves = Eleve.objects.filter(matieres=matiere)  # Récupère tous les élèves inscrits à cette matière
-
-    if request.method == 'POST':
-        notes_valides = True
-        for eleve in eleves:
-            note_value = request.POST.get(f'note_{eleve.id}')
-            # Validation de la note
-            form = NoteForm({'valeur': note_value})
-            if form.is_valid():
-                Note.objects.create(
-                    valeur=note_value,
-                    eleve=eleve,
-                    matiere=matiere
-                )
-            else:
-                notes_valides = False
-
-        if notes_valides:
-            return HttpResponse("Toutes les notes ont été enregistrées avec succès.")
-        else:
-            return HttpResponse("Certaines notes étaient invalides et n'ont pas été enregistrées.")
-    
-    # Si méthode GET, on initialise les formulaires pour chaque élève
-    return render(request, 'notes/add_notes.html', {'eleves': eleves, 'matiere': matiere})
