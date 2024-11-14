@@ -1,5 +1,5 @@
 -- CreateEnum
-CREATE TYPE "Type" AS ENUM ('peinture', 'sculpture', 'dessin', 'acii_art');
+CREATE TYPE "TypeArt" AS ENUM ('PEINTURE', 'SCULPTURE', 'DESSIN', 'ACII_ART');
 
 -- CreateTable
 CREATE TABLE "Artwork" (
@@ -8,7 +8,7 @@ CREATE TABLE "Artwork" (
     "artist" TEXT NOT NULL,
     "year" INTEGER,
     "description" TEXT,
-    "type" "Type"[],
+    "type" "TypeArt" NOT NULL,
 
     CONSTRAINT "Artwork_pkey" PRIMARY KEY ("id")
 );
