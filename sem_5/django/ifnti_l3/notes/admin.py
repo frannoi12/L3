@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import Eleve, Niveau, Matiere
 from .forms.EleveForm import EleveForm  # Si ce formulaire existe
 
+
 class EleveAdmin(admin.ModelAdmin):
     form = EleveForm  # Si ce formulaire personnalisé existe
     list_display = ('id', 'prenom', 'nom', 'niveau')  # Assurez-vous que 'prenom' et 'nom' viennent de `Personne`
@@ -16,3 +17,4 @@ class EleveAdmin(admin.ModelAdmin):
 admin.site.register(Eleve, EleveAdmin)
 admin.site.register(Niveau)
 admin.site.register(Matiere)
+admin.site.site_header = "IFNTI"

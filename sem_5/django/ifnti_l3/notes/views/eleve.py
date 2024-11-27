@@ -4,6 +4,7 @@ from notes.models import Eleve,Note
 from notes.forms.EleveForm import EleveForm
 from django.http import FileResponse
 import os
+from Templating_ifnti.controleur import generate_pdf
 
 
 
@@ -162,18 +163,30 @@ def update_eleve(request, id):
 
 
 
+# Vue pour générer un pdf
+def listEleves(request):
+    eleves = Eleve.objects.all()
+    # print(eleves)
+    # Chemin vers le fichier PDF
+    pdf_path = os.path.join("Templating_ifnti/out/","liste_eleves.pdf")
+    
+    if not os.path.exists(pdf_path):
+        contest = {"eleves" : eleves}
+        generate_pdf(contest)
+        
+    
+    # Ouvrir le fichier en mode binaire
+    return FileResponse(open(pdf_path, 'rb'))
 
 
 # Vue pour générer un pdf
-def listEleves(request):
+# def listEleves(request):
     # Chemin vers le fichier PDF
-    pdf_path = os.path.join('chemin/vers/ton/fichier.pdf')
+    # pdf_path = os.path.join("out/","django_python_TOYI_Francois.pdf")
     
     # Ouvrir le fichier en mode binaire
-    response = FileResponse(open(pdf_path, 'rb'))
-    response['Content-Type'] = 'application/pdf'
-    response['Content-Disposition'] = 'inline; filename="fichier.pdf"'
-    return response
+    # return FileResponse(open(pdf_path, 'rb'))
+
 
 
 

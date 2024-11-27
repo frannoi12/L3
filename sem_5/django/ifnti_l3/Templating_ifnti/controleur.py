@@ -1,3 +1,7 @@
+from jinja2 import Environment, FileSystemLoader
+from latex import build_pdf
+from os.path import dirname,abspath
+
 def generate_pdf(context) :
     #INSTANCIATION D’UN NOUVEL ENVIRONNEMENT
     #AVEC DES OPTIONS DE BALISES PERSONNALISÉES
