@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 
 
 @login_required
-@permission_required('notes.add_note', raise_exception=True)
+@permission_required('notes.add_note')
 def add_note(request, eleve_id, matiere_id):
     eleve = get_object_or_404(Eleve, id=eleve_id)
     matiere = get_object_or_404(Matiere, id=matiere_id)
@@ -36,7 +36,7 @@ def add_note(request, eleve_id, matiere_id):
 
 
 @login_required
-@permission_required('notes.add_notes', raise_exception=True)
+@permission_required('notes.add_notes')
 def add_notes(request, matiere_id):
     matiere = get_object_or_404(Matiere, id=matiere_id)
     eleves = Eleve.objects.filter(matieres=matiere)  # Récupère tous les élèves inscrits à cette matière

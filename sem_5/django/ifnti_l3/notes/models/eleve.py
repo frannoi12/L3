@@ -18,7 +18,7 @@ class Eleve(Personne):
         
         # Associer les matières si le champ est vide
         if self.niveau and not self.matieres.exists():
-            self.matieres.set(self.niveau.matieres.all())
+            self.matieres.set(self.niveau.matiere.all())
 
         # Sauvegarde finale pour enregistrer l'association de matières
         super().save(*args, **kwargs)
