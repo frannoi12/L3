@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 # from django.http import HttpResponse
 from notes.models import Eleve,Note
 from notes.forms.EleveForm import EleveForm
+from django.http import FileResponse
+import os
 
 
 
@@ -159,6 +161,19 @@ def update_eleve(request, id):
     return render(request, 'notes/update_eleve.html', {'form': form}) 
 
 
+
+
+
+# Vue pour générer un pdf
+def listEleves(request):
+    # Chemin vers le fichier PDF
+    pdf_path = os.path.join('chemin/vers/ton/fichier.pdf')
+    
+    # Ouvrir le fichier en mode binaire
+    response = FileResponse(open(pdf_path, 'rb'))
+    response['Content-Type'] = 'application/pdf'
+    response['Content-Disposition'] = 'inline; filename="fichier.pdf"'
+    return response
 
 
 
