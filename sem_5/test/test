@@ -1,0 +1,15 @@
+Créer un service root, qui crée un log sous / mis à jour chaque seconde.
+
+Ressources proposées pour l'activité Systemd : 
+Infos générales sur Systemd
+https://en.wikipedia.org/wiki/Systemd#Configuration_of_systemd
+Services basiques
+https://www.digitalocean.com/community/tutorials/how-to-configure-a-linux-service-to-start-automatically-after-a-crash-or-reboot-part-1-practical-examples
+https://freshman.tech/snippets/linux/auto-restart-systemd-service/
+Services utilisateur
+https://www.baeldung.com/linux/systemd-create-user-services
+Très détaillé, mais plus lourd. Allez aux parties intéressantes seulement.
+https://wiki.archlinux.org/title/Systemd/User#Writing_user_units
+
+
+while true; do echo ${date} ; sleep 1 ; done
