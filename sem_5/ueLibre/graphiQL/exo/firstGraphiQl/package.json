@@ -1,0 +1,23 @@
+{
+  "name": "firstgraphiql",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@graphql-tools/schema": "^10.0.8",
+    "@prisma/client": "^5.22.0",
+    "express": "^4.21.1",
+    "graphql": "^16.9.0",
+    "graphql-http": "^1.22.2",
+    "nodemon": "^3.1.7",
+    "prisma": "^5.22.0"
+  }
+}

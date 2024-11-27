@@ -1,26 +1,16 @@
 import fs from "fs/promises";
 import { PrismaClient} from "@prisma/client";
-import fileUrl from "node:url";
-import path from "node:path";
 
 
 
 
 const prismaClient =  new PrismaClient()
 
-const file_url = fileUrl.fileURLToPath(import.meta.url)
-// console.log(file_url);
-
-const dirn = path.dirname(file_url);
-const seed_file_path = dirn+"/db_data_seed.json"
-
-console.log(seed_file_path);
 
 
 async function seedRun() {
     try {
-
-        const file = await fs.open(seed_file_path);
+        const file = await fs.open('./seed/db_data_seed.json');
         const db_content = await file.readFile({ encoding: "utf-8" });
         await file.close(); 
 

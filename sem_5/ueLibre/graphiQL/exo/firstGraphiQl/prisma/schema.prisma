@@ -14,24 +14,8 @@ datasource db {
 }
 
 
-
-
-
-model Artwork{
-  id Int @id @default(autoincrement())
-  title String
-  artist String
-  year Int?
-  description String?
-  type TypeArt
+model User {
+  id    Int    @id @default(autoincrement())
+  name  String
+  email String @unique
 }
-
-
-enum TypeArt {
-  PEINTURE
-  SCULPTURE
-  DESSIN
-  ACII_ART
-}
-
-
