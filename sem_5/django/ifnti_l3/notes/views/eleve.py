@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 # from django.http import HttpResponse
-from notes.models import Eleve,Note
+from notes.models import Eleve,Note,Matiere
 from notes.forms.EleveForm import EleveForm
 from django.http import FileResponse
 import os
 from Templating_ifnti.controleur import generate_pdf
+from Templating_ifnti.controller import generate_note_pdf
 
 
 
@@ -187,6 +188,54 @@ def listEleves(request):
     # Ouvrir le fichier en mode binaire
     # return FileResponse(open(pdf_path, 'rb'))
 
+
+def listeNiveauElv(request, niveau):
+    # Filtrer les élèves par niveau
+    eleves = Eleve.objects.filter(niveau=niveau)  # Supposons que 'niveau' est un champ dans le modèle Eleve
+
+    # Chemin vers le fichier PDF
+    pdf_path = os.path.join("Templating_ifnti/out/", "liste_eleves.pdf")
+    
+    if not os.path.exists(pdf_path):
+        context = {"eleves": eleves}
+        generate_pdf(context)  # Générer le PDF avec les élèves filtrés
+        
+    # Ouvrir le fichier en mode binaire
+    return FileResponse(open(pdf_path, 'rb'))
+
+
+
+
+
+# Vue pour générer un PDF des notes des élèves d'une matière donnée
+def notesEleves(request, matiere_id):
+    # Récupérer l'objet Matiere correspondant à l'ID donné
+    matiere = get_object_or_404(Matiere, id=matiere_id)
+    print(matiere)
+
+    # Récupérer les notes des élèves pour la matière spécifiée
+    notes = Note.objects.filter(matiere=matiere)  # Supposons que Note a un champ 'matiere'
+    print(notes)
+    
+    # Filtrer les élèves qui suivent cette matière
+    eleves = Eleve.objects.filter(matieres=matiere)
+    print(eleves)
+    
+
+    # Chemin vers le fichier PDF
+    pdf_path = os.path.join("Templating_ifnti/out/", "notes_eleves.pdf")
+
+    # Créer le répertoire si nécessaire
+    os.makedirs("Templating_ifnti/out/", exist_ok=True)
+
+    if not os.path.exists(pdf_path):
+        print(pdf_path)
+        context = {"notes": notes}
+        print("Contexte envoyé au PDF:", context)
+        # generate_note_pdf(context)  # Générer le PDF avec les notes filtrées
+        
+    # Ouvrir le fichier en mode binaire
+    return FileResponse(open(pdf_path, 'rb'))
 
 
 

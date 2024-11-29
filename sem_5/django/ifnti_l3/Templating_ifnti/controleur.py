@@ -11,9 +11,9 @@ def generate_pdf(context) :
     comment_end_string="}")
     #DECLARATION DE FICHIER
     #fichier à lire contenant le template avec les balises
-    fichier_in = open("ifnti/liste_eleves.tex", 'r')
+    fichier_in = open("ifnti/listes_eleves.tex", 'r')
     #fichier en sortie accueillant les donnéesfournies
-    fichier_out = open("out/template_out.tex", 'w')
+    fichier_out = open("Templating_ifnti/out/template_out.tex", 'w')
     template = fichier_in.read() #lecture du template
     monContext = context
     monContext["image_path"] = dirname(abspath(__file__)) + "/out/images/"
@@ -23,7 +23,7 @@ def generate_pdf(context) :
     # écriture dans le fichier en sortie
     fichier_out.write(j2_template.render(monContext))
     fichier_out.close()
-    mon_pdf = build_pdf(open("out/template_out.tex", 'r'))
-    mon_pdf.save_to("out/liste_eleves.pdf")
+    mon_pdf = build_pdf(open("Templating_ifnti/out/template_out.tex", 'r'))
+    mon_pdf.save_to("Templating_ifnti/out/liste_eleves.pdf")
     #’’’FERMETURE DE CANAUX’’’
     fichier_in.close()
