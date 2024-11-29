@@ -6,6 +6,9 @@ from django.http import FileResponse
 import os
 from Templating_ifnti.controleur import generate_pdf
 from Templating_ifnti.controller import generate_note_pdf
+from Templating_ifnti.controllerSynthese import generate_synthese_pdf
+from django.db.models import Avg
+
 
 
 
@@ -209,34 +212,89 @@ def listeNiveauElv(request, niveau):
 
 # Vue pour générer un PDF des notes des élèves d'une matière donnée
 def notesEleves(request, matiere_id):
-    # Récupérer l'objet Matiere correspondant à l'ID donné
-    matiere = get_object_or_404(Matiere, id=matiere_id)
-    print(matiere)
+  # Récupérer l'objet Matiere correspondant à l'ID donné
+  matiere = get_object_or_404(Matiere, id=matiere_id)
+  # print(matiere)
 
-    # Récupérer les notes des élèves pour la matière spécifiée
-    notes = Note.objects.filter(matiere=matiere)  # Supposons que Note a un champ 'matiere'
-    print(notes)
+  # Récupérer les notes des élèves pour la matière spécifiée
+  notes = Note.objects.filter(matiere=matiere)  # Supposons que Note a un champ 'matiere'
+  # print(notes)
+  
+  # Filtrer les élèves qui suivent cette matière
+  eleves = Eleve.objects.filter(matieres=matiere)
+  # print(eleves)
+  
+
+  # Chemin vers le fichier PDF
+  pdf_path = os.path.join("Templating_ifnti/out/", "notes_eleves.pdf")
+
+  # Créer le répertoire si nécessaire
+  os.makedirs("Templating_ifnti/out/", exist_ok=True)
+
+
+  context = {"notes": notes, "matiere" : matiere}
+  print("Contexte envoyé au PDF:", context)
+  generate_note_pdf(context)  # Générer le PDF avec les notes filtrées
+  return FileResponse(open(pdf_path, 'rb'))
+  
+  
+def notesSynthese(request):
+    print("Début de la synthèse des notes")  # Indication du début de la fonction
+
+    # Récupérer tous les élèves
+    eleves = Eleve.objects.all()
+    print(f"Élèves récupérés : {[eleve.nom for eleve in eleves]}")  # Afficher les noms des élèves
     
-    # Filtrer les élèves qui suivent cette matière
-    eleves = Eleve.objects.filter(matieres=matiere)
-    print(eleves)
-    
+    # Préparer un dictionnaire pour stocker les moyennes
+    synthese = {}
 
-    # Chemin vers le fichier PDF
-    pdf_path = os.path.join("Templating_ifnti/out/", "notes_eleves.pdf")
-
-    # Créer le répertoire si nécessaire
-    os.makedirs("Templating_ifnti/out/", exist_ok=True)
-
-    if not os.path.exists(pdf_path):
-        print(pdf_path)
-        context = {"notes": notes}
-        print("Contexte envoyé au PDF:", context)
-        # generate_note_pdf(context)  # Générer le PDF avec les notes filtrées
+    for eleve in eleves:
+        print(f"\nTraitement de l'élève : {eleve.nom}")  # Indiquer quel élève est en cours de traitement
         
-    # Ouvrir le fichier en mode binaire
-    return FileResponse(open(pdf_path, 'rb'))
+        # Récupérer les notes de chaque élève
+        notes = Note.objects.filter(eleve=eleve)
+        print(f"Notes de {eleve.nom} : {[note.valeur for note in notes]}")  # Afficher les notes de l'élève
+        
+        # Groupement par matière pour calculer la moyenne
+        moyennes = notes.values('matiere__nom').annotate(moyenne=Avg('valeur'))
+        print(f"Moyennes calculées : {list(moyennes)}")  # Afficher les moyennes calculées
+        
+        # Créer un dictionnaire pour stocker les moyennes par matière
+        moyennes_dict = {}
+        
+        for matiere in Matiere.objects.all():
+            # Vérifier si l'élève a une moyenne pour cette matière
+            moyenne = next((m['moyenne'] for m in moyennes if m['matiere__nom'] == matiere.nom), None)
+            if moyenne is not None:
+                moyennes_dict[matiere.nom] = moyenne
+                print(f"Moyenne pour {matiere.nom} : {moyenne}")  # Afficher la moyenne pour la matière
+            else:
+                moyennes_dict[matiere.nom] = "N/A"  # Ou 0, ou vous pouvez choisir de ne pas inclure
+                print(f"Aucune note pour {matiere.nom}, assignation de 'N/A'")  # Indiquer qu'il n'y a pas de note
 
+        # Ajouter les moyennes au dictionnaire
+        synthese[eleve] = moyennes_dict
+
+    print("\nSynthèse finale des moyennes :")  # Indiquer la fin de la collecte des moyennes
+    for eleve, moyennes in synthese.items():
+        print(f"{eleve.nom}: {moyennes}")  # Afficher la synthèse pour chaque élève
+
+    # Passer les données au template
+    context = {
+        'synthese': synthese,
+    }
+
+    # Appel à la fonction pour générer le PDF
+    pdf_path = generate_synthese_pdf(context)
+
+    print(f"PDF généré à : {pdf_path}")  # Indiquer où le PDF a été sauvé
+
+    # Retourner le fichier PDF
+    with open(pdf_path, 'rb') as pdf_file:
+        response = HttpResponse(pdf_file.read(), content_type='application/pdf')
+        response['Content-Disposition'] = f'attachment; filename="synthese_notes.pdf"'
+        return response        
+        
 
 
 # def eleve(request):

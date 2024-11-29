@@ -35,13 +35,15 @@ IFNTI-Sokodé TOGO\\300 BP 40
 \end{minipage}
 
 \begin{center}
-\underline{\textbf{LISTE DES NOTES DE LA MATIÈRE : \VAR{matiere.nom}}}
+\underline{\textbf{SYNTHÈSE DES MOYENNES DES ÉLÈVES}}
 \end{center}
 
 \begin{longtable}{|l|l|l|} \hline
-\textbf{Nom} & \textbf{Prénom} & \textbf{Note} \\ \hline
-\BLOCK{for note in notes}
-\VAR{note.eleve.nom} & \VAR{note.eleve.prenom} & \VAR{note.valeur} \\ \hline
+\textbf{Élève} & \textbf{Matière} & \textbf{Moyenne} \\ \hline
+\BLOCK{for eleve, moyennes in synthese.items()}
+\BLOCK{for matiere, moyenne in moyennes.items()}
+{{ eleve.nom }} & {{ matiere }} & {{ moyenne | floatformat:2 }} \\ \hline
+\BLOCK{endfor}
 \BLOCK{endfor}
 \end{longtable}
 
