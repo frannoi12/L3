@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../dist/main.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <header class="bg-white py-3 w-full flex justify-center sticky top-0 z-10 shadow-md">
+        <nav class="flex w-full mx-6 justify-between items-center">
+            <div>
+                <img src="./assets/logo.png" width="50px" alt="Logo">
+            </div>
+            <div class="flex items-center lg:w-5/12">
+                <input type="text" placeholder="Rechercher" class="w-full border border-gray-300 px-5 py-[6px] rounded-l-full">
+                <div class="border py-[6px] px-4 border-gray-300 border-l-0 rounded-r-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                    </svg>                      
+                </div>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-red-600"></div>
+        </nav>
+    </header>
+    <main class="flex w-full">
+       <!-- Barre latérale -->
+        <div class="bg-white hidden lg:block lg:w-[260px] fixed top-0 left-0 h-screen z-10 shadow-md">
+            <!-- Logo -->
+            <div class="flex items-center p-4 border-b border-gray-200">
+                <img src="./assets/logo.png" width="40px" alt="Logo">
+                <span class="font-semibold text-xl ml-2">WeTube</span>
+            </div>
+
+            <!-- Menu principal -->
+            <nav class="mt-4 space-y-2">
+                <!-- Section principale -->
+                <ul>
+                    <li class="group">
+                        <a href="#" class="flex items-center px-4 py-2 hover:bg-gray-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-6 h-6 text-gray-700 group-hover:text-red-600">
+                                <path d="M10 15l5.5-3L10 9v6z"></path>
+                                <path fill="none" d="M0 0h24v24H0z"></path>
+                            </svg>
+                            <span class="ml-4 font-medium text-gray-700 group-hover:text-red-600">Accueil</span>
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="#" class="flex items-center px-4 py-2 hover:bg-gray-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-6 h-6 text-gray-700 group-hover:text-red-600">
+                                <path d="M12 2L8.4 8.4 2 12l6.4 3.6L12 22l3.6-6.4L22 12l-6.4-3.6z"></path>
+                                <path fill="none" d="M0 0h24v24H0z"></path>
+                            </svg>
+                            <span class="ml-4 font-medium text-gray-700 group-hover:text-red-600">Short</span>
+                        </a>
+                    </li>
+                </ul>
+                <hr class="border border-gray-300 mx-6" />
+                <ul>
+                    <li class="group">
+                        <a href="#" class="flex items-center px-4 py-2 hover:bg-gray-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-6 h-6 text-gray-700 group-hover:text-red-600">
+                                <path d="M10 15l5.5-3L10 9v6z"></path>
+                                <path fill="none" d="M0 0h24v24H0z"></path>
+                            </svg>
+                            <span class="ml-4 font-medium text-gray-700 group-hover:text-red-600">Uploder Video</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Contenu principal -->
+        <div class="h-screen w-full py-6 px-12 overflow-auto ml-0 lg:ml-[16.666%]" id="content">
+            <!-- Section avec défilement horizontal -->
+            <div class="flex overflow-x-auto space-x-2 snap-x snap-mandatory p-4 scrollbar-hide">
+                <span class="snap-center bg-black text-white text-sm font-semibold px-3 py-2 rounded-lg cursor-pointer">
+                    Tous
+                </span>
+                <span class="snap-center text-sm font-semibold px-3 py-2 rounded-lg hover:bg-gray-200 cursor-pointer">
+                    Musique
+                </span>
+                <span class="snap-center text-sm font-semibold px-3 py-2 rounded-lg hover:bg-gray-200 cursor-pointer">
+                    Films
+                </span><span class="snap-center text-sm font-semibold px-3 py-2 rounded-lg hover:bg-gray-200 cursor-pointer">
+                    Films
+                </span><span class="snap-center text-sm font-semibold px-3 py-2 rounded-lg hover:bg-gray-200 cursor-pointer">
+                    Films
+                </span><span class="snap-center text-sm font-semibold px-3 py-2 rounded-lg hover:bg-gray-200 cursor-pointer">
+                    Films
+                </span><span class="snap-center text-sm font-semibold px-3 py-2 rounded-lg hover:bg-gray-200 cursor-pointer">
+                    Films
+                </span>
+                <span class="snap-center text-sm font-semibold px-3 py-2 rounded-lg hover:bg-gray-200 cursor-pointer">
+                    Films
+                </span>
+                <span class="snap-center text-sm font-semibold px-3 py-2 rounded-lg hover:bg-gray-200 cursor-pointer">
+                    Sports
+                </span>
+                <span class="snap-center text-sm font-semibold px-3 py-2 rounded-lg hover:bg-gray-200 cursor-pointer">
+                    Jeux
+                </span>
+                <span class="snap-center text-sm font-semibold px-3 py-2 rounded-lg hover:bg-gray-200 cursor-pointer">
+                    Mode
+                </span>
+                <span class="snap-center text-sm font-semibold px-3 py-2 rounded-lg hover:bg-gray-200 cursor-pointer">
+                    Actualités
+                </span>
+                <span class="snap-center text-sm font-semibold px-3 py-2 rounded-lg hover:bg-gray-200 cursor-pointer">
+                    Voyage
+                </span>
+                <span class="snap-center text-sm font-semibold px-3 py-2 rounded-lg hover:bg-gray-200 cursor-pointer">
+                    Éducation
+                </span>
+            </div>
+
+            <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Les cartes vidéo -->
+                <div class="space-y-3 w-full">
+                    <div class="w-full bg-red-600 rounded-lg">
+                        <video src="./assets/video.mp4" controls></video>
+                    </div>
+                    <div class="flex space-x-2">
+                        <div>
+                            <img src="./assets/logo.png" class="w-10 h-10 rounded-full bg-red-600" alt="">
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-semibold w-[200px]">SPOILERS sur KANG et le MULTIVERS !</span>
+                            <span class="text-gray-500">landri. </span>
+                            <span class="text-gray-500">355 vues il y a 23 minutes</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Répétez les cartes vidéo si nécessaire -->
+            </div>
+        </div>
+    </main>
+</body>
+</html>

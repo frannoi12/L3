@@ -16,7 +16,7 @@ export default class VideoService {
     }
 
     // Récupérer toutes les vidéos
-    async get() {
+    async getAllVideos() {
         try {
             return await prisma.video.findMany();
         } catch (error) {

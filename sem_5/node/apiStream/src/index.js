@@ -4,7 +4,8 @@ import VideosRouter from "./routes/VideosRouter.js";
 import AuthRouter from "./routes/AuthRouter.js";
 // import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-import authMiddlware from "./middleware/authMiddleware.js"
+// import authMiddlware from "./middleware/authMiddleware.js"
+import cors from "cors";
 
 dotenv.config();
 
@@ -42,7 +43,41 @@ const userRouter = new UserRouter();
 const videoRouter = new VideosRouter();
 const authRouter = new AuthRouter();
 
-app.use(authMiddlware)
+
+// const whitelist = ['192.168.62.140', '192.168.62.109']
+
+
+// const corsOptions = {
+//     origin: function (origin, callback) {
+//       if (whitelist.indexOf(origin) !== -1) {
+//         console.log(origin);
+        
+//         callback(null, true)
+//       } else {
+//         callback(new Error('Not allowed by CORS'))
+//       }
+//     }
+//   }
+
+
+
+// app.get( "/users/",cors(corsOptions), function (req, res, next) {
+//     res.json({msg: 'This is CORS-enabled for only example.com.'})
+// });
+
+
+// const corsOptions = {
+//     origin: '192.168.62.120',
+//     optionsSuccessStatus: 200 
+//   }
+
+
+// app.use(cors(corsOptions), function (req, res, next) {
+//     res.json({msg: 'This is CORS-enabled for only example.com.'})
+//   });
+
+
+// app.use(authMiddlware)
 
 app.use(express.json())
 app.use('/users',userRouter.getRouter());
@@ -63,6 +98,6 @@ app.get('/', (req, res) => {
 
 
 
-app.listen(port, () => {
+app.listen(port, "0.0.0.0", () => {
     console.log(`Server is running on port ${port}`);
 });
