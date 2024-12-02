@@ -1,9 +1,12 @@
 {
   "pdfExportSettings": {
     "includeName": true,
-    "pageSize": "Letter",
+    "pageSize": "Legal",
     "landscape": true,
     "margin": "0",
-    "downscalePercent": 100
-  }
+    "downscalePercent": 36
+  },
+  "trashOption": "none",
+  "alwaysUpdateLinks": true,
+  "showUnsupportedFiles": true
 }

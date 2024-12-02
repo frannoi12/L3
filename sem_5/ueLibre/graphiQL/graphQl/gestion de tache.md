@@ -368,7 +368,7 @@ query {
 }
 ```
 
-#### c. **Créer une nouvelle tâche**
+#### c. **Créer une nouvelle tâche** 
 
 ```graphql
 mutation {
