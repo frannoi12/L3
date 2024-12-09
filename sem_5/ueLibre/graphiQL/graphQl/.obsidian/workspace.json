@@ -67,14 +67,12 @@
             "id": "5779e4e7f23290aa",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "pdf",
               "state": {
-                "file": "SE.md",
-                "mode": "source",
-                "source": false
+                "file": "GRAPHQL.pdf"
               },
-              "icon": "lucide-file",
-              "title": "SE"
+              "icon": "lucide-file-text",
+              "title": "GRAPHQL"
             }
           },
           {
@@ -250,8 +248,8 @@
   },
   "active": "5779e4e7f23290aa",
   "lastOpenFiles": [
-    "Evaluation.md",
     "SE.md",
+    "Evaluation.md",
     "Cours(irs).md",
     "GRAPHQL.pdf",
     "Cours(irs).pdf",
