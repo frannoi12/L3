@@ -1,4 +1,8 @@
 [
   "obsidian-pandoc",
-  "oz-image-plugin"
+  "oz-image-plugin",
+  "obsidian-text-format",
+  "obsidian-dictionary-plugin",
+  "note-definitions",
+  "etymology-lookup"
 ]
