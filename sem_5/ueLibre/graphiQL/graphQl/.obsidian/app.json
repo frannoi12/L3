@@ -8,5 +8,6 @@
   },
   "trashOption": "none",
   "alwaysUpdateLinks": true,
-  "showUnsupportedFiles": true
+  "showUnsupportedFiles": true,
+  "promptDelete": false
 }
