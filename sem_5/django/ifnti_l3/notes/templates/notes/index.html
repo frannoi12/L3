@@ -1,25 +1,48 @@
-<title>Notes</title>
+{% extends "foundation/base.html" %}
 
-<style>
-    .body{
-        display: flex;
-        justify-content: center;
-    }
-</style>
+{% block base_body %}
+<header>
+    <div class="top-bar">
+        {% comment %} <div class="top-bar-left">
+            <h1>Site IFNTI</h1>
+        </div> {% endcomment %}
+        <div class="top-bar-left">
+            <ul class="menu">
+                <li><a href="{% url 'notes:elevesListe' %}">Liste des étudiants</a></li>
+                <li><a href="{% url 'notes:matieres' %}">Liste des UEs</a></li>
+                <li>
+                    <a href="#">Étudiants</a>
+                    <ul class="dropdown">
+                        <li><a href="{% url 'notes:elevesListe' %}">Liste</a></li>
+                        {% comment %} <li><a href="{% url 'details_etudiant' %}">Détail</a></li> {% endcomment %}
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">UEs</a>
+                    <ul class="dropdown">
+                        {% comment %} <li><a href="{% url 'liste_ues' %}">Liste</a></li>
+                        <li><a href="{% url 'details_ue' %}">Détail</a></li> {% endcomment %}
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Niveaux</a>
+                    <ul class="dropdown">
+                        {% comment %} <li><a href="{% url 'details_niveau_1' %}">Niveau 1</a></li>
+                        <li><a href="{% url 'details_niveau_2' %}">Niveau 2</a></li>
+                        <li><a href="{% url 'details_niveau_3' %}">Niveau 3</a></li> {% endcomment %}
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="top-bar-right">
+            <ul class="menu">
+                <li>
+                    <input type="search" placeholder="Rechercher...">
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+<h1> Salut à tous</h1>
 
-
-
-<h1>Bienvenue sur l'application Note !</h1>
-
-<a href="{% url 'notes:eleves' %}"><button>
-    Voir liste des éleves
-</button></a>
-
-<a href="{% url 'notes:matieres' %}">
-    <button>Voir liste de matiere</button>
-</a><br>
-
-
-<a href="{% url 'notes:enseignants' %}">
-    <button>Voir liste des enseignant </button>
-</a>
+{% endblock base_body %}

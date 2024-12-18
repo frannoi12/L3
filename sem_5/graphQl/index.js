@@ -1,43 +1,36 @@
-const express = require('express');
-const { graphqlHTTP } = require('express-graphql');
-const { buildSchema } = require('graphql');
+import { createServer } from 'node:http'
+import { createSchema, createYoga } from 'graphql-yoga'
 
-// Schéma GraphQL
-const schema = buildSchema(`
-  type Query {
-    hello: String
-    users: [User]
-  }
+// createServer : Fonction pour créer un serveur HTTP.
+// Fonctions de graphql-yoga pour créer un schéma GraphQL et configurer le serveur.
 
-  type User {
-    id: ID
-    name: String
-    email: String
-  }
-`);
+// createYoga est utilisé pour créer une instance de serveur GraphQL qui gère les requêtes et les réponses.
+const yoga = createYoga({
+    // Crée un schéma GraphQL.
+  schema: createSchema({
+    // Définit les types de données. 
+    typeDefs: /* GraphQL */ `
+      type Query {
+        hello: String,
+      }
+    `,
+    // calcul: Int
+    // calcul: () => 2+2
 
-// Données fictives
-const usersData = [
-  { id: 1, name: 'Alice', email: 'alice@example.com' },
-  { id: 2, name: 'Bob', email: 'bob@example.com' }
-];
+    // Définit comment résoudre les requêtes.
+    resolvers: {
+      Query: {
+        hello: () => 'Hello word!',
+      }
+    }
+  })
+})
 
-// Résolveurs
-const root = {
-  hello: () => 'Hello world!',
-  users: () => usersData,
-};
+// Crée un serveur HTTP qui utilise le middleware de graphql-yoga.
+const server = createServer(yoga)
 
-// Initialiser l'application Express
-const app = express();
-app.use('/graphql', graphqlHTTP({
-  schema: schema,
-  rootValue: root,
-  graphiql: true, // Activer GraphiQL pour tester les requêtes
-}));
 
-// Démarrer le serveur
-const PORT = 4000;
-app.listen(PORT, () => {
-  console.log(`Serveur GraphQL en cours d'exécution sur http://localhost:${PORT}/graphql`);
-});
+// Le serveur écoute sur le port 4000. Un message est affiché dans la console pour indiquer que le serveur est en cours d'exécution et accessible à l'URL spécifiée.
+server.listen(4000, () => {
+  console.info('Server is running on http://localhost:4000/graphql')
+})

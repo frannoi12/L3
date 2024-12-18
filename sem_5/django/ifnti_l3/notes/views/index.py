@@ -1,9 +1,8 @@
 from django.shortcuts import render
-# from django.http import HttpResponse
+from notes.models import Eleve
 
 # Create your views here.
 
 def index(request):
-	# return HttpResponse("Bonjour tout le monde !")
-	return render(request,"notes/index.html")
-
+    notes = Eleve.objects.all()
+    return render(request, "notes/index.html", {"notes": notes})
