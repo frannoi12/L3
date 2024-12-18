@@ -1,0 +1,39 @@
+<!DOTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title> Liste des Personnes</title>
+<link href="https://cdn.jsdelivr.net/npm/boostrap@5.3.0-alpha1/dist/css/boostrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+<h1>Liste des personnes</h1>
+<a href="/personne/add" class="btn btn-primary mb-3">Ajouter une personne</a>
+<form th:action="@{/logout}" method="post">
+<input type="submit" value = "se deconnecter">
+</form>
+<table class="table">
+<thead>
+<tr>
+<th>ID</th>
+<th>Email</th>
+<th>Nom</th>
+<th>Age</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr th:each="personne: ${personnes}">
+<td th:text="${personne.id}" ></td>
+<td th:text="${personne.email}" ></td>
+<td th:text="${personne.name}" ></td>
+<td th:text="${personne.age}" ></td>
+<td>
+<a th:href="@{/personne/edit/{id}(id=${personne.id})}" class="btn btn-warning" >Modifier</a>
+<a th:href="@{/personne/delete/{id}(id=${personne.id})}" class="btn btn-danger">Supprimer</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</body>
+</html>

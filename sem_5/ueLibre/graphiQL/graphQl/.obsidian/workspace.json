@@ -25,14 +25,12 @@
             "id": "9d92cca49dbb5ee1",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "pdf",
               "state": {
-                "file": "Django.md",
-                "mode": "source",
-                "source": false
+                "file": "GRAPHQL.pdf"
               },
-              "icon": "lucide-file",
-              "title": "Django"
+              "icon": "lucide-file-text",
+              "title": "GRAPHQL"
             }
           },
           {
@@ -207,17 +205,17 @@
   },
   "active": "9d92cca49dbb5ee1",
   "lastOpenFiles": [
+    "Partie II.md",
+    "Synthèse.md",
+    "gestion de tache.md",
     "GRAPHQL.md",
+    "Aspect important.md",
     "Django.md",
     "GRAPHQL.pdf",
     "Partie 1.pdf",
-    "Partie II.md",
-    "Aspect important.md",
-    "Synthèse.md",
     "UE Libre.pdf",
     "gestion de tache.pdf",
     "UE Libre",
-    "gestion de tache.md",
     "gestion de tache.md.md",
     "Sans titre"
   ]
