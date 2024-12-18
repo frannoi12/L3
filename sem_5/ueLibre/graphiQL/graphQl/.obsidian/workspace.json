@@ -25,12 +25,28 @@
             "id": "9d92cca49dbb5ee1",
             "type": "leaf",
             "state": {
-              "type": "pdf",
+              "type": "markdown",
               "state": {
-                "file": "GRAPHQL.pdf"
+                "file": "IRS/Cours(irs).md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-file-text",
-              "title": "GRAPHQL"
+              "icon": "lucide-file",
+              "title": "Cours(irs)"
+            }
+          },
+          {
+            "id": "fbb58653ff11e664",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "IRS/CyberSecurite.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "CyberSecurite"
             }
           },
           {
@@ -62,7 +78,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -195,6 +211,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "etymology-lookup:Etymology Lookup": false,
       "switcher:Ouvrir le sélecteur rapide": false,
       "graph:Ouvrir la vue graphique": false,
       "canvas:Créer une nouvelle toile": false,
@@ -203,8 +220,12 @@
       "command-palette:Ouvrir la palette de commandes": false
     }
   },
-  "active": "9d92cca49dbb5ee1",
+  "active": "fbb58653ff11e664",
   "lastOpenFiles": [
+    "IRS/Cours(irs).md",
+    "IRS/CyberSecurite.md",
+    "IRS",
+    "GRAPHQL.pdf",
     "se tp/se pdf.pdf",
     "se tp/se pdf.md",
     "se tp",
@@ -214,19 +235,16 @@
     "PLAN.pdf",
     "PLAN.md",
     "Evaluation.md",
-    "Cours(irs).md",
     "Partie II.md",
     "Synthèse.md",
     "gestion de tache.md",
     "GRAPHQL.md",
     "Aspect important.md",
     "Django.md",
-    "GRAPHQL.pdf",
     "Partie 1.pdf",
     "UE Libre.pdf",
     "gestion de tache.pdf",
     "UE Libre",
-    "gestion de tache.md.md",
-    "Sans titre"
+    "gestion de tache.md.md"
   ]
 }
