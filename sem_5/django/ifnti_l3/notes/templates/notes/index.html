@@ -1,48 +1,103 @@
-{% extends "foundation/base.html" %}
-
+{% extends "foundation/base.html" %} 
 {% block base_body %}
+{% load static %}
 <header>
-    <div class="top-bar">
-        {% comment %} <div class="top-bar-left">
-            <h1>Site IFNTI</h1>
-        </div> {% endcomment %}
-        <div class="top-bar-left">
-            <ul class="menu">
-                <li><a href="{% url 'notes:elevesListe' %}">Liste des étudiants</a></li>
-                <li><a href="{% url 'notes:matieres' %}">Liste des UEs</a></li>
-                <li>
-                    <a href="#">Étudiants</a>
-                    <ul class="dropdown">
-                        <li><a href="{% url 'notes:elevesListe' %}">Liste</a></li>
-                        {% comment %} <li><a href="{% url 'details_etudiant' %}">Détail</a></li> {% endcomment %}
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">UEs</a>
-                    <ul class="dropdown">
-                        {% comment %} <li><a href="{% url 'liste_ues' %}">Liste</a></li>
-                        <li><a href="{% url 'details_ue' %}">Détail</a></li> {% endcomment %}
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Niveaux</a>
-                    <ul class="dropdown">
-                        {% comment %} <li><a href="{% url 'details_niveau_1' %}">Niveau 1</a></li>
-                        <li><a href="{% url 'details_niveau_2' %}">Niveau 2</a></li>
-                        <li><a href="{% url 'details_niveau_3' %}">Niveau 3</a></li> {% endcomment %}
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <div class="top-bar-right">
-            <ul class="menu">
-                <li>
-                    <input type="search" placeholder="Rechercher...">
-                </li>
-            </ul>
-        </div>
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <h4>Site IFNTI</h4>
     </div>
+    <div class="top-bar-left">
+      <ul class="dropdown menu" data-dropdown-menu>
+        <li><a href="{% url 'notes:eleves' %}">Liste des étudiants</a></li>
+        <li><a href="{% url 'notes:matieres' %}">Liste des UEs</a></li>
+        <li>
+          <a href="#">Étudiants</a>
+          <ul class="dropdown">
+            <li><a href="{% url 'notes:elevesListe' %}">Liste</a></li>
+            <li>
+              <a href="#">Détail</a>
+              <ul class="menu">
+                {% for eleve in notes %}
+                <li>
+                  <a href="{% url 'notes:eleve' eleve.id %}">
+                    {{ eleve.prenom }} {{ eleve.nom }}
+                  </a>
+                </li>
+                {% endfor %}
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">UEs</a>
+          <ul class="dropdown">
+            <li><a href="{% url 'notes:matieres' %}">Liste</a></li>
+            <li>
+              <a href="#">Détail</a>
+              <ul class="menu">
+                {% for matiere in matieres %}
+                <li>
+                  <a href="{% url 'notes:matiere' matiere.id %}">
+                    {{ matiere.nom }}
+                  </a>
+                </li>
+                {% endfor %}
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Niveaux</a>
+          <ul class="dropdown">
+            {% for niveau in niveaux %}
+            <li>
+              <a href="{% url 'notes:niveau' niveau.id %}">
+                {{ niveau.nom }}
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="top-bar-right">
+      <ul class="menu">
+        <li>
+          <input type="search" placeholder="Rechercher..." />
+        </li>
+      </ul>
+    </div>
+  </div>
 </header>
-<h1> Salut à tous</h1>
+<h1>Salut à tous</h1>
+
+{% comment %} <div class="row">
+  <div class="columns small-2">2</div>
+  <div class="columns small-10">
+    <div class="columns small-3">Bloc 1</div>
+    <div class="columns small-3">Bloc 2</div>
+    <div class="columns small-2">Bloc 3</div>
+    <div class="columns small-2">Bloc 4</div>
+  </div>
+</div> {% endcomment %}
+
+<div class="columns small-up-1 meduim-up-3 large-up-4">
+  <div class="columns">
+    <img src="{% static 'notes/logoIfnti.png' %}" alt="Image 1">
+    {% comment %} <p>{% lorem 1 p random %}</p> {% endcomment %}
+  </div>
+  <div class="columns">
+    bloc 2
+    <p>{% lorem 2 p random %}</p>
+  </div>
+  <div class="columns">
+    block 3
+    <p>{% lorem 3 p random %}</p>
+  </div>
+  <div class="columns">
+    block 4
+    <p>{% lorem 4 p random %}</p>
+  </div>
+</div>
 
 {% endblock base_body %}

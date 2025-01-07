@@ -1,0 +1,21 @@
+Plateforme de recrutement en ligne 
+
+	. Fonctionnalités :
+		. Publication des offres d'emploi .
+		. Création de profils candidats.
+		. Système de candidature et suivi des statuts
+
+	. Technologies :
+		. Spring Boot, Elasticsearch pour la recherche, RabbitMQ pour la gestion asynchrone.
+
+
+	. Structure des entités : 
+		. Job : id, title, description, companyId, location, status.
+		. Candidate: id, name, email, resume,  skills.
+		. Application: id, jobId, candidateId, status.
+
+	. Endpoints REST/API : 
+		. POST /api/jobs - Publier une offre.
+		. POST /api/candidates - Créer un profil candidat.
+		. POST /api/applications - Soumettre une candidature.
+		. GET /api/applications/{candidateId} - Suivre les candidatures.
