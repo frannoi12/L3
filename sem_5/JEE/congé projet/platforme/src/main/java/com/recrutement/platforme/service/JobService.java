@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.recrutement.platforme.entity.Job;
 import com.recrutement.platforme.repository.JobRepository;
@@ -17,12 +18,21 @@ public class JobService {
 	
 	@Autowired
 	private JobRepository jobRepository;
+	
+	private final RestTemplate restTemplate;
+	
+	
     
 	
 	// api graphql
+	public JobService(JobRepository jobRepository, RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+		this.jobRepository = jobRepository;
+    }
 	
-	public JobService(JobRepository jobRepository) {
-        this.jobRepository = jobRepository;
+	public List<Job> getAllJobs1() {
+        String apiUrl = "http://localhost:8082/api/jobs"; // URL de votre API
+        return List.of(restTemplate.getForObject(apiUrl, Job[].class));
     }
 
     public Job save(Job job) {

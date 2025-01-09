@@ -11,7 +11,7 @@ import com.recrutement.platforme.entity.Job;
 import com.recrutement.platforme.service.JobService;
 
 @RestController
-@RequestMapping("/api/jobs")
+@RequestMapping("/api/jobs/")
 public class JobController {
 	
 	@Autowired

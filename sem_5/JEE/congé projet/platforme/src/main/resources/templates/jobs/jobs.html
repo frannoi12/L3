@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Jobs List</title>
+</head>
+<body>
+    <h1>Liste des Jobs disponible</h1>
+	<button onclick="window.location.href='/api/jobs/add'">Ajouter un Job</button>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Company ID</th>
+                <th>Location</th>
+                <th>Status</th>
+				<th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Parcourir la liste des jobs avec Thymeleaf -->
+            <tr th:each="job : ${jobs}">
+                <td th:text="${job.title}"></td>
+                <td th:text="${job.description}"></td>
+                <td th:text="${job.companyId}"></td>
+                <td th:text="${job.location}"></td>
+                <td th:text="${job.status}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
