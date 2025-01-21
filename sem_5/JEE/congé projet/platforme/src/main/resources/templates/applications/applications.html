@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Liste des Candidatures</title>
+</head>
+<body>
+    <h1>Liste des Candidatures</h1>
+    <button onclick="window.location.href='/api/applications/add'">Ajouter une Candidature</button>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Job ID</th>
+                <th>Candidat ID</th>
+                <th>Statut</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="application : ${applications}">
+                <td th:text="${application.jobId}"></td>
+                <td th:text="${application.candidateId}"></td>
+                <td th:text="${application.status}"></td>
+                <td>
+                    <a th:href="'/api/applications/detail/' + ${application.id}">
+                        <button>Détails</button>
+                    </a>
+                    <a th:href="'/api/applications/update/' + ${application.id}">
+                        <button>Mise à jour</button>
+                    </a>
+                    <form th:action="@{/api/applications/delete/{id}(id=${application.id})}" method="post" style="display:inline;">
+                        <button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette candidature ?');">Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

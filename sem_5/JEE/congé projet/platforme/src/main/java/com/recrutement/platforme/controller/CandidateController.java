@@ -10,7 +10,7 @@ import com.recrutement.platforme.entity.Candidate;
 import com.recrutement.platforme.service.CandidateService;
 
 @RestController
-@RequestMapping("/api/candidates")
+@RequestMapping("/api/candidates/")
 public class CandidateController {
 
 	@Autowired

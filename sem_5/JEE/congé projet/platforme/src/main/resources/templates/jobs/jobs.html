@@ -25,6 +25,23 @@
                 <td th:text="${job.companyId}"></td>
                 <td th:text="${job.location}"></td>
                 <td th:text="${job.status}"></td>
+				<td>
+					<!-- Bouton Détail -->
+					<a th:href="'/api/jobs/detail/' + ${job.id}">
+					    <button>Détail</button>
+					</a>
+                    
+                    <!-- Bouton Mise à jour -->
+					<a th:href="'/api/jobs/update/' + ${job.id}">
+					    <button>Mise à jour</button>
+					</a>
+
+                    
+                    <!-- Bouton Supprimer -->
+                    <form th:action="@{/api/jobs/delete/{id}(id=${job.id})}" method="post" style="display:inline;">
+                        <button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce job ?');">Supprimer</button>
+                    </form>
+				</td>
             </tr>
         </tbody>
     </table>

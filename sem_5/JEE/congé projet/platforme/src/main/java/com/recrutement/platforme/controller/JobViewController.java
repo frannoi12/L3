@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -37,5 +38,30 @@ public class JobViewController {
         return "redirect:/api/jobs"; // Redirige vers la liste des jobs
     }
 	
+	@GetMapping("/detail/{id}")
+	public String viewJobDetail(@PathVariable String id, Model model) {
+	    model.addAttribute("job", jobService.getJobById(id));
+	    return "jobs/jobs_detail"; // Vue contenant les détails d'un job
+	}
+	
+	@GetMapping("/update/{id}")
+	public String updateJobForm(@PathVariable String id, Model model) {
+	    model.addAttribute("job", jobService.getJobById(id)); // Charger les données existantes
+	    return "jobs/update_jobs"; // Vue pour modifier le job
+	}
+
+	@PostMapping("/update/{id}")
+	public String updateJob(@PathVariable String id, @ModelAttribute Job job) {
+	    jobService.updateJob(id, job); // Appeler le service pour la mise à jour
+	    return "redirect:/api/jobs"; // Rediriger vers la liste des jobs
+	}
+
+	@PostMapping("/delete/{id}")
+	public String deleteJob(@PathVariable String id) {
+	    jobService.deleteJob(id); // Supprimer le job via le service
+	    return "redirect:/api/jobs"; // Rediriger vers la liste des jobs
+	}
+
+
 	
 }

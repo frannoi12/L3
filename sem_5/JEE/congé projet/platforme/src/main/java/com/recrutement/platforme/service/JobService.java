@@ -19,21 +19,20 @@ public class JobService {
 	@Autowired
 	private JobRepository jobRepository;
 	
-	private final RestTemplate restTemplate;
 	
 	
     
 	
 	// api graphql
-	public JobService(JobRepository jobRepository, RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
+	public JobService(JobRepository jobRepository) {
+//        this.restTemplate = restTemplate;
 		this.jobRepository = jobRepository;
     }
 	
-	public List<Job> getAllJobs1() {
-        String apiUrl = "http://localhost:8082/api/jobs"; // URL de votre API
-        return List.of(restTemplate.getForObject(apiUrl, Job[].class));
-    }
+//	public List<Job> getAllJobs1() {
+//        String apiUrl = "http://localhost:8082/api/jobs"; // URL de votre API
+//        return List.of(restTemplate.getForObject(apiUrl, Job[].class));
+//    }
 
     public Job save(Job job) {
         return jobRepository.save(job);
