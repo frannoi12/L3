@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ajouter un Job</title>
+</head>
+<body>
+    <h1>Ajouter un Nouveau Job</h1>
+    <form action="/api/jobs/add" method="post">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title" required><br><br>
+
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" required></textarea><br><br>
+
+        <label for="companyId">Company ID:</label><br>
+        <input type="number" id="companyId" name="companyId" required><br><br>
+
+        <label for="location">Location:</label><br>
+        <input type="text" id="location" name="location" required><br><br>
+
+        <label for="status">Status:</label><br>
+        <select id="status" name="status">
+            <option value="Open">Open</option>
+            <option value="Closed">Closed</option>
+        </select><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+	<button onclick="window.location.href='/api/jobs'">Retour à la liste</button>
+</body>
+</html>

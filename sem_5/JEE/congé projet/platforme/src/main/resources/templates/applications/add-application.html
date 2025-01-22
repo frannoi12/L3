@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ajouter une Candidature</title>
+</head>
+<body>
+    <h1>Ajouter une Candidature</h1>
+    <form action="/api/applications/add" method="post">
+        <label for="jobId">Job ID :</label><br>
+        <input type="text" id="jobId" name="jobId" required><br><br>
+
+        <label for="candidateId">Candidat ID :</label><br>
+        <input type="text" id="candidateId" name="candidateId" required><br><br>
+
+        <label for="status">Statut :</label><br>
+        <input type="text" id="status" name="status" required><br><br>
+
+        <button type="submit">Ajouter</button>
+    </form>
+	
+	<button onclick="window.location.href='/api/applications'">Retour à la liste</button>
+
+</body>
+</html>

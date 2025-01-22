@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Modifier une Candidature</title>
+</head>
+<body>
+    <h1>Modifier une Candidature</h1>
+    <form th:action="@{/api/applications/update/{id}(id=${application.id})}" method="post">
+        <label for="jobId">Job ID :</label><br>
+        <input type="text" id="jobId" name="jobId" th:value="${application.jobId}" required><br><br>
+
+        <label for="candidateId">Candidat ID :</label><br>
+        <input type="text" id="candidateId" name="candidateId" th:value="${application.candidateId}" required><br><br>
+
+        <label for="status">Statut :</label><br>
+        <input type="text" id="status" name="status" th:value="${application.status}" required><br><br>
+
+        <button type="submit">Mettre à jour</button>
+    </form>
+	
+	<button onclick="window.location.href='/api/applications'">Retour à la liste</button>
+</body>
+</html>
