@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Modifier le Job</title>
+</head>
+<body>
+    <h1>Modifier le Job</h1>
+    <form th:action="@{/jobsview/update/{id}(id=${job.id})}" method="post">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title" th:value="${job.title}" required><br><br>
+
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" th:text="${job.description}" required></textarea><br><br>
+
+        <label for="companyId">Company ID:</label><br>
+        <input type="number" id="companyId" name="companyId" th:value="${job.companyId}" required><br><br>
+
+        <label for="location">Location:</label><br>
+        <input type="text" id="location" name="location" th:value="${job.location}" required><br><br>
+
+        <label for="status">Status:</label><br>
+        <select id="status" name="status">
+            <option th:value="Open" th:selected="${job.status == 'Open'}">Open</option>
+            <option th:value="Closed" th:selected="${job.status == 'Closed'}">Closed</option>
+        </select><br><br>
+
+        <button type="submit">Modifier</button>
+    </form>
+	<button onclick="window.location.href='/jobsview'">Retour à la liste</button>
+</body>
+</html>
