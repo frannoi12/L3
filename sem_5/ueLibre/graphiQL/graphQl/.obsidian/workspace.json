@@ -76,6 +76,18 @@
             }
           },
           {
+            "id": "63c8fc87b4e40f45",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "Graphe.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "Graphe"
+            }
+          },
+          {
             "id": "569d5143cb4df7db",
             "type": "leaf",
             "state": {
@@ -104,7 +116,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -246,8 +258,13 @@
       "command-palette:Ouvrir la palette de commandes": false
     }
   },
-  "active": "98a01782b5f8c603",
+  "active": "537d8b16181acb6f",
   "lastOpenFiles": [
+    "Entreprise Celia",
+    "projet graphql",
+    "Graphe.md",
+    "Graphe.pdf",
+    "GRAPHQL.pdf",
     "GRAPHQL.md",
     "graphql/gestion_contact.md",
     "graphql/test projet.md",
@@ -260,21 +277,18 @@
     "se tp/se pdf.pdf",
     "se tp/se pdf.md",
     "se tp",
-    "GRAPHQL.pdf",
     "se tp/se pdf.pdf",
     "se tp/se pdf.md",
     "se tp",
     "communication/communication.md",
     "communication",
     "SE.md",
-    "PLAN.pdf",
     "PLAN.md",
     "Evaluation.md",
     "Partie II.md",
     "Synthèse.md",
     "gestion de tache.md",
     "Django.md",
-    "Partie 1.pdf",
     "gestion de tache.md.md"
   ]
 }
