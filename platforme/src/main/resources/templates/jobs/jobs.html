@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Jobs List</title>
+</head>
+<body>
+    <h1>Liste des Jobs disponible</h1>
+	<button onclick="window.location.href='/jobsview/add'">Ajouter un Job</button>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Company ID</th>
+                <th>Location</th>
+                <th>Status</th>
+				<th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Parcourir la liste des jobs avec Thymeleaf -->
+            <tr th:each="job : ${jobs}">
+                <td th:text="${job.title}"></td>
+                <td th:text="${job.description}"></td>
+                <td th:text="${job.companyId}"></td>
+                <td th:text="${job.location}"></td>
+                <td th:text="${job.status}"></td>
+				<td>
+					<!-- Bouton Détail -->
+					<a th:href="'/jobsview/detail/' + ${job.id}">
+					    <button>Détail</button>
+					</a>
+                    
+                    <!-- Bouton Mise à jour -->
+					<a th:href="'/jobsview/update/' + ${job.id}">
+					    <button>Mise à jour</button>
+					</a>
+
+                    
+                    <!-- Bouton Supprimer -->
+                    <form th:action="@{/jobsview/delete/{id}(id=${job.id})}" method="post" style="display:inline;">
+                        <button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce job ?');">Supprimer</button>
+                    </form>
+				</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

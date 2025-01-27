@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Liste des Candidats</title>
+</head>
+<body>
+    <h1>Liste des Candidats</h1>
+    <button onclick="window.location.href='/candidates/add'">Ajouter un Candidat</button>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Résumé</th>
+                <th>Compétences</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="candidate : ${candidates}">
+                <td th:text="${candidate.name}"></td>
+                <td th:text="${candidate.email}"></td>
+                <td th:text="${candidate.resume}"></td>
+                <td th:text="${candidate.skills}"></td>
+                <td>
+                    <a th:href="'/candidates/detail/' + ${candidate.id}">
+                        <button>Détails</button>
+                    </a>
+                    <a th:href="'/candidates/update/' + ${candidate.id}">
+                        <button>Mise à jour</button>
+                    </a>
+                    <form th:action="@{/candidates/delete/{id}(id=${candidate.id})}" method="post" style="display:inline;">
+                        <button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce candidat ?');">Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
