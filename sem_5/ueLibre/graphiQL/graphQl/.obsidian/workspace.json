@@ -135,7 +135,8 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
+                "sortOrder": "alphabetical",
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "Explorateur de fichiers"
@@ -258,7 +259,7 @@
       "command-palette:Ouvrir la palette de commandes": false
     }
   },
-  "active": "537d8b16181acb6f",
+  "active": "63c8fc87b4e40f45",
   "lastOpenFiles": [
     "Entreprise Celia",
     "projet graphql",
