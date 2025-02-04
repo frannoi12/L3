@@ -1,0 +1,74 @@
+<h1>Liste des élèves avec leurs notes et moyennes</h1>
+<br />
+<ul>
+  
+  <!-- <li>{{ eleve }}</li> -->
+  <style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    table, th, td {
+        border: 1px solid black;
+    }
+    th, td {
+        padding: 10px;
+        text-align: left;
+    }
+</style>
+  <table>
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <!-- <th>Sexe</th> -->
+        <th>Date de naissance</th>
+        <th>Voir Détails</th>
+        <th>Modifier</th> 
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Élève 1 -->
+      {% for eleve in eleves %}
+      <!-- <li>{{ eleve }}</li> -->
+      <tr>
+        <td>{{eleve.nom}}</td>
+        <td>{{eleve.prenom}}</td>
+        <!-- <td>{{eleve.sexe}}</td> -->
+        <td>{{eleve.date_naissance}}</td>
+        <td><a href="{% url 'notes:eleve' eleve.id %}">Voir</a></td>
+        <td><a href="{% url 'notes:updateEleve' eleve.id %}">Modifier</a></td> <!-- Lien de modification -->
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+  <a href="{% url 'notes:addEleve' %}">Ajouter un Eleve</a>
+
+  <!--         <li><a href="">{{ eleve.nom }} {{ eleve.prenom }}</a></li> -->
+  <!-- <li>
+        <strong>{{ eleve.nom }}</strong> - <a href="{}">Niveau: {{ eleve.niveau }}</a>
+        <strong>{{ eleve.nom }}</strong> - <a href="/notes/niveau/{{ eleve.niveau_id }}">Niveau: {{ eleve.niveau }}</a>
+        <ul>
+            {% for matiere_note in eleve.matieres_notes %}
+            <li>{{ matiere_note.matiere }}</li>
+            - Moyenne: {{ matiere_note.note }}
+            {% endfor %}
+        </ul>
+        <li><a href="{}">{{ eleve.nom }}</a></li><br><br><br>
+        <li><a href="/notes/eleve/{{ eleve.id }}/">{{ eleve.nom }}</a></li><br><br><br>
+    </li> -->
+  
+<!-- </ul> -->
+
+<!-- <h1>Liste des élèves</h1>
+<ul>
+    {% for eleve in eleves %}
+    <li>
+        {{ eleve.nom }} - Niveau: {{ eleve.niveau.nom }} - Matières: 
+        {% for matiere in eleve.matieres.all %}
+            {{ matiere.nom }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </li>
+    {% endfor %}
+</ul> -->

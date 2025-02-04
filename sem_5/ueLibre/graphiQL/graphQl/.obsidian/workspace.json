@@ -76,6 +76,20 @@
             }
           },
           {
+            "id": "3d4d4e143ad9bd19",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Graphe.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Graphe"
+            }
+          },
+          {
             "id": "569d5143cb4df7db",
             "type": "leaf",
             "state": {
@@ -104,7 +118,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -246,8 +260,10 @@
       "command-palette:Ouvrir la palette de commandes": false
     }
   },
-  "active": "98a01782b5f8c603",
+  "active": "3d4d4e143ad9bd19",
   "lastOpenFiles": [
+    "GRAPHQL.pdf",
+    "Graphe.md",
     "GRAPHQL.md",
     "graphql/gestion_contact.md",
     "graphql/test projet.md",
@@ -260,7 +276,6 @@
     "se tp/se pdf.pdf",
     "se tp/se pdf.md",
     "se tp",
-    "GRAPHQL.pdf",
     "se tp/se pdf.pdf",
     "se tp/se pdf.md",
     "se tp",

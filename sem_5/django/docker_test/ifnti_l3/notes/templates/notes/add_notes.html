@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter des notes pour {{ matiere.nom }}</title>
+</head>
+<body>
+    <h1>Ajouter des notes pour la matière {{ matiere.nom }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        
+        {% for eleve in eleves %}
+            <div>
+                <label for="note_{{ eleve.id }}">{{ eleve.nom }} :</label>
+                <input type="number" name="note_{{ eleve.id }}" step="0.1" min="0" max="20" required>
+            </div>
+        {% endfor %}
+        
+        <button type="submit">Enregistrer les notes</button>
+    </form>
+</body>
+</html>

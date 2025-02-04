@@ -1,0 +1,6 @@
+django
+jinja2
+latex
+django-zurb-foundation-rtl
+django-rest-framework
+

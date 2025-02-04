@@ -1,0 +1,44 @@
+<!-- notes/templates/notes/add_note.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter une note</title>
+</head>
+<body>
+    <h1>Ajouter une note</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Enregistrer la note</button>
+    </form>
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter une Note</title>
+</head>
+<body>
+    <h1>Attribuer une note à un élève</h1>
+    <form action="" method="POST">
+        <pre>{{ request_data }}</pre>
+        {% csrf_token %}
+        CSRF token pour la sécurité (à ajouter plus tard lorsque la vue traitera les données)
+        <label for="eleve">Élève :</label>
+        <input type="text" id="eleve" name="eleve" value="{{ eleve.nom }} {{ eleve.prenom }}" readonly><br><br>
+        
+        <label for="matiere">Matière :</label>
+        <input type="text" id="matiere" name="matiere" value="{{ matiere.nom }}" readonly><br><br>
+
+        <label for="note">Note :</label>
+        <input type="number" id="note" name="note" min="0" max="20"><br><br>
+
+        <button type="submit">Enregistrer la note</button>
+    </form>
+</body>
+</html> -->
