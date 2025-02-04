@@ -1,0 +1,311 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{listings}
+
+\begin{document}
+% Page de garde
+\begin{titlepage}
+    \centering
+    {\Huge \textbf{Projet de GraphQL}}\\ 
+  
+    \vspace{1.5cm}
+   
+     \vspace{0.5cm}
+    \vspace{2cm}
+    \includegraphics[width=0.4\textwidth]{image.png} % Remplacez par votre logo ou image
+    \vfill
+    {\large \textbf{MANGBA Bénédicta \& TOYI François}} \vspace{0.5cm}
+    {\large Date: \today}
+    \vspace{0.5cm}
+    \color{blue!50} % Couleur du texte
+    \rule{10cm}{1pt} % Ligne colorée
+    \vspace{0.5cm}
+\end{titlepage}
+
+\newpage
+
+\section{Définition}
+GraphQL : est un langage de requête pour les API.
+
+\section{Installation et Configuration}
+– Installer Node.js et npm (si ce n'est pas encore fait)\\
+– Installer un framework backend Express, Apollo Server (nous allons utiliser Apollo Server)\\
+– Installation de Prisma (pour la gestion de la base de données)
+
+\section{Concepts Fondamentaux de GraphQL}
+\section*{Schéma} 
+Un schéma définit la structure de l'API GraphQL. Il spécifie les types de données, les requêtes et les mutations disponibles. Le schéma est écrit en utilisant le langage de définition de schéma GraphQL.\\\\
+
+\section*{Types}
+GraphQL utilise des types pour décrire les données. Les types de base incluent :\\\\
+- Scalar Types : Types primitifs comme Int, Float, String, Boolean, et ID.\\\\
+- Object Types : Types définis par l'utilisateur qui contiennent des champs.\\\\
+- Enum Types : Types qui définissent un ensemble de valeurs possibles.\\\\
+- Interface Types : Types qui définissent un ensemble de champs que d'autres types doivent implémenter.\\\\
+- Union Types : Types qui permettent à un champ de retourner plusieurs types différents.
+
+\section*{Requêtes (Queries)}
+Les requêtes sont utilisées pour lire les données. Elles permettent aux clients de spécifier exactement quelles données ils souhaitent récupérer, ce qui évite le problème du "over-fetching" (récupération de trop de données).
+
+\section*{Mutations}
+Les mutations sont utilisées pour modifier les données (ajouter, mettre à jour ou supprimer). Comme les requêtes, les mutations permettent également de spécifier les données à retourner après la modification.\\\\
+
+\section*{Résolveurs}
+Les résolveurs permettent d'écrire la logique du schéma. \\\\
+Résolveurs : Ils définissent comment récupérer les données pour chaque champ dans le schéma.\\\\
+Logique du schéma : Ils mettent en œuvre la logique de la façon dont les données doivent être obtenues (par exemple, depuis une base de données, une API externe, etc.).
+
+\section{Faisons notre premier pas en GraphQL (Affichons 'Hello')}
+\begin{verbatim}
+
+import { ApolloServer, gql } from 'apollo-server';
+
+// Définition du schéma GraphQL
+const typeDefs = gql`
+  type Query {
+    hello: String
+  }
+`;
+
+// Définition des résolveurs
+const resolvers = {
+  Query: {
+    hello: () => 'Bonjour tout le monde'
+  }
+};
+
+// Création du serveur Apollo
+const server = new ApolloServer({
+  typeDefs,
+  resolvers
+});
+
+// Démarrage du serveur
+server.listen().then(({ url }) => {
+  console.log(`Server ready at ${url}`);
+});
+
+\end{verbatim}
+\section{Réalisons un petit projet de gestion de contact }
+
+
+\subsection{Les commandes }
+
+Ici vous allez lancé un nouveau projet graphql avec la commande \textbf{npm init -y} puis copié le contenu de notre fichier \textbf{package.json} et collé sa dans votre fichier \textbf{package.json} mais je vous conseille de copié uniquement la partie des \textbf{dependencies} et ajouté la partie script avec nodemon et ensuite tapé la commande \textbf{npm install} .
+
+\begin{verbatim}
+{
+  "name": "graphql-gestion-contacts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev" : "nodemon src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@apollo/server": "^4.11.3",
+    "@prisma/client": "^6.2.1",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "graphql": "^16.10.0",
+    "graphql-tag": "^2.12.6",
+    "nodemon": "^3.1.9",
+    "prisma": "^6.2.1"
+  }
+}
+
+
+\end{verbatim}
+
+% \subsubsection{Préparons la base de données et la structure}
+% \begin{verbatim}
+% La gestion se fera avec prisma
+% \end{verbatim}
+
+\subsection{Créons un serveur GraphQL}
+
+Ici maintenant vous créer une arborescence comme suis, on a :
+
+\begin{itemize}
+    \item \textbf{src} et dans lui on auras les fichier suivant : 
+    
+    \item \textbf{index.js}
+    \item \textbf{schema.gql} soit \textbf{schema.graphql} soit encore \textbf{schema.js} en se qui concerne les projet graphql il est conseillé que le fichier \textbf{schema} aient une extensions mentionnant que c'est vraiment du \textbf{graphql} que nous faisons mais dans notre cas on vas faire le nomée \textbf{schema.js} mais pour utiliser avoir une extentions graphql il faut installé certains dépandences et on as aussi un autre exemple avec sur un autre projet qu'on vous donneras pour ceux qui sont intéressé.
+    \item Pour résumé on as à la racine packages.json, src qui contient les autres fichiers(index,schema et resolvers) en suite on à prisma et son .env et sont .gitignore à la racine et en fin notre node\_module aussi à la racine de notre projet .
+\end{itemize}
+
+\subsubsection{Fichier de configuration de prisma \textbf{schema.prisma}:}
+
+\begin{verbatim}
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  contacts  Contact[]
+}
+
+model Contact {
+  id        Int      @id @default(autoincrement())
+  phone     String
+  address   String
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+}
+\end{verbatim}
+
+\subsubsection{Fichier index.js :}
+
+\begin{verbatim}
+import { ApolloServer } from "@apollo/server";
+import { startStandaloneServer } from "@apollo/server/standalone"; // Importer la méthode pour un serveur autonome
+import typeDefs from "./schema.js";
+import resolvers from "./resolvers.js";
+
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+});
+
+// Démarre le serveur autonome
+startStandaloneServer(server, {
+  listen: { port: 4000 }, // Spécifie le port ici
+}).then(({ url }) => {
+  console.log(`Server ready at ${url}`);
+});
+\end{verbatim}
+
+\subsubsection{Fichier schema.graphql :}
+
+\begin{verbatim}
+import { gql } from 'graphql-tag';
+
+const typeDefs = gql`
+    type User {
+        id: Int!
+        name: String!
+        email: String!
+        contacts: [Contact!]! # Relation entre User et Contact
+    }
+  
+    type Contact {
+        id: Int!
+        phone: String!
+        address: String!
+        user: User! # Relation entre Contact et User
+    }
+    
+    type Query {
+        users: [User!]! # Liste de tous les utilisateurs
+        user(id: Int!): User # Détails d'un utilisateur spécifique
+        contacts: [Contact!]! # Liste de tous les contacts
+        contact(id: Int!): Contact # Détails d'un contact spécifique
+        hello: String
+    }
+    
+    type Mutation {
+        createUser(name: String!, email: String!): User! # Créer un utilisateur
+        createContact(phone: String!, address: String!, userId: Int!): Contact! # Créer un contact
+        updateUser(id: Int!, name: String, email: String): User # Mettre à jour un utilisateur
+        updateContact(id: Int!, phone: String, address: String): Contact # Mettre à jour un contact
+        deleteUser(id: Int!): Boolean # Supprimer un utilisateur
+        deleteContact(id: Int!): Boolean # Supprimer un contact
+    }  
+`;
+
+export default typeDefs;
+\end{verbatim}
+
+
+\subsubsection{Fichier resolver.js}
+\begin{verbatim}
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
+const resolvers = {
+  Query: {
+    hello: () => "Hello, World!", // Définir le résolveur pour "hello"
+    users: async (parent, args) => {
+      // console.log(await prisma.user.findMany({ include: { contacts: true } }));
+      return await prisma.user.findMany({ include: { contacts: true } });
+    },
+    user: async (parent, { id }) => {
+      return await prisma.user.findUnique({
+        where: { id },
+        include: { contacts: true },
+      });
+    },
+    contacts: async (parent, args) => {
+      return await prisma.contact.findMany({ include: { user: true } });
+    },
+    contact: async (parent, { id }) => {
+      return await prisma.contact.findUnique({
+        where: { id },
+        include: { user: true },
+      });
+    },
+  },
+  Mutation: {
+    createUser: async (parent, { name, email }) => {
+      return await prisma.user.create({
+        data: { name, email },
+      });
+    },
+    createContact: async (parent, { phone, address, userId }) => {
+      return await prisma.contact.create({
+        data: { phone, address, userId },
+      });
+    },
+    updateUser: async (parent, { id, name, email }) => {
+      return prisma.user.update({
+        where: { id },
+        data: { name, email },
+      });
+    },
+    updateContact: async (parent, { id, phone, address }) => {
+      return prisma.contact.update({
+        where: { id },
+        data: { phone, address },
+      });
+    },
+    deleteUser: async (parent, { id }) => {
+      await prisma.user.delete({ where: { id } });
+      return true;
+    },
+    deleteContact: async (parent, { id }) => {
+      await prisma.contact.delete({ where: { id } });
+      return true;
+    },
+  },
+};
+
+export default resolvers;
+\end{verbatim}
+
+\subsection{Tests de l'api avec postman}
+
+Adresse pour les test une fois la commande \textbf{npm run dev}, on as : 
+
+\textbf{http://localhost:4000/}
+
+
+\section{Authentification de notre api}
+
+
+\end{document}  

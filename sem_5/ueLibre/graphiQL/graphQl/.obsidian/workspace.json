@@ -76,6 +76,7 @@
             }
           },
           {
+<<<<<<< HEAD
             "id": "3d4d4e143ad9bd19",
             "type": "leaf",
             "state": {
@@ -86,6 +87,16 @@
                 "source": false
               },
               "icon": "lucide-file",
+=======
+            "id": "63c8fc87b4e40f45",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "Graphe.pdf"
+              },
+              "icon": "lucide-file-text",
+>>>>>>> ad86bbd43fd787cfd3e96c8ab38b3a5296f35a3e
               "title": "Graphe"
             }
           },
@@ -137,7 +148,8 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
+                "sortOrder": "alphabetical",
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "Explorateur de fichiers"
@@ -260,10 +272,20 @@
       "command-palette:Ouvrir la palette de commandes": false
     }
   },
+<<<<<<< HEAD
   "active": "3d4d4e143ad9bd19",
   "lastOpenFiles": [
     "GRAPHQL.pdf",
     "Graphe.md",
+=======
+  "active": "63c8fc87b4e40f45",
+  "lastOpenFiles": [
+    "Entreprise Celia",
+    "projet graphql",
+    "Graphe.md",
+    "Graphe.pdf",
+    "GRAPHQL.pdf",
+>>>>>>> ad86bbd43fd787cfd3e96c8ab38b3a5296f35a3e
     "GRAPHQL.md",
     "graphql/gestion_contact.md",
     "graphql/test projet.md",
@@ -282,14 +304,12 @@
     "communication/communication.md",
     "communication",
     "SE.md",
-    "PLAN.pdf",
     "PLAN.md",
     "Evaluation.md",
     "Partie II.md",
     "Synthèse.md",
     "gestion de tache.md",
     "Django.md",
-    "Partie 1.pdf",
     "gestion de tache.md.md"
   ]
 }

@@ -1,24 +1,29 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from "@prisma/client";
+import { signup, login } from "./auth.js";
 
 const prisma = new PrismaClient();
 
-
-
 const resolvers = {
   Query: {
-    hello: () => 'Hello, World!',  // Définir le résolveur pour "hello"
+    hello: () => "Hello, World!", // Définir le résolveur pour "hello"
     users: async (parent, args) => {
       // console.log(await prisma.user.findMany({ include: { contacts: true } }));
       return await prisma.user.findMany({ include: { contacts: true } });
     },
     user: async (parent, { id }) => {
-      return await prisma.user.findUnique({ where: { id }, include: { contacts: true } });
+      return await prisma.user.findUnique({
+        where: { id },
+        include: { contacts: true },
+      });
     },
     contacts: async (parent, args) => {
       return await prisma.contact.findMany({ include: { user: true } });
     },
     contact: async (parent, { id }) => {
-      return await prisma.contact.findUnique({ where: { id }, include: { user: true } });
+      return await prisma.contact.findUnique({
+        where: { id },
+        include: { user: true },
+      });
     },
   },
   Mutation: {
@@ -52,6 +57,8 @@ const resolvers = {
       await prisma.contact.delete({ where: { id } });
       return true;
     },
+    signup,
+    login,
   },
 };
 
