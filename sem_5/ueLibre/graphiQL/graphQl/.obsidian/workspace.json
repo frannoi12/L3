@@ -76,6 +76,18 @@
             }
           },
           {
+<<<<<<< HEAD
+            "id": "3d4d4e143ad9bd19",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Graphe.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+=======
             "id": "63c8fc87b4e40f45",
             "type": "leaf",
             "state": {
@@ -84,6 +96,7 @@
                 "file": "Graphe.pdf"
               },
               "icon": "lucide-file-text",
+>>>>>>> ad86bbd43fd787cfd3e96c8ab38b3a5296f35a3e
               "title": "Graphe"
             }
           },
@@ -285,7 +298,17 @@
       "command-palette:Ouvrir la palette de commandes": false
     }
   },
+<<<<<<< HEAD
   "active": "537d8b16181acb6f",
+=======
+<<<<<<< HEAD
+  "active": "3d4d4e143ad9bd19",
+  "lastOpenFiles": [
+    "GRAPHQL.pdf",
+    "Graphe.md",
+=======
+  "active": "63c8fc87b4e40f45",
+>>>>>>> refs/remotes/origin/main
   "lastOpenFiles": [
     "contrat/contrat.md",
     "contrat",
@@ -294,6 +317,7 @@
     "Graphe.md",
     "Graphe.pdf",
     "GRAPHQL.pdf",
+>>>>>>> ad86bbd43fd787cfd3e96c8ab38b3a5296f35a3e
     "GRAPHQL.md",
     "graphql/gestion_contact.md",
     "graphql/test projet.md",

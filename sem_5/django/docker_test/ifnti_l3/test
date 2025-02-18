@@ -1,0 +1,82 @@
+A l'aide de la documentation sur l'api (topics/db/queries.html), effectuer ce qui est demandé ci-après. Pour chaque étape, notez la ou les commandes que vous avez lancées et les éventuels changements en base de données.
+
+a) créez un Niveau sans argument et sauvegardez-le. Que contient l'attribut nom ? Est-ce normal ? Pourquoi n'y-a-t'il pas eu d'erreur à la sauvegarde ?
+
+
+from notes.models import Eleve, Niveau
+from datetime import date
+
+# Récupérer les objets Niveau
+l1 = Niveau.objects.get(nom="L1")
+l2 = Niveau.objects.get(nom="L2")
+l3 = Niveau.objects.get(nom="L3")
+
+# Créer les élèves
+eleve1 = Eleve(nom="Toune Ouvo", date_naissance=date(1995, 10, 25), identifiant="90158486", niveau=l1)
+eleve1.save()
+
+eleve2 = Eleve(nom="Falle Éppa", date_naissance=date(1993, 5, 2), identifiant="90154234", niveau=l2)
+eleve2.save()
+
+eleve3 = Eleve(nom="Jean Aimar", date_naissance=date(1993, 12, 6), identifiant="90153598", niveau=l3)
+eleve3.save()
+
+# Créer le quatrième élève avec l'identifiant de votre choix
+eleve4 = Eleve(nom="Votre Nom", date_naissance=date(1994, 1, 15), identifiant="90150000", niveau=l1)
+eleve4.save()
+
+
+Eleve.objects.all()
+
+
+
+from notes.models import Enseignant
+
+# Créer les enseignants
+enseignant1 = Enseignant(nom="Enseignant Un", date_naissance=date(1980, 3, 14), identifiant="EN9011")
+enseignant1.save()
+
+enseignant2 = Enseignant(nom="Enseignant Deux", date_naissance=date(1982, 7, 21), identifiant="EN9012")
+enseignant2.save()
+
+enseignant3 = Enseignant(nom="Enseignant Trois", date_naissance=date(1985, 11, 3), identifiant="EN9013")
+enseignant3.save()
+
+
+
+-- , matieres=mat5 ,matieres=mat4, matieres=mat3, matieres=mat2,matieres=mat1
+
+
+
+
+
+
+
+
+
+
+
+
+
+Voici la reproduction du texte demandé :
+
+---
+
+**TP3 - Shell et site d'administration**
+
+1. Le premier s'appelle Claude Stroffaube, il est né le 1er août 1967.
+2. La deuxième s'appelle Abla Sillon, elle est née le 2 juillet 1960.
+3. Le troisième s'appelle Parlaf Eunaître, il est né le 28 février 1990.
+
+(g) **Créez 5 Matières que vous sauvegarderez une fois créées :**
+   i. "Bases de la programmation" est enseigné en L1 par M. Stroffaube.
+   ii. "Mathématiques" est enseigné en L1 et en L2 par Mme Sillon.
+   iii. "Langages Webs" est enseigné en L2 et en L3 par Mme Sillon.
+   iv. "Gestion de projets" est enseigné en L3 par M. Stroffaube.
+   v. "Anglais" est enseigné dans les 3 niveaux par M. Eunaître.
+
+4. **Restez sur le shell** et affichez l'objet *Élève* correspondant à Jean. Qu'avez-vous tapé ? Qu'est-ce qui s'affiche ? Ne serait-ce pas plus judicieux d'afficher plutôt son nom et sa valeur ? Essayez de penser à une manière de corriger ce problème et exposez-la. Nous y reviendrons dans un prochain TP.
+
+
+Installer jazzmin dans notre projet pour modifier le admin de notre projet sans toute fois allée dans les fichier de configuration de admin.
+---
