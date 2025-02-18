@@ -1,12 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function Compteur() {
     const [compteur, setCompteur] = useState(0);
-    useEffect(() => {
-        console.log(`Le compteur est maintenant : ${compteur}`);
-    }, [compteur]);
 
-    
     return (
         <div>
             <p>Valeur : {compteur} </p>

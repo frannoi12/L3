@@ -1,6 +1,5 @@
-import Bonjour from "./components/Bonjour"
 import Compteur from "./components/Compteur"
-
+import RooterNavigation from "./components/RooterNavigation"
 
 function App() {
 
@@ -9,8 +8,8 @@ function App() {
   // const element = <h1>Hello, {name}</h1>;
   
   return <>
-    <Bonjour nom="Toutabizzi" />
-    <Compteur/>
+    <Compteur />
+    <RooterNavigation />
     </>
 }
 
