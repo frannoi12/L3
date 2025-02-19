@@ -1,0 +1,17 @@
+services:
+        postgre_db:
+                image: postgres
+                container_name : toyi
+                environment:
+                        -  POSTGRES_DB=gest_ecole
+                        -  POSTGRES_PASSWORD=toyi
+                        -  POSTGRES_USER=toyi
+
+        gesco:
+                image: toyi
+                build:
+                        context: .
+                        dockerfile: Dockerfile
+                command: bash -c "sleep 10 && python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+                depends_on:
+                        - postgre_db

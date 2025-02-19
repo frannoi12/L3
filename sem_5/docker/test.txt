@@ -1,0 +1,8 @@
+## Création d'un container postgress
+
+sudo docker run --name toyi -e POSTGRES_PASSWORD=toyi -e POSTGRES_USER=toyi -e POSTGRES_DB=gest_ecole -d postgres
+
+
+## Connection à la base de donnée dans le container
+
+docker_test/ifnti_l3$ psql -U toyi -d gest_ecole -h 172.17.0.3

@@ -1,0 +1,11 @@
+<h1>Détail de l'élève : {{ eleve.nom }}</h1>
+<p>Niveau: {{ eleve.prenom }}</p>
+<p>Matières :</p>
+<ul>
+    <!-- {{eleve}} -->
+    {% for matiere in matieres %}
+    <!-- {{matiere}} -->
+    <li>{{ matiere.nom }} </li>
+    <a href="{% url 'notes:note' eleve.id matiere.id %}">Ajouter/Modifier la note</a>
+    {% endfor %}
+</ul>

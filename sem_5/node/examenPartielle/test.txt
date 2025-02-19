@@ -1,0 +1,148 @@
+Voici un traitement complet du sujet relatif au développement d'une API REST sécurisée pour une application de gestion des tâches en utilisant Node.js, Express et Prisma.
+
+## 1. Modèle UML avec Prisma
+
+Pour commencer, définissons un modèle de données dans un fichier `schema.prisma`. Voici un exemple simplifié :
+
+```prisma
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String
+  tasks     Task[]
+}
+
+model Task {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  completed   Boolean  @default(false)
+  userId      Int
+  user        User     @relation(fields: [userId], references: [id])
+}
+```
+
+## 2. Importance des migrations
+
+Les migrations dans Prisma sont essentielles car elles permettent de synchroniser le schéma de la base de données avec les modifications apportées au modèle de données. Elles assurent l'intégrité des données et facilitent l'évolution du modèle au fil du développement.
+
+**Commande pour appliquer la migration initiale :**
+
+```bash
+npx prisma migrate dev --name init
+```
+
+## 3. Route d'inscription (/register)
+
+Voici un exemple d'implémentation d'une route pour l'inscription :
+
+```javascript
+const bcrypt = require('bcrypt');
+const express = require('express');
+const { PrismaClient } = require('@prisma/client');
+
+const prisma = new PrismaClient();
+const router = express.Router();
+
+router.post('/register', async (req, res) => {
+  const { username, password } = req.body;
+  const hashedPassword = await bcrypt.hash(password, 10);
+  
+  const user = await prisma.user.create({
+    data: { username, password: hashedPassword },
+  });
+  
+  res.status(201).json(user);
+});
+```
+
+## 4. Route de connexion (/login)
+
+Pour la connexion des utilisateurs et la génération d'un token JWT :
+
+```javascript
+const jwt = require('jsonwebtoken');
+
+router.post('/login', async (req, res) => {
+  const { username, password } = req.body;
+  const user = await prisma.user.findUnique({ where: { username } });
+
+  if (user && await bcrypt.compare(password, user.password)) {
+    const token = jwt.sign({ id: user.id }, 'secret', { expiresIn: '1h' });
+    res.json({ token });
+  } else {
+    res.status(401).send('Unauthorized');
+  }
+});
+```
+
+## 5. Middleware d'authentification
+
+Le middleware suivant protège les routes privées :
+
+```javascript
+const authenticateJWT = (req, res, next) => {
+  const token = req.header('Authorization')?.split(' ')[1];
+
+  if (token) {
+    jwt.verify(token, 'secret', (err, user) => {
+      if (err) return res.sendStatus(403);
+      req.user = user;
+      next();
+    });
+  } else {
+    res.sendStatus(401);
+  }
+};
+```
+
+## 6. Routes protégées
+
+Voici les routes pour gérer les tâches :
+
+```javascript
+router.post('/tasks/:userId', authenticateJWT, async (req, res) => {
+  const task = await prisma.task.create({
+    data: {
+      title: req.body.title,
+      description: req.body.description,
+      userId: parseInt(req.params.userId),
+    },
+  });
+  res.status(201).json(task);
+});
+
+router.get('/tasks/:userId', authenticateJWT, async (req, res) => {
+  const tasks = await prisma.task.findMany({
+    where: { userId: parseInt(req.params.userId) },
+  });
+  res.json(tasks);
+});
+
+router.put('/tasks/:id', authenticateJWT, async (req, res) => {
+  const task = await prisma.task.update({
+    where: { id: parseInt(req.params.id) },
+    data: req.body,
+  });
+  res.json(task);
+});
+
+router.delete('/tasks/:id', authenticateJWT, async (req, res) => {
+  await prisma.task.delete({ where: { id: parseInt(req.params.id) } });
+  res.sendStatus(204);
+});
+```
+
+## 7. Programme de test pour l'API
+
+Utilisez un outil comme Postman ou une suite de tests automatisés avec Jest pour tester les différentes routes de l'API.
+
+## 8. Rôle des principales dépendances
+
+- **Prisma** : ORM pour interagir avec la base de données.
+- **Express** : Framework web pour construire l'API.
+- **bcrypt** : Pour le hachage des mots de passe.
+- **jsonwebtoken (JWT)** : Pour la gestion des tokens d'authentification.
+- **dotenv** : Pour gérer les variables d'environnement.
+
+Cette structure vous permettra de développer une API fonctionnelle et sécurisée pour la gestion des tâches.
