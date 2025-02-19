@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 import {useEffect,useState} from "react"
 import axios from 'axios'
 
+=======
+import Compteur from "./components/Compteur"
+import RooterNavigation from "./components/RooterNavigation"
+>>>>>>> c8e4993ca6683168922e5b555187ed077b65fcb2
 
 function App() {
 
@@ -42,10 +47,17 @@ function App() {
   // const name = 'Josh Perez';
   // const element = <h1>Hello, {name}</h1>;
   
+<<<<<<< HEAD
   // return <>
   //   <Bonjour nom="Toutabizzi" />
   //   <Compteur/>
   //   </>
+=======
+  return <>
+    <Compteur />
+    <RooterNavigation />
+    </>
+>>>>>>> c8e4993ca6683168922e5b555187ed077b65fcb2
 }
 
 
