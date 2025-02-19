@@ -1,0 +1,45 @@
+<h1>Liste des élèves avec leurs notes et moyennes</h1>
+<br />
+<ul>
+  
+  <!-- <li>{{ eleve }}</li> -->
+  <style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    table, th, td {
+        border: 1px solid black;
+    }
+    th, td {
+        padding: 10px;
+        text-align: left;
+    }
+</style>
+  <table>
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <!-- <th>Sexe</th> -->
+        <th>Date de naissance</th>
+        <th>Voir Détails</th>
+        <th>Modifier</th> 
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Élève 1 -->
+      {% for eleve in eleves %}
+      <!-- <li>{{ eleve }}</li> -->
+      <tr>
+        <td>{{eleve.nom}}</td>
+        <td>{{eleve.prenom}}</td>
+        <!-- <td>{{eleve.sexe}}</td> -->
+        <td>{{eleve.date_naissance}}</td>
+        <td><a href="{% url 'GesPerson:eleve' eleve.id %}">Voir</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+  <a href="{% url 'GesPerson:addEleve' %}">Ajouter un Eleve</a>

@@ -1,0 +1,15 @@
+<h2>Ajouter une Personne</h2>
+
+<h3>Ajouter un Élève</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ eleve_form.as_p }}
+    <button type="submit" name="ajouter_eleve">Ajouter Élève</button>
+</form>
+
+<h3>Ajouter un Professeur</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ professeur_form.as_p }}
+    <button type="submit" name="ajouter_professeur">Ajouter Professeur</button>
+</form>
