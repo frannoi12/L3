@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Mes Tâches</h2>
+<a href="{% url 'task_create' %}">Créer une nouvelle tâche</a>
+<ul>
+    {% for task in tasks %}
+        <li>
+            <a href="{% url 'task_detail' task.id %}">{{ task.title }}</a>
+            {% if task.completed %} ✅ {% else %} ❌ {% endif %}
+            <a href="{% url 'task_update' task.id %}">Modifier</a>
+            <a href="{% url 'task_delete' task.id %}">Supprimer</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

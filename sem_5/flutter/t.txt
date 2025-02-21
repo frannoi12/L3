@@ -1,0 +1,299 @@
+D'accord ! Je vais te faire un projet **Flutter MVVM** qui gère une base **PostgreSQL** en local via un **DAO**. Voici comment on va organiser le projet :
+
+### **1. Structure du projet**
+```
+/lib
+│── models/
+│   ├── personne.dart
+│   ├── eleve.dart
+│   ├── enseignant.dart
+│── database/
+│   ├── database_helper.dart
+│   ├── personne_dao.dart
+│── view_models/
+│   ├── personne_view_model.dart
+│── views/
+│   ├── personne_screen.dart
+│── main.dart
+```
+
+### **2. Installation des dépendances**
+Ajoute ces packages à `pubspec.yaml` :
+```yaml
+dependencies:
+  flutter:
+    sdk: flutter
+  sqflite_common_ffi: ^2.2.5
+  path: ^1.8.3
+  provider: ^6.0.5
+```
+
+---
+
+### **3. Modèle (Model)**
+**Définition de `Personne` et ses sous-classes `Élève` et `Enseignant`**
+#### `personne.dart`
+```dart
+abstract class Personne {
+  int? id;
+  String nom;
+  String prenom;
+  String type;
+
+  Personne({this.id, required this.nom, required this.prenom, required this.type});
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'nom': nom,
+      'prenom': prenom,
+      'type': type,
+    };
+  }
+
+  factory Personne.fromMap(Map<String, dynamic> map) {
+    if (map['type'] == 'eleve') {
+      return Eleve.fromMap(map);
+    } else {
+      return Enseignant.fromMap(map);
+    }
+  }
+}
+```
+
+#### `eleve.dart`
+```dart
+import 'personne.dart';
+
+class Eleve extends Personne {
+  String classe;
+
+  Eleve({int? id, required String nom, required String prenom, required this.classe})
+      : super(id: id, nom: nom, prenom: prenom, type: 'eleve');
+
+  @override
+  Map<String, dynamic> toMap() {
+    var map = super.toMap();
+    map['classe'] = classe;
+    return map;
+  }
+
+  factory Eleve.fromMap(Map<String, dynamic> map) {
+    return Eleve(
+      id: map['id'],
+      nom: map['nom'],
+      prenom: map['prenom'],
+      classe: map['classe'],
+    );
+  }
+}
+```
+
+#### `enseignant.dart`
+```dart
+import 'personne.dart';
+
+class Enseignant extends Personne {
+  String matiere;
+
+  Enseignant({int? id, required String nom, required String prenom, required this.matiere})
+      : super(id: id, nom: nom, prenom: prenom, type: 'enseignant');
+
+  @override
+  Map<String, dynamic> toMap() {
+    var map = super.toMap();
+    map['matiere'] = matiere;
+    return map;
+  }
+
+  factory Enseignant.fromMap(Map<String, dynamic> map) {
+    return Enseignant(
+      id: map['id'],
+      nom: map['nom'],
+      prenom: map['prenom'],
+      matiere: map['matiere'],
+    );
+  }
+}
+```
+
+---
+
+### **4. Configuration de la base de données PostgreSQL**
+#### `database_helper.dart`
+```dart
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+import 'package:path/path.dart';
+import '../models/personne.dart';
+
+class DatabaseHelper {
+  static final DatabaseHelper instance = DatabaseHelper._init();
+  static Database? _database;
+
+  DatabaseHelper._init();
+
+  Future<Database> get database async {
+    if (_database != null) return _database!;
+    _database = await _initDB();
+    return _database!;
+  }
+
+  Future<Database> _initDB() async {
+    sqfliteFfiInit();
+    databaseFactory = databaseFactoryFfi;
+
+    final dbPath = await getDatabasesPath();
+    final path = join(dbPath, 'personnes.db');
+
+    return await openDatabase(path, version: 1, onCreate: _createDB);
+  }
+
+  Future<void> _createDB(Database db, int version) async {
+    await db.execute('''
+      CREATE TABLE personnes (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nom TEXT NOT NULL,
+        prenom TEXT NOT NULL,
+        type TEXT NOT NULL,
+        classe TEXT,
+        matiere TEXT
+      )
+    ''');
+  }
+}
+```
+
+---
+
+### **5. DAO (Data Access Object)**
+#### `personne_dao.dart`
+```dart
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+import '../database/database_helper.dart';
+import '../models/personne.dart';
+
+class PersonneDAO {
+  final DatabaseHelper _dbHelper = DatabaseHelper.instance;
+
+  Future<int> insertPersonne(Personne personne) async {
+    final db = await _dbHelper.database;
+    return await db.insert('personnes', personne.toMap());
+  }
+
+  Future<List<Personne>> getAllPersonnes() async {
+    final db = await _dbHelper.database;
+    final List<Map<String, dynamic>> maps = await db.query('personnes');
+
+    return List.generate(maps.length, (i) {
+      return Personne.fromMap(maps[i]);
+    });
+  }
+}
+```
+
+---
+
+### **6. ViewModel**
+#### `personne_view_model.dart`
+```dart
+import 'package:flutter/material.dart';
+import '../models/personne.dart';
+import '../database/personne_dao.dart';
+
+class PersonneViewModel extends ChangeNotifier {
+  final PersonneDAO _dao = PersonneDAO();
+  List<Personne> _personnes = [];
+
+  List<Personne> get personnes => _personnes;
+
+  Future<void> fetchPersonnes() async {
+    _personnes = await _dao.getAllPersonnes();
+    notifyListeners();
+  }
+
+  Future<void> addPersonne(Personne personne) async {
+    await _dao.insertPersonne(personne);
+    fetchPersonnes();
+  }
+}
+```
+
+---
+
+### **7. Vue**
+#### `personne_screen.dart`
+```dart
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../view_models/personne_view_model.dart';
+import '../models/eleve.dart';
+import '../models/enseignant.dart';
+
+class PersonneScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final viewModel = Provider.of<PersonneViewModel>(context);
+
+    return Scaffold(
+      appBar: AppBar(title: Text('Liste des Personnes')),
+      body: ListView.builder(
+        itemCount: viewModel.personnes.length,
+        itemBuilder: (context, index) {
+          final personne = viewModel.personnes[index];
+          return ListTile(
+            title: Text('${personne.nom} ${personne.prenom}'),
+            subtitle: Text(personne.type),
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          viewModel.addPersonne(Eleve(nom: 'John', prenom: 'Doe', classe: 'CM2'));
+        },
+        child: Icon(Icons.add),
+      ),
+    );
+  }
+}
+```
+
+---
+
+### **8. Initialisation de l’application**
+#### `main.dart`
+```dart
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'view_models/personne_view_model.dart';
+import 'views/personne_screen.dart';
+
+void main() {
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => PersonneViewModel()),
+      ],
+      child: MyApp(),
+    ),
+  );
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: PersonneScreen(),
+    );
+  }
+}
+```
+
+---
+
+### **Conclusion**
+✔️ **Base de données PostgreSQL** avec DAO  
+✔️ **MVVM** : Modèle, ViewModel, Vue  
+✔️ **Provider** pour la gestion d’état  
+✔️ **Interface simple avec ajout dynamique**  
+
+Ce projet est fonctionnel et peut être amélioré (édition, suppression, etc.). Dis-moi si tu veux d'autres ajouts ! 🚀

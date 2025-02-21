@@ -1,0 +1,204 @@
+Je vais t’expliquer chaque ligne de code du projet Flutter MVVM CRUD avec PostgreSQL, pour mobile et desktop.
+
+📌 Explication Générale
+L'architecture MVVM (Model-View-ViewModel) permet de séparer :
+
+Modèle (Model) : Structure des données.
+Vue (View) : Interface utilisateur.
+ViewModel (ViewModel) : Gestion de la logique métier et liaison entre Vue et Modèle.
+Ce projet permet de : ✅ Créer une tâche
+✅ Lire les tâches existantes
+✅ Modifier une tâche
+✅ Supprimer une tâche
+
+La seule différence entre mobile et desktop concerne la connexion à la base de données :
+
+Mobile → Généralement, on utilise une API REST (Ex: Django, Laravel).
+Desktop → Connexion directe à PostgreSQL via postgres.
+📂 Structure du Projet
+bash
+Copier
+Modifier
+lib/
+│── models/
+│   ├── dao_tache.dart       # Modèle de données
+│── viewmodels/
+│   ├── tache_viewmodel.dart # Gestion de la logique métier
+│── views/
+│   ├── home_screen.dart     # Liste des tâches
+│   ├── form_screen.dart     # Formulaire d'ajout
+│   ├── update_screen.dart   # Formulaire de modification
+│── services/
+│   ├── database_service.dart # Connexion à PostgreSQL (Desktop)
+│── main.dart                # Point d’entrée de l’application
+📌 1. Modèle (dao_tache.dart)
+Le modèle représente la structure d’une tâche.
+
+dart
+Copier
+Modifier
+class DaoTache {
+  final int? id;
+  final String titre;
+  final String description;
+
+  DaoTache({this.id, required this.titre, required this.description});
+
+  Map<String, dynamic> toMap() {
+    return {"id": id, "titre": titre, "description": description};
+  }
+
+  factory DaoTache.fromMap(Map<String, dynamic> map) {
+    return DaoTache(
+      id: map["id"],
+      titre: map["titre"],
+      description: map["description"],
+    );
+  }
+}
+🔍 Explication ligne par ligne
+final int? id; → L’identifiant de la tâche (optionnel car il est généré en base).
+final String titre; → Le titre de la tâche.
+final String description; → La description de la tâche.
+DaoTache({this.id, required this.titre, required this.description});
+→ Constructeur pour créer un objet DaoTache.
+toMap() → Convertit l’objet DaoTache en dictionnaire (Map) pour l’envoyer à la base.
+factory DaoTache.fromMap(Map<String, dynamic> map)
+→ Convertit une réponse de la base de données en objet DaoTache.
+📌 2. Connexion à PostgreSQL (database_service.dart)
+🚀 Spécifique à la version Desktop
+On utilise postgres pour se connecter directement à la base de données PostgreSQL.
+
+dart
+Copier
+Modifier
+import 'package:postgres/postgres.dart';
+import '../models/dao_tache.dart';
+
+class DatabaseService {
+  static PostgreSQLConnection? _connection;
+
+  static Future<void> init() async {
+    _connection = PostgreSQLConnection(
+      "localhost",
+      5432,
+      "nom_base",
+      username: "utilisateur",
+      password: "mot_de_passe",
+    );
+    await _connection!.open();
+  }
+
+  static Future<List<DaoTache>> fetchTaches() async {
+    List<List<dynamic>> results = await _connection!.query('SELECT * FROM taches');
+    return results.map((row) => DaoTache(id: row[0], titre: row[1], description: row[2])).toList();
+  }
+
+  static Future<void> ajouterTache(DaoTache tache) async {
+    await _connection!.query(
+      'INSERT INTO taches (titre, description) VALUES (@titre, @description)',
+      substitutionValues: {"titre": tache.titre, "description": tache.description},
+    );
+  }
+
+  static Future<void> modifierTache(DaoTache tache) async {
+    await _connection!.query(
+      'UPDATE taches SET titre = @titre, description = @description WHERE id = @id',
+      substitutionValues: {"id": tache.id, "titre": tache.titre, "description": tache.description},
+    );
+  }
+
+  static Future<void> supprimerTache(int id) async {
+    await _connection!.query('DELETE FROM taches WHERE id = @id', substitutionValues: {"id": id});
+  }
+}
+🔍 Explication
+PostgreSQLConnection → Permet la connexion directe à PostgreSQL.
+init() → Initialise la connexion.
+fetchTaches() → Récupère toutes les tâches (SELECT * FROM taches).
+ajouterTache(tache) → Insère une tâche (INSERT INTO).
+modifierTache(tache) → Met à jour une tâche (UPDATE).
+supprimerTache(id) → Supprime une tâche (DELETE).
+📌 Version mobile ?
+
+Pour mobile, on utiliserait une API REST au lieu d’une connexion directe.
+📌 3. ViewModel (tache_viewmodel.dart)
+Le ViewModel gère les opérations CRUD et notifie l’UI.
+
+dart
+Copier
+Modifier
+import 'package:flutter/material.dart';
+import '../models/dao_tache.dart';
+import '../services/database_service.dart';
+
+class TacheViewModel extends ChangeNotifier {
+  List<DaoTache> _taches = [];
+
+  List<DaoTache> get taches => _taches;
+
+  Future<void> fetchTaches() async {
+    _taches = await DatabaseService.fetchTaches();
+    notifyListeners();
+  }
+
+  Future<void> ajouterTache(DaoTache tache) async {
+    await DatabaseService.ajouterTache(tache);
+    fetchTaches();
+  }
+
+  Future<void> supprimerTache(int id) async {
+    await DatabaseService.supprimerTache(id);
+    fetchTaches();
+  }
+
+  Future<void> modifierTache(DaoTache tache) async {
+    await DatabaseService.modifierTache(tache);
+    fetchTaches();
+  }
+}
+🔍 Explication
+_taches = [] → Liste locale des tâches.
+fetchTaches() → Charge les tâches depuis PostgreSQL.
+ajouterTache() → Ajoute une tâche et rafraîchit la liste.
+supprimerTache() → Supprime une tâche et rafraîchit la liste.
+modifierTache() → Modifie une tâche et rafraîchit la liste.
+notifyListeners(); → Notifie la Vue quand les données changent.
+📌 4. Interface Utilisateur (UI)
+🏠 HomeScreen (home_screen.dart)
+dart
+Copier
+Modifier
+Scaffold(
+  appBar: AppBar(title: Text("Tâches")),
+  body: ListView.builder(
+    itemCount: tacheViewModel.taches.length,
+    itemBuilder: (context, index) {
+      final tache = tacheViewModel.taches[index];
+      return ListTile(
+        title: Text(tache.titre),
+        subtitle: Text(tache.description),
+        trailing: IconButton(
+          icon: Icon(Icons.delete),
+          onPressed: () => tacheViewModel.supprimerTache(tache.id!),
+        ),
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => UpdateScreen(tache: tache)),
+          );
+        },
+      );
+    },
+  ),
+)
+🔍 Explication
+ListView.builder → Affiche la liste des tâches.
+onTap() → Ouvre l’écran de modification.
+IconButton(Icons.delete) → Supprime une tâche.
+✅ Conclusion
+
+📱 Mobile → Connexion via une API REST.
+🖥 Desktop → Connexion directe à PostgreSQL.
+🎯 MVVM sépare données, logique et interface.
+Besoin d’une amélioration ou d’un ajout ? 🚀

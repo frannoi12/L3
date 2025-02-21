@@ -1,0 +1,510 @@
+Je vais d'abord te fournir le CRUD en Flutter mobile avec l'architecture MVVM et une base de données PostgreSQL, puis je l'adapterai pour une version desktop.
+
+🔧 Dépendances utilisées :
+flutter_riverpod : Gestion d'état avec ChangeNotifier pour ViewModel.
+sqflite : Base de données locale (mais pour PostgreSQL, on utilisera postgres pour la version backend).
+postgres : Connexion à une base de données PostgreSQL (principalement utilisé pour la version desktop, ou via un backend).
+flutter_hooks : Permet de gérer les états plus facilement dans les widgets.
+go_router : Navigation avancée entre les écrans.
+dio : Requêtes HTTP (si un backend est utilisé pour PostgreSQL).
+🎯 Version Mobile (Flutter + PostgreSQL via Backend)
+On suppose qu'il y a un backend (Django, Spring Boot, ou Node.js) qui expose une API pour manipuler les tâches via PostgreSQL.
+
+📂 Structure du Projet (MVVM)
+css
+Copier
+Modifier
+lib/
+│── models/
+│   ├── dao_tache.dart
+│── viewmodels/
+│   ├── tache_viewmodel.dart
+│── views/
+│   ├── home_screen.dart
+│   ├── form_screen.dart
+│   ├── update_screen.dart
+│── services/
+│   ├── api_service.dart
+│── main.dart
+1️⃣ Modèle : DaoTache
+Ce modèle représente une tâche avec les champs id, titre, description.
+
+dart
+Copier
+Modifier
+class DaoTache {
+  final int? id;
+  final String titre;
+  final String description;
+
+  DaoTache({this.id, required this.titre, required this.description});
+
+  // Convertir un objet en JSON
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "titre": titre,
+        "description": description,
+      };
+
+  // Convertir un JSON en objet
+  factory DaoTache.fromJson(Map<String, dynamic> json) {
+    return DaoTache(
+      id: json["id"],
+      titre: json["titre"],
+      description: json["description"],
+    );
+  }
+}
+2️⃣ ViewModel : TacheViewModel
+Gère la liste des tâches et les opérations CRUD.
+
+dart
+Copier
+Modifier
+import 'package:flutter/foundation.dart';
+import '../models/dao_tache.dart';
+import '../services/api_service.dart';
+
+class TacheViewModel extends ChangeNotifier {
+  List<DaoTache> _taches = [];
+
+  List<DaoTache> get taches => _taches;
+
+  Future<void> fetchTaches() async {
+    _taches = await ApiService.fetchTaches();
+    notifyListeners();
+  }
+
+  Future<void> ajouterTache(DaoTache tache) async {
+    await ApiService.ajouterTache(tache);
+    fetchTaches();
+  }
+
+  Future<void> supprimerTache(int id) async {
+    await ApiService.supprimerTache(id);
+    fetchTaches();
+  }
+
+  Future<void> modifierTache(DaoTache tache) async {
+    await ApiService.modifierTache(tache);
+    fetchTaches();
+  }
+}
+3️⃣ Service API : api_service.dart
+Gère les requêtes vers le backend en PostgreSQL.
+
+dart
+Copier
+Modifier
+import 'package:dio/dio.dart';
+import '../models/dao_tache.dart';
+
+class ApiService {
+  static final Dio _dio = Dio(BaseOptions(baseUrl: "http://localhost:8000/api"));
+
+  static Future<List<DaoTache>> fetchTaches() async {
+    final response = await _dio.get("/taches");
+    return (response.data as List).map((t) => DaoTache.fromJson(t)).toList();
+  }
+
+  static Future<void> ajouterTache(DaoTache tache) async {
+    await _dio.post("/taches", data: tache.toJson());
+  }
+
+  static Future<void> modifierTache(DaoTache tache) async {
+    await _dio.put("/taches/${tache.id}", data: tache.toJson());
+  }
+
+  static Future<void> supprimerTache(int id) async {
+    await _dio.delete("/taches/$id");
+  }
+}
+4️⃣ HomeScreen : home_screen.dart
+Affiche la liste des tâches avec ListView.
+
+dart
+Copier
+Modifier
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../viewmodels/tache_viewmodel.dart';
+
+class HomeScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final tacheViewModel = Provider.of<TacheViewModel>(context);
+
+    return Scaffold(
+      appBar: AppBar(title: Text("Liste des Tâches")),
+      body: FutureBuilder(
+        future: tacheViewModel.fetchTaches(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          }
+
+          return ListView.builder(
+            itemCount: tacheViewModel.taches.length,
+            itemBuilder: (context, index) {
+              final tache = tacheViewModel.taches[index];
+              return ListTile(
+                title: Text(tache.titre),
+                subtitle: Text(tache.description),
+                trailing: IconButton(
+                  icon: Icon(Icons.delete),
+                  onPressed: () => tacheViewModel.supprimerTache(tache.id!),
+                ),
+                onTap: () {
+                  Navigator.pushNamed(context, "/update", arguments: tache);
+                },
+              );
+            },
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () => Navigator.pushNamed(context, "/form"),
+      ),
+    );
+  }
+}
+5️⃣ FormScreen : form_screen.dart
+Affiche un formulaire de création.
+
+dart
+Copier
+Modifier
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../models/dao_tache.dart';
+import '../viewmodels/tache_viewmodel.dart';
+
+class FormScreen extends StatefulWidget {
+  @override
+  _FormScreenState createState() => _FormScreenState();
+}
+
+class _FormScreenState extends State<FormScreen> {
+  final _formKey = GlobalKey<FormState>();
+  String _titre = "";
+  String _description = "";
+
+  @override
+  Widget build(BuildContext context) {
+    final tacheViewModel = Provider.of<TacheViewModel>(context);
+
+    return Scaffold(
+      appBar: AppBar(title: Text("Ajouter une Tâche")),
+      body: Padding(
+        padding: EdgeInsets.all(16),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              TextFormField(
+                decoration: InputDecoration(labelText: "Titre"),
+                onSaved: (value) => _titre = value!,
+              ),
+              TextFormField(
+                decoration: InputDecoration(labelText: "Description"),
+                onSaved: (value) => _description = value!,
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  _formKey.currentState!.save();
+                  final nouvelleTache = DaoTache(titre: _titre, description: _description);
+                  tacheViewModel.ajouterTache(nouvelleTache);
+                  Navigator.pop(context);
+                },
+                child: Text("Ajouter"),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+🔹 Pour la version desktop, on utilisera postgres directement pour manipuler PostgreSQL sans passer par une API.
+
+🔹 Tu veux que je fasse une version desktop complète maintenant ?
+
+
+
+
+
+
+
+Vous avez dit :
+oui
+ChatGPT a dit :
+Je vais adapter le CRUD pour une application desktop en Flutter, en se connectant directement à PostgreSQL avec le package postgres.
+
+🛠 Dépendances utilisées pour la version Desktop
+Ajoute ces dépendances dans ton pubspec.yaml :
+
+yaml
+Copier
+Modifier
+dependencies:
+  flutter:
+    sdk: flutter
+  provider: ^6.0.5
+  postgres: ^2.5.0
+  flutter_hooks: ^0.20.3
+provider : Gestion d'état avec ChangeNotifier.
+postgres : Connexion directe à la base PostgreSQL.
+flutter_hooks : Simplifie l'état des widgets.
+📂 Structure du Projet (MVVM)
+css
+Copier
+Modifier
+lib/
+│── models/
+│   ├── dao_tache.dart
+│── viewmodels/
+│   ├── tache_viewmodel.dart
+│── views/
+│   ├── home_screen.dart
+│   ├── form_screen.dart
+│   ├── update_screen.dart
+│── services/
+│   ├── database_service.dart
+│── main.dart
+1️⃣ Modèle : dao_tache.dart
+dart
+Copier
+Modifier
+class DaoTache {
+  final int? id;
+  final String titre;
+  final String description;
+
+  DaoTache({this.id, required this.titre, required this.description});
+
+  Map<String, dynamic> toMap() {
+    return {"id": id, "titre": titre, "description": description};
+  }
+
+  factory DaoTache.fromMap(Map<String, dynamic> map) {
+    return DaoTache(
+      id: map["id"],
+      titre: map["titre"],
+      description: map["description"],
+    );
+  }
+}
+2️⃣ Service de connexion PostgreSQL : database_service.dart
+Gère les opérations CRUD directement avec PostgreSQL.
+
+dart
+Copier
+Modifier
+import 'package:postgres/postgres.dart';
+import '../models/dao_tache.dart';
+
+class DatabaseService {
+  static PostgreSQLConnection? _connection;
+
+  static Future<void> init() async {
+    _connection = PostgreSQLConnection(
+      "localhost",  // Adresse du serveur
+      5432,         // Port PostgreSQL
+      "nom_base",   // Nom de la base de données
+      username: "utilisateur",
+      password: "mot_de_passe",
+    );
+    await _connection!.open();
+  }
+
+  static Future<List<DaoTache>> fetchTaches() async {
+    List<List<dynamic>> results = await _connection!.query('SELECT * FROM taches');
+    return results.map((row) => DaoTache(id: row[0], titre: row[1], description: row[2])).toList();
+  }
+
+  static Future<void> ajouterTache(DaoTache tache) async {
+    await _connection!.query(
+      'INSERT INTO taches (titre, description) VALUES (@titre, @description)',
+      substitutionValues: {"titre": tache.titre, "description": tache.description},
+    );
+  }
+
+  static Future<void> modifierTache(DaoTache tache) async {
+    await _connection!.query(
+      'UPDATE taches SET titre = @titre, description = @description WHERE id = @id',
+      substitutionValues: {"id": tache.id, "titre": tache.titre, "description": tache.description},
+    );
+  }
+
+  static Future<void> supprimerTache(int id) async {
+    await _connection!.query('DELETE FROM taches WHERE id = @id', substitutionValues: {"id": id});
+  }
+}
+3️⃣ ViewModel : tache_viewmodel.dart
+dart
+Copier
+Modifier
+import 'package:flutter/material.dart';
+import '../models/dao_tache.dart';
+import '../services/database_service.dart';
+
+class TacheViewModel extends ChangeNotifier {
+  List<DaoTache> _taches = [];
+
+  List<DaoTache> get taches => _taches;
+
+  Future<void> fetchTaches() async {
+    _taches = await DatabaseService.fetchTaches();
+    notifyListeners();
+  }
+
+  Future<void> ajouterTache(DaoTache tache) async {
+    await DatabaseService.ajouterTache(tache);
+    fetchTaches();
+  }
+
+  Future<void> supprimerTache(int id) async {
+    await DatabaseService.supprimerTache(id);
+    fetchTaches();
+  }
+
+  Future<void> modifierTache(DaoTache tache) async {
+    await DatabaseService.modifierTache(tache);
+    fetchTaches();
+  }
+}
+4️⃣ Écran principal : home_screen.dart
+dart
+Copier
+Modifier
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../viewmodels/tache_viewmodel.dart';
+import '../models/dao_tache.dart';
+import 'update_screen.dart';
+import 'form_screen.dart';
+
+class HomeScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final tacheViewModel = Provider.of<TacheViewModel>(context);
+
+    return Scaffold(
+      appBar: AppBar(title: Text("Gestion des Tâches")),
+      body: FutureBuilder(
+        future: tacheViewModel.fetchTaches(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          }
+
+          return ListView.builder(
+            itemCount: tacheViewModel.taches.length,
+            itemBuilder: (context, index) {
+              final tache = tacheViewModel.taches[index];
+              return ListTile(
+                title: Text(tache.titre),
+                subtitle: Text(tache.description),
+                trailing: IconButton(
+                  icon: Icon(Icons.delete),
+                  onPressed: () => tacheViewModel.supprimerTache(tache.id!),
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => UpdateScreen(tache: tache)),
+                  );
+                },
+              );
+            },
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => FormScreen()),
+        ),
+      ),
+    );
+  }
+}
+5️⃣ Formulaire d'ajout : form_screen.dart
+dart
+Copier
+Modifier
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../models/dao_tache.dart';
+import '../viewmodels/tache_viewmodel.dart';
+
+class FormScreen extends StatelessWidget {
+  final _formKey = GlobalKey<FormState>();
+  String _titre = "";
+  String _description = "";
+
+  @override
+  Widget build(BuildContext context) {
+    final tacheViewModel = Provider.of<TacheViewModel>(context);
+
+    return Scaffold(
+      appBar: AppBar(title: Text("Ajouter une Tâche")),
+      body: Padding(
+        padding: EdgeInsets.all(16),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              TextFormField(
+                decoration: InputDecoration(labelText: "Titre"),
+                onSaved: (value) => _titre = value!,
+              ),
+              TextFormField(
+                decoration: InputDecoration(labelText: "Description"),
+                onSaved: (value) => _description = value!,
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  _formKey.currentState!.save();
+                  final nouvelleTache = DaoTache(titre: _titre, description: _description);
+                  tacheViewModel.ajouterTache(nouvelleTache);
+                  Navigator.pop(context);
+                },
+                child: Text("Ajouter"),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+🔥 Lancer l'application Desktop
+Assure-toi que PostgreSQL est démarré.
+Dans main.dart, initialise la BDD avant runApp() :
+dart
+Copier
+Modifier
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await DatabaseService.init();
+  runApp(MyApp());
+}
+Lance l'application avec :
+sh
+Copier
+Modifier
+flutter run -d windows  # ou macos/linux selon ton OS
+✅ Tu as maintenant un CRUD en Flutter Desktop avec PostgreSQL ! 🎉
+Besoin d'améliorations ou d'autres fonctionnalités ? 🚀
+
+
+
+
+
+
+
