@@ -18,10 +18,6 @@ const resolvers = {
       if (!contact) throw new Error("Contact not found");
       return contact;
     },
-      me: async (_, __, { user }) => {
-        if (!user) throw new Error("Not authenticated");
-        return await prisma.user.findUnique({ where: { id: user.userId }, include: { contacts: true } });
-      },
   },
   Mutation: {
     createUser: async (_, { name, email }) => {

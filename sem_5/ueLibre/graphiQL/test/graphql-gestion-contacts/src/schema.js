@@ -31,7 +31,6 @@
       contacts: [Contact!]! # Liste de tous les contacts
       contact(id: Int!): Contact # Détails d'un contact spécifique
       hello: String
-      me: User
     }
 
     type Mutation {
