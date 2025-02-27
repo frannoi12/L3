@@ -1,0 +1,18 @@
+<!-- update_enseignant.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier Enseignant</title>
+</head>
+<body>
+    <h1>Modifier un Enseignant</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Affiche le formulaire -->
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+    </form>
+    <a href="{% url 'notes:enseignants' %}">Retour à la liste des enseignants</a>  <!-- Lien vers la liste des enseignants -->
+</body>
+</html>

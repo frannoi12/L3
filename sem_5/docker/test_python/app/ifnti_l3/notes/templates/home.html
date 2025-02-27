@@ -1,0 +1,55 @@
+{% extends './base/base.html' %} {% block containt %}
+<section>
+
+  
+  <ul class = "dropdown menu" data-dropdown-menu>
+    <li>
+      <a href = "#"><h4>Liste des Matieres</h4></a>
+      <ul class = "menu">
+        {% for subject in subjects %}
+        <li>
+          <a href="{% url 'notes:matiere' subject.id %}"> {{ subject.nom }} </a>
+          chagé du cours {{ subject.enseignant.nom }}
+        </li>
+        {% endfor %}
+      </ul>
+    </li>
+  </ul>
+  <ul>
+     
+  <ul class = "dropdown menu" data-dropdown-menu>
+    <li>
+      <a href = "#"><h4>Niveaux</h4></a>
+      <ul class = "menu">
+        {% for subject in subjects %}
+        <li>
+          <a href="{% url 'notes:matiere' subject.id %}"> {{ subject.nom }} </a>
+          chagé du cours {{ subject.enseignant.nom }}
+        </li>
+        {% endfor %}
+      </ul>
+    </li>
+  </ul>
+  <ul>
+  </ul>
+  <h2>Recap</h2>
+  <table>
+    <tr>
+      <th>Eleve</th>
+      <th>Matiere</th>
+      <th>Notes</th>
+      <th>Niveau</th>
+    </tr>
+    {% for grade in grades %}
+    <tr>
+      <td>{{ grade.eleve.nom }} {{ grade.eleve.prenom }}</td>
+      <td>{{ grade.matiere.nom }}</td>
+      <td>{{ grade.valeur|default_if_none:"0" }}</td>
+      <td>{{ grade.eleve.niveau }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+</section>
+
+{% endblock containt %}
