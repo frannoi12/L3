@@ -24,7 +24,10 @@ export const signup = async (_, { name, email, password }) => {
     expiresIn: "7d",
   });
 
-  return { token, user };
+  // Exclure le mot de passe dans la réponse
+  const { password: removePassword, ...userWithoutPassword } = user;
+
+  return { token, user: userWithoutPassword };
 };
 
 export const login = async (_, { email, password }) => {
@@ -45,5 +48,8 @@ export const login = async (_, { email, password }) => {
     expiresIn: "7d",
   });
 
-  return { token, user };
+  // Exclure le mot de passe dans la réponse
+  const { password: removePassword, ...userWithoutPassword } = user;
+
+  return { token, user: userWithoutPassword };
 };

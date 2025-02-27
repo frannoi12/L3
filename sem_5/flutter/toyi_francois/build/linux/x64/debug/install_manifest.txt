@@ -1,0 +1,15 @@
+/home/toyi/Documents/L3/L3/sem_5/flutter/task_manager/build/linux/x64/debug/bundle/task_manager
+/home/toyi/Documents/L3/L3/sem_5/flutter/task_manager/build/linux/x64/debug/bundle/data/icudtl.dat
+/home/toyi/Documents/L3/L3/sem_5/flutter/task_manager/build/linux/x64/debug/bundle/lib/libflutter_linux_gtk.so
+/home/toyi/Documents/L3/L3/sem_5/flutter/task_manager/build/linux/x64/debug/bundle/data/flutter_assets/NOTICES.Z
+/home/toyi/Documents/L3/L3/sem_5/flutter/task_manager/build/linux/x64/debug/bundle/data/flutter_assets/kernel_blob.bin
+/home/toyi/Documents/L3/L3/sem_5/flutter/task_manager/build/linux/x64/debug/bundle/data/flutter_assets/FontManifest.json
+/home/toyi/Documents/L3/L3/sem_5/flutter/task_manager/build/linux/x64/debug/bundle/data/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf
+/home/toyi/Documents/L3/L3/sem_5/flutter/task_manager/build/linux/x64/debug/bundle/data/flutter_assets/fonts/MaterialIcons-Regular.otf
+/home/toyi/Documents/L3/L3/sem_5/flutter/task_manager/build/linux/x64/debug/bundle/data/flutter_assets/AssetManifest.json
+/home/toyi/Documents/L3/L3/sem_5/flutter/task_manager/build/linux/x64/debug/bundle/data/flutter_assets/NOTICES
+/home/toyi/Documents/L3/L3/sem_5/flutter/task_manager/build/linux/x64/debug/bundle/data/flutter_assets/NativeAssetsManifest.json
+/home/toyi/Documents/L3/L3/sem_5/flutter/task_manager/build/linux/x64/debug/bundle/data/flutter_assets/AssetManifest.bin
+/home/toyi/Documents/L3/L3/sem_5/flutter/task_manager/build/linux/x64/debug/bundle/data/flutter_assets/AssetManifest.bin.json
+/home/toyi/Documents/L3/L3/sem_5/flutter/task_manager/build/linux/x64/debug/bundle/data/flutter_assets/shaders/ink_sparkle.frag
+/home/toyi/Documents/L3/L3/sem_5/flutter/task_manager/build/linux/x64/debug/bundle/data/flutter_assets/version.json
