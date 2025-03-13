@@ -1,17 +1,23 @@
-import { HomeScreen, LoginScreen, RegisterScreen } from "@/components/screens";
+import { AuthProvider } from "@/components/auth/AuthProvieders";
+import { AddCoursScreen, CoursScreen, EditCoursScreen, HomeScreen, LoginScreen, RegisterScreen } from "@/components/screens";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Text, View } from "react-native";
 
 const Stack = createNativeStackNavigator();
 
 
 export default function Home(){
   return(
-    <Stack.Navigator>
-      <Stack.Screen name = "index" component={HomeScreen}></Stack.Screen>
-      <Stack.Screen name = "login" component={LoginScreen}></Stack.Screen>
-      <Stack.Screen name = "register" component={RegisterScreen}></Stack.Screen>
-    </Stack.Navigator>
+    <AuthProvider>
+      <Stack.Navigator>
+        <Stack.Screen name = "index" component={HomeScreen}></Stack.Screen>
+        <Stack.Screen name = "login" component={LoginScreen}></Stack.Screen>
+        <Stack.Screen name = "register" component={RegisterScreen}></Stack.Screen>
+        <Stack.Screen name = "cours" component={CoursScreen}></Stack.Screen>
+        <Stack.Screen name = "addCours" component={AddCoursScreen}></Stack.Screen>
+        <Stack.Screen name = "editCours" component={EditCoursScreen}></Stack.Screen>
+      </Stack.Navigator>
+    </AuthProvider>
+    
   );
 }
 

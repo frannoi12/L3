@@ -1,6 +1,9 @@
 import { Button, Text, View } from "react-native";
 import FormulaireRegister from "./users/Register";
 import FormulaireLogin from "./users/Login";
+import ListCours from "./cours";
+import AjouterCours from "./cours/AddCours";
+import UpdateCours from "./cours/EditCours";
 
 export function LoginScreen({navigation}){
     return(
@@ -19,6 +22,31 @@ export function RegisterScreen({navigation}){
             <Text>S'inscrire'</Text>
             <br />
             <FormulaireRegister navigation={navigation}></FormulaireRegister>
+        </View>
+    );
+}
+
+export function CoursScreen({navigation}){
+    return(
+        <View>
+            <ListCours navigation={navigation}></ListCours>
+        </View>
+    );
+}
+
+export function AddCoursScreen({navigation}){
+    return(
+        <View>
+            <AjouterCours navigation={navigation}></AjouterCours>
+        </View>
+    );
+}
+
+export function EditCoursScreen(props){
+    const {navigation,route} = props;
+    return(
+        <View>
+            <UpdateCours navigation={navigation} route={route}></UpdateCours>
         </View>
     );
 }
