@@ -1,9 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function IncrementPage() {
     const [counter, setCounter] = useState(0);
+    useEffect(() => {
+        console.log("Counter has changed to", counter);}
+    , []);
     return (
         <div className="flex space-x-4 text-align-center">
             <h1>Page d'incrémentation</h1>
