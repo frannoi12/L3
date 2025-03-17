@@ -1,0 +1,261 @@
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
+export const signup = async (_, { name, email, password }) => {
+  // Vérifier si l'utilisateur existe déjà
+  const existingUser = await prisma.user.findUnique({ where: { email } });
+  if (existingUser) {
+    throw new Error("Un utilisateur avec cet email existe déjà !");
+  }
+
+  // Hachage du mot de passe
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  // Création de l'utilisateur
+  const user = await prisma.user.create({
+    data: { name, email, password: hashedPassword },
+  });
+
+  // Génération du token JWT
+  const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
+    expiresIn: "7d",
+  });
+
+  // Exclure le mot de passe dans la réponse
+  const { password: removePassword, ...userWithoutPassword } = user;
+
+  return { token, user: userWithoutPassword };
+};
+
+export const login = async (_, { email, password }) => {
+  // Vérifier si l'utilisateur existe
+  const user = await prisma.user.findUnique({ where: { email } });
+  if (!user) {
+    throw new Error("Utilisateur non trouvé !");
+  }
+
+  // Vérifier le mot de passe
+  const isValid = await bcrypt.compare(password, user.password);
+  if (!isValid) {
+    throw new Error("Mot de passe incorrect !");
+  }
+
+  // Génération du token JWT
+  const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
+    expiresIn: "7d",
+  });
+
+  // Exclure le mot de passe dans la réponse
+  const { password: removePassword, ...userWithoutPassword } = user;
+
+  return { token, user: userWithoutPassword };
+};
+
+
+
+import { ApolloServer } from "@apollo/server";
+import { startStandaloneServer } from "@apollo/server/standalone"; // Importer la méthode pour un serveur autonome
+import dotenv from 'dotenv';
+import typeDefs from "./schema.js";
+import resolvers from "./resolvers.js";
+import jwt from "jsonwebtoken";
+
+dotenv.config();
+
+const PORT = process.env.PORT || 4000;
+
+
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: async ({ req }) => {
+    const authHeader = req.headers.authorization || "";
+    const token = authHeader.replace("Bearer ", "");
+
+    if (!token) {
+      console.log("⚠️ Aucun token reçu");
+      return { userId: null }; // Retourner `null` pour montrer qu'il n'y a pas d'auth
+    }
+
+    try {
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      console.log("✅ Token décodé :", decoded);
+      return { userId: decoded.userId }; // Garder la cohérence avec `context.userId`
+    } catch (error) {
+      console.error("❌ Token invalide :", error.message);
+      return { userId: null };
+    }
+  },
+});
+
+
+// Démarre le serveur autonome
+startStandaloneServer(server, {
+  listen: { port: PORT }, 
+}).then(({ url }) => {
+  console.log(`Server ready at ${url}`);
+}).catch((err) => {
+  console.error("❌ Error starting server:", err);
+});
+
+
+
+import { PrismaClient } from "@prisma/client";
+import { signup, login } from "./auth.js";
+
+const prisma = new PrismaClient();
+
+const resolvers = {
+  Query: {
+    hello: () => "Hello, World!",
+    users: async () => await prisma.user.findMany({ include: { contacts: true } }),
+    user: async (_, { id }) => {
+      const user = await prisma.user.findUnique({ where: { id }, include: { contacts: true } });
+      if (!user) throw new Error("User not found");
+      return user;
+    },
+    contacts: async () => await prisma.contact.findMany({ include: { user: true } }),
+    contact: async (_, { id }) => {
+      const contact = await prisma.contact.findUnique({ where: { id }, include: { user: true } });
+      if (!contact) throw new Error("Contact not found");
+      return contact;
+    },
+  },
+  Mutation: {
+    createUser: async (_, { name, email }) => {
+      return await prisma.user.create({ data: { name, email } });
+    },
+    createContact: async (_, { phone, address }, { user }) => {
+      if (!user) throw new Error("Not authenticated");
+
+      return await prisma.contact.create({
+        data: { phone, address, userId: user.userId },
+      });
+    },
+    updateUser: async (_, { id, name, email }) => {
+      const userExists = await prisma.user.findUnique({ where: { id } });
+      if (!userExists) throw new Error("User not found");
+
+      return prisma.user.update({ where: { id }, data: { name, email } });
+    },
+    updateContact: async (_, { id, phone, address }) => {
+      const contactExists = await prisma.contact.findUnique({ where: { id } });
+      if (!contactExists) throw new Error("Contact not found");
+
+      return prisma.contact.update({ where: { id }, data: { phone, address } });
+    },
+    deleteUser: async (_, { id }) => {
+      const userExists = await prisma.user.findUnique({ where: { id } });
+      if (!userExists) throw new Error("User not found");
+
+      await prisma.user.delete({ where: { id } });
+      return true;
+    },
+    deleteContact: async (_, { id }) => {
+      const contactExists = await prisma.contact.findUnique({ where: { id } });
+      if (!contactExists) throw new Error("Contact not found");
+
+      await prisma.contact.delete({ where: { id } });
+      return true;
+    },
+    signup,
+    login,
+  },
+};
+
+export default resolvers;
+
+
+
+
+
+  import { gql } from "graphql-tag";
+
+  const typeDefs = gql`
+    type User {
+      id: Int!
+      name: String!
+      email: String!
+      password: String @deprecated(reason: "Not exposed in API")
+      contacts: [Contact!]! # Relation entre User et Contact
+      createdAt: String!
+      updatedAt: String!
+    }
+
+    type Contact {
+      id: Int!
+      phone: String!
+      address: String!
+      user: User! # Relation entre Contact et User
+      createdAt: String!
+      updatedAt: String!
+    }
+
+    type AuthPayload {
+      token: String!
+      user: User!
+    }
+
+    type Query {
+      users: [User!]! # Liste de tous les utilisateurs
+      user(id: Int!): User # Détails d'un utilisateur spécifique
+      contacts: [Contact!]! # Liste de tous les contacts
+      contact(id: Int!): Contact # Détails d'un contact spécifique
+      hello: String
+    }
+
+    type Mutation {
+      createUser(name: String!, email: String!): User! # Créer un utilisateur
+      createContact(phone: String!, address: String!, userId: Int!): Contact! # Créer un contact
+      updateUser(id: Int!, name: String, email: String): User # Mettre à jour un utilisateur
+      updateContact(id: Int!, phone: String, address: String): Contact # Mettre à jour un contact
+      deleteUser(id: Int!): Boolean # Supprimer un utilisateur
+      deleteContact(id: Int!): Boolean # Supprimer un contact
+      signup(name: String!, email: String!, password: String!): AuthPayload!
+      login(email: String!, password: String!): AuthPayload!
+    }
+  `;
+
+  export default typeDefs;
+  
+  
+  
+  
+  // This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(100) @default("")
+  email     String   @unique @db.VarChar(255)
+  password  String   @db.VarChar(255)
+  contacts  Contact[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Contact {
+  id        Int      @id @default(autoincrement())
+  phone     String   @db.VarChar(15)
+  address   String   @db.VarChar(255)
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

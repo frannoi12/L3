@@ -1,0 +1,143 @@
+Bien sûr ! Pour implémenter des fonctionnalités de filtrage, de tri et de pagination dans votre projet utilisant Prisma et Apollo Server, voici quelques ressources essentielles de la documentation :
+
+1. **Filtrage et Tri avec Prisma** :
+   - Prisma Client permet de filtrer et trier les enregistrements sur n'importe quelle combinaison de champs de modèle, y compris les modèles liés, et prend en charge diverses conditions de filtre. https://www.prisma.io/docs/orm/prisma-client/queries/filtering-and-sorting?utm_source=chatgpt.com
+
+2. **Pagination avec Prisma** :
+   - Prisma prend en charge la pagination basée sur les curseurs et l'offset. La documentation détaille comment utiliser `skip`, `take` et `cursor` pour implémenter ces techniques. https://www.prisma.io/docs/orm/prisma-client/queries/pagination?utm_source=chatgpt.com
+
+3. **Résolveurs dans Apollo Server** :
+   - Les résolveurs sont des fonctions responsables de peupler les données pour un champ spécifique dans votre schéma. Apollo Server fournit des directives sur la manière de les définir et de les utiliser efficacement. https://www.apollographql.com/docs/apollo-server/data/resolvers?utm_source=chatgpt.com
+
+4. **Filtrage dans GraphQL avec Apollo** :
+   - Apollo propose des tutoriels sur la manière d'ajouter des capacités de filtrage à votre API GraphQL, en expliquant comment utiliser les arguments dans vos requêtes pour récupérer des objets spécifiques ou filtrer un ensemble d'objets. https://www.apollographql.com/blog/how-to-search-and-filter-results-with-graphql?utm_source=chatgpt.com
+
+5. **Pagination et Tri avec Prisma en TypeScript** :
+   - Un guide détaillé sur la mise en œuvre de la pagination et du tri avec Prisma en TypeScript, couvrant les techniques de pagination par offset et par curseur. https://medium.com/%40enayetflweb/pagination-and-sorting-with-prisma-in-typescript-568e4f35559b
+
+En explorant ces ressources, vous acquerrez une compréhension approfondie de la manière d'implémenter efficacement le filtrage, le tri et la pagination dans votre projet GraphQL utilisant Prisma et Apollo Server. 
+
+
+
+
+
+
+
+
+D'accord ! Voici un exemple de **filtrage**, **tri** et **pagination** sur les `users` en utilisant GraphQL et Prisma.  
+
+---
+
+### 🎯 **Ajout des filtres, tri et pagination dans le schéma GraphQL**
+Dans ton fichier `schema.js` :
+```js
+import { gql } from "graphql-tag";
+
+const typeDefs = gql`
+  type User {
+    id: Int!
+    name: String!
+    email: String!
+    contacts: [Contact!]!
+    createdAt: String!
+  }
+
+  type Query {
+    users(
+      name: String
+      email: String
+      sortBy: String
+      order: String
+      skip: Int
+      take: Int
+    ): [User!]!
+  }
+`;
+
+export default typeDefs;
+```
+
+---
+
+### 🛠 **Mise à jour des résolveurs pour prendre en charge le filtrage, tri et pagination**
+Dans `resolvers.js` :
+```js
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
+const resolvers = {
+  Query: {
+    users: async (_, { name, email, sortBy, order, skip, take }) => {
+      return await prisma.user.findMany({
+        where: {
+          name: name ? { contains: name, mode: "insensitive" } : undefined,
+          email: email ? { contains: email, mode: "insensitive" } : undefined,
+        },
+        orderBy: sortBy
+          ? { [sortBy]: order === "desc" ? "desc" : "asc" }
+          : { createdAt: "desc" },
+        skip: skip || 0,
+        take: take || 10,
+      });
+    },
+  },
+};
+
+export default resolvers;
+```
+
+---
+
+### 🔥 **Explication du code**
+- **Filtrage** :
+  - `name: { contains: name, mode: "insensitive" }` → Recherche partielle insensible à la casse.
+  - `email: { contains: email, mode: "insensitive" }` → Pareil pour l’email.
+  
+- **Tri** :
+  - `orderBy: { [sortBy]: order === "desc" ? "desc" : "asc" }`  
+  - Si `sortBy` est défini (ex: `name`, `createdAt`), on trie selon l’ordre (`asc` ou `desc`).
+  
+- **Pagination** :
+  - `skip`: Permet d’ignorer un certain nombre de résultats (utile pour paginer).
+  - `take`: Nombre maximal de résultats à retourner.
+
+---
+
+### 🚀 **Exemple de requêtes GraphQL**
+1️⃣ **Filtrer les utilisateurs dont le nom contient "Jean"** :
+```graphql
+query {
+  users(name: "Jean") {
+    id
+    name
+    email
+  }
+}
+```
+
+2️⃣ **Récupérer les 5 premiers utilisateurs triés par `createdAt` décroissant** :
+```graphql
+query {
+  users(sortBy: "createdAt", order: "desc", take: 5) {
+    id
+    name
+    createdAt
+  }
+}
+```
+
+3️⃣ **Paginer les utilisateurs (10 par page, page 2)** :
+```graphql
+query {
+  users(skip: 10, take: 10) {
+    id
+    name
+  }
+}
+```
+
+---
+
+### ✅ **Conclusion**
+Avec ce code, tu peux facilement **filtrer**, **trier** et **paginer** tes utilisateurs dans GraphQL avec Prisma. Dis-moi si tu veux adapter ça pour `Contact` aussi ! 🚀🔥
