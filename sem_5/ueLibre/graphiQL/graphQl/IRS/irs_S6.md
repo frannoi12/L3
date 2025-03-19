@@ -23,4 +23,13 @@ Les principal caractéristiques entrepreneuriale sont :
 	- La confiance en soi
 	- Un haut niveau d'énergie et de dynamisme 
 	- La persévérance
-	- 
+	- Avoir un grand réseautage(respecté tout le monde gardé toujours en esprit que tout type de personne quel quel soit peut toujours nous apporté un plus).
+	- Cherché les mécanisme de financement dans tout type de domaine 
+	- En entrepreneuriat l'échec est une occasion de mieux faire (amélioré).
+	- Tolérance au stress
+	- Orientation vers l'action
+
+
+Vidéo sur l'entreprise PHILAB (épice): 
+	-il faut un modèle économique
+	- www.widu.africa pour les subvention

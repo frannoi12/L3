@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Méthodologie de la recherche/cours et note.md",
+                "file": "IRS/irs_S6.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "cours et note"
+              "title": "irs_S6"
             }
           },
           {
@@ -203,6 +203,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "copilot:Open Copilot Chat": false,
       "switcher:Ouvrir le sélecteur rapide": false,
       "graph:Ouvrir la vue graphique": false,
       "canvas:Créer une nouvelle toile": false,
@@ -214,11 +215,12 @@
   },
   "active": "bb57d13bb2b6496b",
   "lastOpenFiles": [
+    "Méthodologie de la recherche/cours et note.md",
+    "Méthodologie de la recherche/cours et note.pdf",
     "IRS/Cours(irs).md",
     "Méthodologie de la recherche/présentation.md",
     "IRS/irs_S6.md",
     "Sans titre.md",
-    "Méthodologie de la recherche/cours et note.md",
     "C.md",
     "Méthodologie de la recherche"
   ]

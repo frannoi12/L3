@@ -91,6 +91,60 @@ Il y a 6 étapes à suivre pour analyser les données qualitatives :
 
 
 
+## CARACTÉRISTIQUES DE LA RECHERCHE QUANTITATIVE
+
+	Cette recherche repose sur la collecte et la mise en rapport d'informations et de faits qui peuvent être quantifiés et mesurés.
+
+#### Hypothèse :
+
+	- La variable **indépendante** qui est la cause. Par exemple lors de l'étude des résultats d'examens, la variable indépendante peut être le nbre d'heure d'étude.
+	- la variable **dépendante** qui est affectée par la variable indépendante et en est le résultat, comme les examens officiels (conséquences direct).
+
+### Avantages des hypothèses
+
+	- Déterminer de manière exacte l'étendue du problème de recherche.
+	- Organiser la recherche car les hypothèses représentent l'élément de base du sujet de recherche.
+	- Relier la question de recherche aux théories présentés
+	- Guider le chercheur la chercheuse dans l'analyse des résultats et expliquer scientifiquement les phénomènes.
+	- Tester les méthodes statistiques appropriées afin de tester les relations entre les variables de recherche .
+
+
+### RÉDACTION ET PUBLICATION DE LA RECHERCHE SCIENTIFIQUE 
+
+Le chercheur doit adopter un méthode scientifique dans la formulation de ses recherches qui comprenne les éléments suivants.
+
+	- Un langage clair : Brièveté et concision, Non-redondance, la capacité d'organiser les informations et les idées et de les présenter de manière logique.
+	- Forte connexion dans le processus de passage d'un mot à un autre et d'un paragraphe 
+
+
+
+### RÈGLES À RESPECTER LORS DE LA REDACTION
+
+	- Ne pas accepter que les jugement et opinion qui doivent être cités soit des arguments et des axiomes absolus et définitifs, mais veiller à ce qu'ils soient toujours considérés comme de simples hypothèses sujettes à analyse, discussion et critique .
+	- Rechercher l'objectivité dans l'analyse et la formulation de la recherche.
+	- Éviter les erreurs et les omissions dans le processus de citation 
+	- Ne pas exagérer ou allonger la citation
+	- Tenir à la précision dans le choix de ce qui est cité et prendre au sérieux la sélection d'échantillons
+
+
+### STRUCTURE DU RAPPORT DE LA RECHERCHE
+
+	- Page de titre 
+	- Table des matières 
+	- Résumé ou sommaire exécutif
+	- Introduction
+	- Revue de la littérature 
+	- Méthodologie
+	- Analyse des données : sous-sections
+	- Resultats et recommendations
+	- conclusion
+	- Annexes
+	- Bibliographie
+
+
+
+
+
 
 
 
