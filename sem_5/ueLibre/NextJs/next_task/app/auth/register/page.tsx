@@ -42,6 +42,8 @@ export default function RegisterPage() {
 
                 <div>
                     <input type="submit" value="S'inscrire"/>
+                    <button onClick={() => router.push("/auth/login")}>Se connecter</button>
+                    <button onClick={() => router.push("/")}>Annuler</button>
                 </div>
             </form>
 

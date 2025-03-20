@@ -1,1 +1,32 @@
-<p>livre works!</p>
+<div class="livre-container">
+    <h1>Gestion des livres</h1>
+  
+    <!-- Formulaire d'ajout de livre -->
+    <div class="form-container">
+      <h2>Ajouter un livre</h2>
+      <input [(ngModel)]="newLivre.titre" placeholder="Titre" />
+      <input [(ngModel)]="newLivre.auteur" placeholder="Auteur" />
+      <button (click)="addLivre()">Ajouter</button>
+    </div>
+  
+    <!-- Formulaire de mise à jour de livre -->
+    <div class="form-container" *ngIf="selectedLivre">
+      <h2>Modifier un livre</h2>
+      <input [(ngModel)]="selectedLivre.titre" placeholder="Titre" />
+      <input [(ngModel)]="selectedLivre.auteur" placeholder="Auteur" />
+      <button (click)="updateLivre()">Mettre à jour</button>
+      <button (click)="selectedLivre = null">Annuler</button>
+    </div>
+  
+    <!-- Liste des livres -->
+    <div class="livre-list">
+      <h2>Liste des livres</h2>
+      <ul>
+        <li *ngFor="let livre of livres">
+          <span class="titre">{{ livre.titre }}</span> par <span class="auteur">{{ livre.auteur }}</span>
+          <button (click)="selectLivreForUpdate(livre)">Modifier</button>
+          <button (click)="deleteLivre(livre.id)">Supprimer</button>
+        </li>
+      </ul>
+    </div>
+  </div>

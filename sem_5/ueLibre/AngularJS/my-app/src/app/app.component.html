@@ -1,5 +1,5 @@
 <nav>
-  <a href="">Liste des livre</a>
+  <a routerLink="/livres">Liste des livre</a>
   <p>Ajouter un paragraphe !!</p>
   <p>{{ message | uppercase}}</p>
   <p>{{taux | percent}}</p>
@@ -9,6 +9,14 @@
 <h1> Compteur : {{compteur$.value}}</h1>
 <button (click) = "incrementer()">Incrémenter</button>
 <button (click) = "renitialiser()" > Réinitialiser </button>
+<input type="text" [(ngModel)]="nom" />
+<p>
+   nom : {{nom}}
+</p>
+
+<ul>
+  <li *ngFor = "let name of names">{{name}}</li>
+</ul>
 
 
 <!-- <p> Users : {{users$ | async}}</p> -->

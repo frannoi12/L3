@@ -1,7 +1,7 @@
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { log } from 'node:console';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import {FormsModule} from '@angular/forms';
@@ -23,6 +23,7 @@ interface User{
     CommonModule,
     HttpClientModule,
     FormsModule,
+    RouterModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -37,6 +38,10 @@ export class AppComponent implements OnInit {
   compteur$ = new BehaviorSubject<number>(0);
 
   title = 'my-app';
+
+  nom : string = '';
+
+  names = ['Alice', 'Bob', 'Charlie', 'TOYI'];
 
     message = 'Hello world!';
     taux : number = 0.25;

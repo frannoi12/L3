@@ -9,8 +9,8 @@ export default function NavBar() {
             <Link href="" className="hover:bg-blue-700 px-4 py-2 rounded-lg">Acceuil</Link>
             <Link href="" className="hover:bg-blue-700 px-4 py-2 rounded-lg">A propos</Link>
             <Link href="/dashboard" className="hover:bg-blue-700 px-4 py-2 rounded-lg">Tableau de bord</Link>
-            <Link href="" className="hover:bg-blue-700 px-4 py-2 rounded-lg">Inscription</Link>
-            <Link href="" className="hover:bg-blue-700 px-4 py-2 rounded-lg">Connexion</Link>
+            <Link href="/auth/register" className="hover:bg-blue-700 px-4 py-2 rounded-lg">Inscription</Link>
+            <Link href="/auth/login" className="hover:bg-blue-700 px-4 py-2 rounded-lg">Connexion</Link>
         </div>
       </div>
     </nav>
