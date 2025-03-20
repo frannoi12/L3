@@ -14,8 +14,8 @@ import { RouterModule } from '@angular/router';
 })
 export class LivreComponent {
   livres: Livre[] = [];
-  newLivre: Livre = { id: 0, titre: '', auteur: '', disponible: false };
-  selectedLivre: Livre | null = null;
+  // newLivre: Livre = { id: 0, titre: '', auteur: '', disponible: false };
+  // selectedLivre: Livre | null = null;
 
   constructor(private livreService: LivreService) {}
 
@@ -23,36 +23,47 @@ export class LivreComponent {
     this.loadLivres();
   }
 
-  loadLivres(): void {
-    this.livres = this.livreService.getLivres();
+  loadLivres(): void{
+    this.livreService.getLivres().subscribe({
+      next: (data) => {
+        this.livres = data;
+      },
+      error: (err) => {
+        console.error("Erreur lors du chargement des livres", err);
+      }
+    })
   }
 
-  addLivre(): void {
-    const maxId = this.livres.length > 0 ? Math.max(...this.livres.map(l => l.id)) : 0;
-    this.newLivre.id = maxId + 1;
-    this.livreService.addLivre(this.newLivre);
-    this.newLivre = { id: 0, titre: '', auteur: '', disponible: false };
-    this.loadLivres();
-  }
+  // loadLivres(): void {
+  //   this.livres = this.livreService.getLivres();
+  // }
 
-  selectLivre(livre: Livre): void {
-    this.selectedLivre = { ...livre };
-  }
+  // addLivre(): void {
+  //   const maxId = this.livres.length > 0 ? Math.max(...this.livres.map(l => l.id)) : 0;
+  //   this.newLivre.id = maxId + 1;
+  //   this.livreService.createLivre(this.newLivre);
+  //   this.newLivre = { id: 0, titre: '', auteur: '', disponible: false };
+  //   this.loadLivres();
+  // }
 
-  selectLivreForUpdate(livre: Livre): void {
-    this.selectedLivre = { ...livre };
-  }
+  // selectLivre(livre: Livre): void {
+  //   this.selectedLivre = { ...livre };
+  // }
 
-  updateLivre(): void {
-    if (this.selectedLivre) {
-      this.livreService.updateLivre(this.selectedLivre.id, this.selectedLivre);
-      this.selectedLivre = null;
-      this.loadLivres();
-    }
-  }
+  // selectLivreForUpdate(livre: Livre): void {
+  //   this.selectedLivre = { ...livre };
+  // }
 
-  deleteLivre(id: number): void {
-    this.livreService.deleteLivre(id);
-    this.loadLivres();
-  }
+  // updateLivre(): void {
+  //   if (this.selectedLivre) {
+  //     this.livreService.updateLivre(this.selectedLivre.id, this.selectedLivre);
+  //     this.selectedLivre = null;
+  //     this.loadLivres();
+  //   }
+  // }
+
+  // deleteLivre(id: number): void {
+  //   this.livreService.deleteLivre(id);
+  //   this.loadLivres();
+  // }
 }
