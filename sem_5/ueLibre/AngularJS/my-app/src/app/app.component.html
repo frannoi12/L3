@@ -1,30 +1,34 @@
 <nav>
   <a routerLink="/livres">Liste des livre</a>
-  <p>Ajouter un paragraphe !!</p>
+  <a routerLink="/personnes">Liste des livre</a>
+  <a routerLink="/emprunts">Liste des livre</a>
+
+
+  <!-- <p>Ajouter un paragraphe !!</p>
   <p>{{ message | uppercase}}</p>
   <p>{{taux | percent}}</p>
-  <p>{{montant | currency:currencyCode}}</p>
+  <p>{{montant | currency:currencyCode}}</p> -->
 </nav>
 
-<h1> Compteur : {{compteur$.value}}</h1>
+<!-- <h1> Compteur : {{compteur$.value}}</h1>
 <button (click) = "incrementer()">Incrémenter</button>
 <button (click) = "renitialiser()" > Réinitialiser </button>
 <input type="text" [(ngModel)]="nom" />
 <p>
    nom : {{nom}}
-</p>
+</p> -->
 
-<ul>
+<!-- <ul>
   <li *ngFor = "let name of names">{{name}}</li>
-</ul>
+</ul> -->
 
 
 <!-- <p> Users : {{users$ | async}}</p> -->
 
-<ul>
+<!-- <ul>
   @for (user of users$ | async ; track user.id) {
     <li>{{ user.name }} ({{ user.email }})</li>
   }
-</ul>
+</ul> -->
 
 <router-outlet />

@@ -1,5 +1,5 @@
 export interface Emprunt {
-    id: number;
+    id?: number;
     personneId : number;
     livreId : number;
     dateEmprunt : string;

@@ -1,0 +1,26 @@
+<div class="container mt-4">
+    <h2>Liste des Personnes</h2>
+    <a routerLink="/personnes/create" class="btn btn-primary mb-3">Ajouter une Personne</a>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Statut</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let personne of personnes">
+          <td>{{ personne.nom }}</td>
+          <td>{{ personne.prenom }}</td>
+          <td>{{ personne.statut }}</td>
+          <td>
+            <a [routerLink]="['/personnes/update', personne.id]" class="btn btn-warning btn-sm me-2">Modifier</a>
+            <button (click)="confirmDelete(personne.id)" class="btn btn-danger btn-sm">Supprimer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

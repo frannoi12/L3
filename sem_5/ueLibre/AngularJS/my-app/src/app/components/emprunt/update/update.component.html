@@ -1,0 +1,27 @@
+<div class="container">
+    <h2>Modifier un emprunt</h2>
+    <form (submit)="updateEmprunt()">
+      <div class="form-group">
+        <label for="personneId">ID Personne</label>
+        <input type="number" id="personneId" [(ngModel)]="emprunt?.personneId" name="personneId" class="form-control" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="livreId">ID Livre</label>
+        <input type="number" id="livreId" [(ngModel)]="emprunt?.livreId" name="livreId" class="form-control" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="dateEmprunt">Date d'emprunt</label>
+        <input type="date" id="dateEmprunt" [(ngModel)]="emprunt?.dateEmprunt" name="dateEmprunt" class="form-control" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="dateRetour">Date de retour</label>
+        <input type="date" id="dateRetour" [(ngModel)]="emprunt?.dateRetour" name="dateRetour" class="form-control" />
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Mettre à jour</button>
+    </form>
+  </div>
+  

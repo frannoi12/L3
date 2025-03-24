@@ -1,0 +1,28 @@
+<div class="container mt-4">
+    <h2>Nouvel Emprunt</h2>
+    <form (ngSubmit)="createEmprunt()">
+      <div class="mb-3">
+        <label for="personneId" class="form-label">ID de la Personne</label>
+        <input type="number" id="personneId" class="form-control" [(ngModel)]="emprunt.personneId" name="personneId" required>
+      </div>
+  
+      <div class="mb-3">
+        <label for="livreId" class="form-label">ID du Livre</label>
+        <input type="number" id="livreId" class="form-control" [(ngModel)]="emprunt.livreId" name="livreId" required>
+      </div>
+  
+      <div class="mb-3">
+        <label for="dateEmprunt" class="form-label">Date d'Emprunt</label>
+        <input type="date" id="dateEmprunt" class="form-control" [(ngModel)]="emprunt.dateEmprunt" name="dateEmprunt" required>
+      </div>
+  
+      <div class="mb-3">
+        <label for="dateRetour" class="form-label">Date de Retour (optionnel)</label>
+        <input type="date" id="dateRetour" class="form-control" [(ngModel)]="emprunt.dateRetour" name="dateRetour">
+      </div>
+  
+      <button type="submit" class="btn btn-success">Créer</button>
+      <a routerLink="/emprunts" class="btn btn-secondary">Annuler</a>
+    </form>
+  </div>
+  

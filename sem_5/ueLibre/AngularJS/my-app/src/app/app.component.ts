@@ -2,7 +2,6 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
-import { log } from 'node:console';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import {FormsModule} from '@angular/forms';
 
@@ -92,7 +91,7 @@ export class AppComponent implements OnInit {
     this.objet1.next(1);
     this.objet1.next(2);
 
-    log("deuxieme abonnement");
+    console.log("deuxieme abonnement");
 
     this.objet1.subscribe((value: number) => {
       console.log(`Abonné ${value} : ${value}`);

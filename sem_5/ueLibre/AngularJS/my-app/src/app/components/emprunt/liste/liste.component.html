@@ -1,0 +1,31 @@
+<div class="container mt-4">
+    <h2>Liste des Emprunts</h2>
+    <a routerLink="/emprunts/create" class="btn btn-primary mb-3">Nouvel Emprunt</a>
+    
+    <table class="table table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Personne ID</th>
+          <th>Livre ID</th>
+          <th>Date Emprunt</th>
+          <th>Date Retour</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let emprunt of emprunts">
+          <td>{{ emprunt.id }}</td>
+          <td>{{ emprunt.personneId }}</td>
+          <td>{{ emprunt.livreId }}</td>
+          <td>{{ emprunt.dateEmprunt }}</td>
+          <td>{{ emprunt.dateRetour ? 'Oui' : 'Non' }}</td>
+          <td>
+            <a routerLink="/emprunts/update/{{ emprunt.id }}" class="btn btn-warning btn-sm">Modifier</a>
+            <button (click)="confirmDelete(emprunt.id!)" class="btn btn-danger btn-sm">Supprimer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

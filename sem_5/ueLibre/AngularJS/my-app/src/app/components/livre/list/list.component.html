@@ -1,1 +1,34 @@
-<p>list works!</p>
+<div class="container mt-4">
+  <h2>Liste des Livres</h2>
+  <a routerLink="/livres/create" class="btn btn-primary mb-3">Ajouter un Livre</a>
+
+  <table class="table table-striped" *ngIf="livres.length > 0; else emptyMessage">
+    <thead>
+      <tr>
+        <th>Titre</th>
+        <th>Auteur</th>
+        <th>Disponible</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let livre of livres">
+        <td>{{ livre.titre }}</td>
+        <td>{{ livre.auteur }}</td>
+        <td>{{ livre.disponible ? 'Oui' : 'Non' }}</td>
+        <td>
+          <a [routerLink]="['/livres/update', livre.id]" class="btn btn-warning btn-sm me-2">Modifier</a>
+          <button *ngIf="livre.id !== undefined" (click)="confirmDelete(livre.id)" class="btn btn-danger btn-sm">
+            Supprimer
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Message si aucun livre n'est disponible -->
+  <ng-template #emptyMessage>
+    <p class="text-muted">Aucun livre trouvé.</p>
+  </ng-template>
+
+</div>

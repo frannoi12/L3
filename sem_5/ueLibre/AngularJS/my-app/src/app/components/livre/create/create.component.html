@@ -1,1 +1,40 @@
-<p>create works!</p>
+<div class="container mt-4">
+  <h2>Ajouter un Livre</h2>
+  <form (ngSubmit)="createLivre()" #livreForm="ngForm">
+    
+    <!-- Champ Titre -->
+    <div class="mb-3">
+      <label for="titre" class="form-label">Titre</label>
+      <input type="text" class="form-control" id="titre" [(ngModel)]="livre.titre" name="titre" required #titre="ngModel">
+      <div *ngIf="titre.invalid && (titre.touched || titre.dirty)" class="text-danger">
+        Le titre est requis.
+      </div>
+    </div>
+
+    <!-- Champ Auteur -->
+    <div class="mb-3">
+      <label for="auteur" class="form-label">Auteur</label>
+      <input type="text" class="form-control" id="auteur" [(ngModel)]="livre.auteur" name="auteur" required #auteur="ngModel">
+      <div *ngIf="auteur.invalid && (auteur.touched || auteur.dirty)" class="text-danger">
+        L'auteur est requis.
+      </div>
+    </div>
+
+    <!-- Champ Disponible -->
+    <div class="mb-3">
+      <label for="disponible" class="form-label">Disponible</label>
+      <select class="form-select" id="disponible" [(ngModel)]="livre.disponible" name="disponible" required #disponible="ngModel">
+        <option [ngValue]="true">Oui</option>
+        <option [ngValue]="false">Non</option>
+      </select>
+      <div *ngIf="disponible.invalid && (disponible.touched || disponible.dirty)" class="text-danger">
+        La disponibilité est requise.
+      </div>
+    </div>
+
+    <!-- Boutons -->
+    <button type="submit" class="btn btn-success" [disabled]="livreForm.invalid">Créer</button>
+    <a routerLink="/livres" class="btn btn-secondary">Retour à la liste</a>
+
+  </form>
+</div>
