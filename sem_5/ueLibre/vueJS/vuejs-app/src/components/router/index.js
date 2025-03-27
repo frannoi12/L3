@@ -4,6 +4,8 @@ import Home from '../views/Home.vue';
 import About from '../views/About.vue';
 import Contact from '../views/Contact.vue';
 import Liste from '@/Pages/Livres/Liste.vue';
+import Create from '@/Pages/Livres/Create.vue';
+import Update from '@/Pages/Livres/Update.vue';
 const routes = [
   {
     path: '/',
@@ -19,6 +21,16 @@ const routes = [
     path: '/contact',
     name: 'Contact',
     component: Contact
+  },
+  {
+    path: '/create',
+    name: 'create',
+    component: Create
+  },
+  {
+    path: '/update/:id',
+    name: 'update',
+    component: Update
   }
   
 ];

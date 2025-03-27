@@ -12,7 +12,8 @@
             <tr v-for="livre in livres" :key="livre.id">
                 <td>{{ livre.titre }}</td>
                 <td>{{ livre.auteur }}</td>
-                <td>{{ livre.disponible}}</td>
+                <td v-if="livre.disponible==1">{{ true }}</td>
+                <td v-else>{{ false }}</td>
                 <td>
                     <button @click="deleteLivre(livre.id)">Supprimer</button>
                     <button @click="editLivre(livre.id)">Editer</button>

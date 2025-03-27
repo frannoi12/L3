@@ -2,6 +2,7 @@
         // import Create from 'Pages/Livres/Create.vue'
         // import Update from 'Pages/Livres/Update.vue'
         import Liste from './Pages/Livres/Liste.vue';
+        import Create from './Pages/Livres/Create.vue';
 
 </script>
 
@@ -16,7 +17,9 @@
   </nav>
   </div>
   <router-view></router-view>
-  <Liste/>
+  <!-- <Liste/>
+  <Create/> -->
+  <RouterLink to="/create">create</RouterLink>
 </template>
 
 <!-- <script>

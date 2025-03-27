@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Configuration CORS
 app.use(cors({
-  origin: 'http://localhost:4200', // Autoriser uniquement l'origine de votre application Angular
+  origin: 'http://localhost:5173', // Autoriser uniquement l'origine de votre application Angular
   methods: 'GET,POST,PUT,DELETE', // Méthodes HTTP autorisées
   allowedHeaders: 'Content-Type,Authorization' // En-têtes autorisés
 }));
