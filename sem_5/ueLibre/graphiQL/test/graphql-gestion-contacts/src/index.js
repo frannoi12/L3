@@ -13,9 +13,23 @@ const PORT = process.env.PORT || 4000;
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+});
+
+
+// Démarre le serveur autonome
+startStandaloneServer(server, {
+  listen: { port: PORT }, 
   context: async ({ req }) => {
+    // console.log(req);
+    
     const authHeader = req.headers.authorization || "";
-    const token = authHeader.replace("Bearer ", "");
+    // console.log("🔍 Authorization Header:", authHeader);
+    
+    const token = authHeader && authHeader.startsWith("Bearer ")
+      ? authHeader.split(" ")[1] 
+      : null;
+
+    // const token = authHeader.replace("Bearer ", "");
 
     if (!token) {
       console.log("⚠️ Aucun token reçu");
@@ -28,15 +42,10 @@ const server = new ApolloServer({
       return { userId: decoded.userId }; // Garder la cohérence avec `context.userId`
     } catch (error) {
       console.error("❌ Token invalide :", error.message);
-      return { userId: null };
+      // return { userId: null };
+      throw new Error("Token invalide ou expiré");
     }
   },
-});
-
-
-// Démarre le serveur autonome
-startStandaloneServer(server, {
-  listen: { port: PORT }, 
 }).then(({ url }) => {
   console.log(`Server ready at ${url}`);
 }).catch((err) => {
