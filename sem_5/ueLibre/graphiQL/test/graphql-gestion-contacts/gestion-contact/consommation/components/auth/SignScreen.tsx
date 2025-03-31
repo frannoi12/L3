@@ -1,35 +1,41 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
 import { useMutation } from '@apollo/client';
-import { LOGIN } from '@/api/mutations';
+import { SIGNUP } from '@/api/mutations';
 
-const FormulaireLoginScreen = ({ navigation }) => {
+const FormulaireRegisterScreen = ({ navigation }) => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const [login, { loading, error }] = useMutation(LOGIN);
+  const [signup, { loading, error }] = useMutation(SIGNUP);
 
-  const handleLogin = async () => {
+  const handleSignup = async () => {
     try {
-      const { data } = await login({
-        variables: { email, password },
+      const { data } = await signup({
+        variables: { name, email, password },
       });
 
-      if (data.login.token) {
+      if (data.signup.token) {
         // Sauvegarde du token dans AsyncStorage ou un contexte global
-        Alert.alert("Connexion réussie", "Bienvenue !");
-        // Tu peux rediriger vers l'écran d'accueil par exemple
-        navigation.replace('dashboard');
+        Alert.alert("Inscription réussie", "Bienvenue !");
+        navigation.replace('acceuil');
       }
     } catch (err) {
       console.error(err);
-      Alert.alert("Erreur", "Email ou mot de passe incorrect");
+      Alert.alert("Erreur", "Impossible de créer le compte. Essayez à nouveau.");
     }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Connexion</Text>
+      <Text style={styles.title}>Inscription</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Nom"
+        value={name}
+        onChangeText={setName}
+      />
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -43,11 +49,11 @@ const FormulaireLoginScreen = ({ navigation }) => {
         onChangeText={setPassword}
         secureTextEntry
       />
-      <Button title={loading ? 'Chargement...' : 'Se connecter'} onPress={handleLogin} />
+      <Button title={loading ? 'Chargement...' : 'S\'inscrire'} onPress={handleSignup} />
       {error && <Text style={styles.error}>{error.message}</Text>}
       <Button
-        title="Pas encore de compte ? S'inscrire"
-        onPress={() => navigation.navigate('register')}
+        title="Déjà un compte ? Se connecter"
+        onPress={() => navigation.navigate('login')}
       />
     </View>
   );
@@ -77,4 +83,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FormulaireLoginScreen;
+export default FormulaireRegisterScreen;

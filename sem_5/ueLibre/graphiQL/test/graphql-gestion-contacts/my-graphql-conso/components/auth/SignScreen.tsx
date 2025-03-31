@@ -19,7 +19,7 @@ const FormulaireRegisterScreen = ({ navigation }) => {
       if (data.signup.token) {
         // Sauvegarde du token dans AsyncStorage ou un contexte global
         Alert.alert("Inscription réussie", "Bienvenue !");
-        navigation.replace('Home');
+        navigation.replace('login');
       }
     } catch (err) {
       console.error(err);
@@ -53,7 +53,7 @@ const FormulaireRegisterScreen = ({ navigation }) => {
       {error && <Text style={styles.error}>{error.message}</Text>}
       <Button
         title="Déjà un compte ? Se connecter"
-        onPress={() => navigation.navigate('Login')}
+        onPress={() => navigation.navigate('login')}
       />
     </View>
   );
