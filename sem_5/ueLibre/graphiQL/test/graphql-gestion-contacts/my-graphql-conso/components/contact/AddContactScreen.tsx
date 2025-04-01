@@ -6,6 +6,7 @@ import { CREATE_CONTACT } from '@/api/mutations';
 import { GET_USER } from '@/api/queries';
 
 const AddContactScreen = ({ navigation }) => {
+  const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
   const [createContact, { loading, error }] = useMutation(CREATE_CONTACT, {
@@ -21,16 +22,23 @@ const AddContactScreen = ({ navigation }) => {
 
     const user = JSON.parse(storedUser);
 
+    console.log(user.id);
+    
+
     try {
-      await createContact({
+      const ok = await createContact({
         variables: {
+          name,
           phone,
           address,
-          userId: user.id,
+          user: { connect: { id: userId } }
         },
+        include: { user: true }, 
       });
-      Alert.alert('Succès', 'Contact ajouté avec succès !');
-      navigation.goBack();
+      if(ok){
+        Alert.alert('Succès', 'Contact ajouté avec succès !');
+        navigation.goBack();
+      }
     } catch (err) {
       Alert.alert('Erreur', err.message);
     }
@@ -41,14 +49,21 @@ const AddContactScreen = ({ navigation }) => {
       <Text style={styles.title}>Ajouter un Contact</Text>
       <TextInput
         style={styles.input}
-        placeholder="Téléphone"
+        placeholder="Nom du contact"
+        value={name}
+        onChangeText={setName}
+      />
+
+      <TextInput
+        style={styles.input}
+        placeholder="Numéro de Téléphone"
         value={phone}
         onChangeText={setPhone}
         keyboardType="phone-pad"
       />
       <TextInput
         style={styles.input}
-        placeholder="Adresse"
+        placeholder="Adresse de la personne "
         value={address}
         onChangeText={setAddress}
       />

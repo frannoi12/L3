@@ -8,6 +8,7 @@ export const GET_USERS = gql`
       email
       contacts {
         id
+        name
         phone
       }
     }
@@ -22,6 +23,7 @@ export const GET_USER = gql`
       email
       contacts {
         id
+        name
         phone
         address
       }
@@ -33,6 +35,7 @@ export const GET_CONTACTS = gql`
   query GetContacts {
     contacts {
       id
+      name
       phone
       address
       user {
@@ -47,6 +50,7 @@ export const GET_CONTACT = gql`
   query GetContact($id: Int!) {
     contact(id: $id) {
       id
+      name
       phone
       address
       user {

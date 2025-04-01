@@ -37,9 +37,10 @@ export const CREATE_USER = gql`
 `;
 
 export const CREATE_CONTACT = gql`
-  mutation CreateContact($phone: String!, $address: String!, $userId: Int!) {
-    createContact(phone: $phone, address: $address, userId: $userId) {
+  mutation CreateContact($name: String!, $phone: String!, $address: String!, $userId: Int!) {
+    createContact(name: $name, phone: $phone, address: $address, userId: $userId) {
       id
+      name
       phone
       address
       user {

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
 import { useMutation } from '@apollo/client';
 import { LOGIN } from '@/api/mutations';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const FormulaireLoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
@@ -10,20 +11,29 @@ const FormulaireLoginScreen = ({ navigation }) => {
   const [login, { loading, error }] = useMutation(LOGIN);
 
   const handleLogin = async () => {
-    try {
-      const { data } = await login({
-        variables: { email, password },
-      });
+    if (!email || !password) {
+      Alert.alert('Erreur', 'Veuillez remplir tous les champs.');
+      return;
+    }
 
-      if (data.login.token) {
-        // Sauvegarde du token dans AsyncStorage ou un contexte global
+    try {
+      const { data } = await login({ variables: { email, password } });
+      // console.log({data});
+      // console.log(data.login.token);
+      // console.log(data.login.user);
+      
+
+      if (data.login.token !== "  ") {
+        await AsyncStorage.setItem('token', data.login.token);
+        await AsyncStorage.setItem('user', JSON.stringify(data.login.user));
         Alert.alert("Connexion réussie", "Bienvenue !");
-        // Tu peux rediriger vers l'écran d'accueil par exemple
         navigation.replace('dashboard');
+      } else {
+        Alert.alert("Erreur", "Identifiants incorrects.");
       }
     } catch (err) {
       console.error(err);
-      Alert.alert("Erreur", "Email ou mot de passe incorrect");
+      Alert.alert("Erreur", error?.message || "Problème de connexion.");
     }
   };
 
@@ -35,6 +45,9 @@ const FormulaireLoginScreen = ({ navigation }) => {
         placeholder="Email"
         value={email}
         onChangeText={setEmail}
+        keyboardType="email-address"
+        autoCapitalize="none"
+        autoCorrect={false}
       />
       <TextInput
         style={styles.input}
@@ -42,13 +55,12 @@ const FormulaireLoginScreen = ({ navigation }) => {
         value={password}
         onChangeText={setPassword}
         secureTextEntry
+        autoCapitalize="none"
+        autoCorrect={false}
       />
-      <Button title={loading ? 'Chargement...' : 'Se connecter'} onPress={handleLogin} />
+      <Button title={loading ? 'Chargement...' : 'Se connecter'} onPress={handleLogin} disabled={loading} />
       {error && <Text style={styles.error}>{error.message}</Text>}
-      <Button
-        title="Pas encore de compte ? S'inscrire"
-        onPress={() => navigation.navigate('register')}
-      />
+      <Button title="Pas encore de compte ? S'inscrire" onPress={() => navigation.navigate('register')} />
     </View>
   );
 };
@@ -74,6 +86,7 @@ const styles = StyleSheet.create({
   error: {
     color: 'red',
     marginTop: 10,
+    textAlign: 'center',
   },
 });
 

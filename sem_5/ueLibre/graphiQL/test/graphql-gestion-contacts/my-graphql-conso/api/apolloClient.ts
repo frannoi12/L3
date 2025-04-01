@@ -1,6 +1,6 @@
 import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { setContext } from "@apollo/client/link/context";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // Définir le lien HTTP vers ton API GraphQL
 const httpLink = createHttpLink({
@@ -9,9 +9,9 @@ const httpLink = createHttpLink({
 
 // Middleware pour ajouter le token d'authentification dans les headers
 const authLink = setContext(async (_, { headers }) => {
-  console.log(authLink);
+  // console.log(authLink);
   const token = await AsyncStorage.getItem("token");
-  console.log(token);
+  // console.log(token);
   return {
     headers: {
       ...headers,
