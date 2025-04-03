@@ -1,0 +1,9 @@
+typeDefs	Définition du schéma GraphQL
+resolvers	Logique des requêtes et mutations
+context	Partage des données entre résolveurs (auth, DB, etc.)
+dataSources	Connexion aux API externes ou bases de données
+subscriptions	Gère les WebSockets pour les abonnements
+formatError	Personnalise la gestion des erreurs
+formatResponse	Modifie la réponse avant l'envoi
+introspection	Active ou désactive l’introspection du schéma
+csrfPrevention	Active la protection CSRF

@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "economie/introduction.md",
+                "file": "IRS/irs_S6.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "introduction"
+              "title": "irs_S6"
             }
           },
           {
@@ -227,14 +227,14 @@
       "etymology-lookup:Etymology Lookup": false
     }
   },
-  "active": "021e4f40670ea00d",
+  "active": "0af040eb82215985",
   "lastOpenFiles": [
-    "IRS/irs_S6.md",
+    "IRS/Cours(irs).md",
     "economie/introduction.md",
+    "IRS/irs_S6.md",
     "economie",
     "Méthodologie de la recherche/cours et note.md",
     "Méthodologie de la recherche/cours et note.pdf",
-    "IRS/Cours(irs).md",
     "Méthodologie de la recherche/présentation.md",
     "Sans titre.md",
     "C.md",

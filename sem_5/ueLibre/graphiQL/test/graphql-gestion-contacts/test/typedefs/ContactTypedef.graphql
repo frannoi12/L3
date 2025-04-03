@@ -1,0 +1,23 @@
+type Contact {
+  id:         ID!       
+  firstName:  String!   
+  lastName:   String!    
+  phone:      String!   
+  email:      String!   
+  address:    String!  
+  userId:     ID!       
+  user:       User!      
+  createdAt:  String! 
+  updatedAt:  String! 
+}
+
+type Query{
+    contacts: [Contact]!
+    contact(id: ID!): Contact!
+}
+
+ type Mutation {    
+  ajouterContact(firstName: String, lastName:String,phone:String, email:String, address:String, userId:String):Contact,
+  modifierContact(id:ID, firstName: String, lastName:String,phone:String, email:String, address:String, userId:String):Contact,
+  supprimerContact(id:ID):Boolean
+ }

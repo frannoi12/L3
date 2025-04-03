@@ -49,7 +49,7 @@ const FormulaireRegisterScreen = ({ navigation }) => {
         onChangeText={setPassword}
         secureTextEntry
       />
-      <Button title={loading ? 'Chargement...' : 'S\'inscrire'} onPress={handleSignup} />
+      <Button title={loading ? 'Chargement...' : 'Sinscrire'} onPress={handleSignup} />
       {error && <Text style={styles.error}>{error.message}</Text>}
       <Button
         title="Déjà un compte ? Se connecter"
@@ -61,9 +61,10 @@ const FormulaireRegisterScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
     justifyContent: 'center',
     padding: 20,
+    marginTop: 100
   },
   title: {
     fontSize: 24,

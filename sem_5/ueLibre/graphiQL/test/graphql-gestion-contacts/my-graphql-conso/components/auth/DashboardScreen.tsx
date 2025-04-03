@@ -12,20 +12,8 @@ const DashboardScreen = ({ navigation }) => {
     variables: { id: userId },
     skip: !userId,
   });
-
-  useEffect(() => {
-    if (data?.user?.contacts) {
-      console.log("Contacts récupérés:", data.user.contacts);
-    }
-  }, [data]);
-
-  const [deleteContact] = useMutation(DELETE_CONTACT, {
-    onCompleted: () => {
-      Alert.alert('Succès', 'Contact supprimé avec succès');
-      refetch();
-    },
-    onError: (err) => Alert.alert('Erreur', err.message),
-  });
+  
+  
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -44,17 +32,28 @@ const DashboardScreen = ({ navigation }) => {
     fetchUser();
   }, [navigation]);
 
+  const [deleteContact] = useMutation(DELETE_CONTACT, {
+    onCompleted: () => {
+      Alert.alert('Succès', 'Contact supprimé avec succès');
+      refetch();
+    },
+    onError: (error) => {
+      Alert.alert('Erreur', error.message);
+    }
+  });
+
   const handleDelete = (contactId) => {
+    console.log("ID du contact à supprimer :", contactId);
     Alert.alert('Confirmation', 'Voulez-vous vraiment supprimer ce contact ?', [
       { text: 'Annuler', style: 'cancel' },
       { 
         text: 'Supprimer', 
         onPress: async () => {
           try {
-            const response = await deleteContact({ variables: { id: contactId } });
-            console.log("Réponse de suppression:", response);
-            Alert.alert('Succès', 'Contact supprimé avec succès');
-            refetch();  // Rafraîchir la liste après suppression
+            const { data } = await deleteContact({
+              variables: { id: contactId },
+            });
+            console.log("Réponse de suppression:", data);
           } catch (err) {
             console.error("Erreur lors de la suppression:", err);
             Alert.alert('Erreur', err.message);
@@ -63,8 +62,6 @@ const DashboardScreen = ({ navigation }) => {
       }
     ]);
   };
-  
-  
 
   const handleLogout = async () => {
     await AsyncStorage.removeItem('token');
@@ -123,6 +120,7 @@ const DashboardScreen = ({ navigation }) => {
     </SafeAreaView>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 20, backgroundColor: '#fff' },

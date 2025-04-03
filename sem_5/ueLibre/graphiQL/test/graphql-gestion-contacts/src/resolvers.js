@@ -41,8 +41,22 @@ const resolvers = {
       return await prisma.user.create({ data: { name, email } });
     },
     createContact: async (_, { name, phone, address }, { userId }) => {
-      checkAuth(userId);
-      return await prisma.contact.create({ data: { name, phone, address, userId } });
+      checkAuth(userId); // Vérifie si l'utilisateur est authentifié
+    
+      // Créer le contact en liant à l'utilisateur
+      const newContact = await prisma.contact.create({
+        data: {
+          name,
+          phone,
+          address,
+          user: { connect: { id: userId } }, // Lier le contact à l'utilisateur
+        },
+        include: {
+          user: true, // Inclure les informations de l'utilisateur lors du retour
+        },
+      });
+    
+      return newContact; // Renvoyer le contact créé, incluant l'utilisateur
     },
     updateUser: async (_, { id, name, email }) => {
       const userExists = await prisma.user.findUnique({ where: { id } });
@@ -64,7 +78,11 @@ const resolvers = {
     },
     deleteContact: async (_, { id }, { userId }) => {
       checkAuth(userId);
-      await prisma.contact.delete({ where: { id, userId } });
+      const contact = await prisma.contact.findUnique({ where: { id } });
+      if (!contact || contact.userId !== userId) {
+        throw new Error('Contact non trouvé ou vous n\'avez pas accès à ce contact');
+      }
+      await prisma.contact.delete({ where: { id } });
       return true;
     },
     signup,

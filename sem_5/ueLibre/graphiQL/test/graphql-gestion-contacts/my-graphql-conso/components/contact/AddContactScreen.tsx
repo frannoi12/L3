@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CREATE_CONTACT } from '@/api/mutations';
 import { GET_USER } from '@/api/queries';
@@ -9,8 +9,18 @@ const AddContactScreen = ({ navigation }) => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
+
+  const { data: userData, refetch: refetchUser } = useQuery(GET_USER);
+
+
   const [createContact, { loading, error }] = useMutation(CREATE_CONTACT, {
-    refetchQueries: [{ query: GET_USER }], // Met à jour le dashboard après ajout
+    onCompleted: async () => {
+      Alert.alert('Succès', 'Contact ajouté avec succès !');
+      navigation.replace('dashboard'); // Redirige vers le tableau de bord après le re-fetch
+    },
+    onError: (err) => {
+      Alert.alert('Erreur', err.message);
+    },
   });
 
   const handleAddContact = async () => {
@@ -22,23 +32,16 @@ const AddContactScreen = ({ navigation }) => {
 
     const user = JSON.parse(storedUser);
 
-    console.log(user.id);
-    
-
     try {
-      const ok = await createContact({
+      await createContact({
         variables: {
-          name,
-          phone,
-          address,
-          user: { connect: { id: userId } }
+          name: name,
+          phone: phone,
+          address: address,
+          userId: user.id, // Utilise l'ID récupéré de l'utilisateur
         },
-        include: { user: true }, 
       });
-      if(ok){
-        Alert.alert('Succès', 'Contact ajouté avec succès !');
-        navigation.goBack();
-      }
+      await refetchUser({ variables: { id: user.id } }); // Re-fetch les contacts ici
     } catch (err) {
       Alert.alert('Erreur', err.message);
     }
@@ -53,7 +56,6 @@ const AddContactScreen = ({ navigation }) => {
         value={name}
         onChangeText={setName}
       />
-
       <TextInput
         style={styles.input}
         placeholder="Numéro de Téléphone"
@@ -63,7 +65,7 @@ const AddContactScreen = ({ navigation }) => {
       />
       <TextInput
         style={styles.input}
-        placeholder="Adresse de la personne "
+        placeholder="Adresse de la personne"
         value={address}
         onChangeText={setAddress}
       />

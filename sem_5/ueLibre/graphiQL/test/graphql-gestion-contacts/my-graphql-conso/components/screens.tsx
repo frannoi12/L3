@@ -19,7 +19,6 @@ export function RegisterScreen({navigation}){
     return(
         <View>
             {/* <Text>S'inscrire'</Text> */}
-            <br />
             <FormulaireRegisterScreen navigation={navigation}></FormulaireRegisterScreen>
         </View>
     );
