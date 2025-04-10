@@ -52,7 +52,10 @@ III - Idées opportunités d'entreprise
 	1 Recherche d'idée et d'opportunité
 		Généralement la recherche d'idée peut se faire dans 3 direction : 
 			- La vie quotidienne (identifier les besoins, copier une idée réussit, ...)
-			- La vie économique (consulté des révue où l'actualités économique)
+			- La vie économique (consulté des revue où l'actualités économique)
 	2 - Validation de l'idée
 		Plusieurs technique peuvent être utilisé: 
 			- Le brainstorming (produire des idées)
+
+**If you fail to plan, you are planing to fail**  Benjamin FRANKLIN
+
