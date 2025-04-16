@@ -31,6 +31,24 @@ Ce sont les idées qui créer la richesse .
 
 - **L'économie** est l'Ensemble des activités d'une collectivité humaine réactives à la production, à la distribution et à la consommation des richesses.
 
+- Trouver le juste milieu entre l'urgence et l'importance .
 
+
+#### Les mercantilistes :
+	Pour qu'un etat soit fort il doit être riche donc il doit accumuler l'or et les métaux précieux. Comment aboutir à cette richesse ? trois possiblités :
+	- Le buillionisme(Espagne) accumulation des métaux précieux par exemple la colonisation.
+	- Le commercialisme(Angletterre et hollande), voit dans le commerce la source de la richesse d'un pays
+	- Le colbertisme (France), importer des matières premières et vendre les produits manufacturés. Jean Baptiste Colbert
+
+
+**Le commerce est un échange à somme nulle. << Personne ne gagne qu'un autre ne perde >> Jean bodin .**
+
+**Les Physiocrates :**
+-  La richesse d'un pays appartient à toute la population et non à l'État. la richesse s'acquiert seulement par le travail, par l'agriculture, par la terre. Car un grain semé en donne beaucoup de graines. Donc la terre multiplie la semence et crée la richesse.
+
+Ainsi trois agents économique repartie en trois classes : 
+	-  **La classe des paysans** : vrai producteur de richesses
+	-  **La classe stérile** : et ce sont les industriels et les commerçants
+	- **La classe des propriétaires terriens** 
 
 L'argent est le reflet de la richesse !

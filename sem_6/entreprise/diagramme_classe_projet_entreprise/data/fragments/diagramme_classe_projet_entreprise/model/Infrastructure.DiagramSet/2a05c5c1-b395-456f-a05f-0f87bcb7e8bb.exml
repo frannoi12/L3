@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="diagramme_classe_projet_entreprise" version="4">
+  <OBJECT>
+    <ID name="diagramme_classe_projet_entreprise" mc="Infrastructure.DiagramSet" uid="2a05c5c1-b395-456f-a05f-0f87bcb7e8bb"/>
+    <PID name="diagramme_classe_projet_entreprise" mc="Standard.Project" uid="b5498717-be20-4701-8d98-1a280185bbf4"/>
+    <ATTRIBUTES>
+      <ATT name="Name"><![CDATA[diagramme_classe_projet_entreprise]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES></DEPENDENCIES>
+  </OBJECT>
+</EXT>

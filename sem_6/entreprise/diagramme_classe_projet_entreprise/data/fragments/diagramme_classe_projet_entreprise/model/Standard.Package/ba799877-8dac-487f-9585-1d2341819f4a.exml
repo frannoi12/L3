@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="diagramme_classe_projet_entreprise" version="4">
+  <OBJECT>
+    <ID name="diagramme_classe_projet_entreprise" mc="Standard.Package" uid="ba799877-8dac-487f-9585-1d2341819f4a"/>
+    <PID name="diagramme_classe_projet_entreprise" mc="Standard.Project" uid="b5498717-be20-4701-8d98-1a280185bbf4"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[diagramme_classe_projet_entreprise]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedElement">
+        <COMPID name="Patient" mc="Standard.Class" uid="49c7b72c-841b-4317-a919-8a6a1a80c104"/>
+        <COMPID name="AntecedentMedical" mc="Standard.Class" uid="22065bab-7ac3-4d04-b31c-3c460213ad80"/>
+        <COMPID name="Allergie" mc="Standard.Class" uid="42ac59a7-5e68-409e-aff5-24d05a4f5684"/>
+        <COMPID name="Chirurgie" mc="Standard.Class" uid="c5a5f938-08d2-4572-9c4a-987343d929e7"/>
+        <COMPID name="TraitementEnCours" mc="Standard.Class" uid="7e6e7b62-9bfc-4549-9ce8-6da4b8c1a944"/>
+        <COMPID name="Consultation" mc="Standard.Class" uid="c4f4c549-31ca-48f6-bafc-a039a259b91e"/>
+        <COMPID name="Hospitalisation" mc="Standard.Class" uid="0608a31b-9e75-4db1-bb14-d06841bb5f08"/>
+        <COMPID name="DocumentJoint" mc="Standard.Class" uid="a5ec8415-b528-4d95-b7c5-fecd5bfe1d5a"/>
+      </COMP>
+      <COMP relation="Product">
+        <COMPID name="Diagramme de classe diagramme_classe_projet_entreprise" mc="Standard.ClassDiagram" uid="beb643a7-d64c-4a09-98e0-dc497bdce1a2"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>
